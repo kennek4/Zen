@@ -23,10 +23,12 @@ find_package(glm CONFIG REQUIRED)
 # ##############################################################################
 # ###### Main Program Exec #####################################################
 # ##############################################################################
+set(EVENTS ${CMAKE_CURRENT_SOURCE_DIR}/engine/events/event_manager.cpp)
+
 set(SUBSYSTEMS ${CMAKE_CURRENT_SOURCE_DIR}/engine/subsystems/window.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/engine/subsystems/window.h)
 
-set(SRC_FILES ${SUBSYSTEMS})
+set(SRC_FILES ${EVENTS} ${SUBSYSTEMS})
 
 add_executable(ZEN main.cpp ${SRC_FILES})
 target_link_libraries(ZEN PRIVATE CORE)
