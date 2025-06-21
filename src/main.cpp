@@ -1,12 +1,10 @@
-#include "engine/subsystems/window.h"
-#include "event_manager.h"
-#include <memory>
-
+#include "engine/engine.h"
+#include <SDL3/SDL_events.h>
+#include <SDL3/SDL_stdinc.h>
 int main(int argc, char *argv[]) {
-  std::shared_ptr<Zen::EventManager> eventManager{new Zen::EventManager()};
-  Zen::WindowSubsystem *windowZero = new Zen::WindowSubsystem(0, eventManager);
-  Zen::WindowSubsystem *windowOne = new Zen::WindowSubsystem(1, eventManager);
+  Zen::Engine *engine = new Zen::Engine();
 
-  delete windowOne;
-  delete windowZero;
-}
+  engine->getWindowSubsystem()->loop();
+
+  delete engine;
+};
