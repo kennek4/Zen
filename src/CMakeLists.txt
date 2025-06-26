@@ -23,15 +23,7 @@ find_package(glm CONFIG REQUIRED)
 # ##############################################################################
 # ###### Main Program Exec #####################################################
 # ##############################################################################
-set(SUBSYSTEMS
-    ${CMAKE_CURRENT_SOURCE_DIR}/engine/subsystems/window.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/engine/subsystems/window.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/engine/subsystems/render.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/engine/subsystems/render.cpp)
-
-set(SRC_FILES ${SUBSYSTEMS})
-
-add_executable(ZEN main.cpp ${SRC_FILES})
+add_executable(ZEN main.cpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Zen")
 target_link_libraries(ZEN PRIVATE CORE)
 target_link_libraries(ZEN PRIVATE glm::glm SDL3_image::SDL3_image SDL3::SDL3

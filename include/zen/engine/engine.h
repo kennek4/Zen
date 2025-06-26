@@ -1,8 +1,8 @@
 #ifndef ZEN_ENGINE
 #define ZEN_ENGINE
 
-#include "subsystems/render.h"
-#include "subsystems/window.h"
+#include <render.h>
+#include <window.h>
 
 namespace Zen {
 class Engine {
