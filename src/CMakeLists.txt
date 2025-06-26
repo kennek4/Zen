@@ -25,6 +25,6 @@ find_package(glm CONFIG REQUIRED)
 # ##############################################################################
 add_executable(ZEN main.cpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Zen")
-target_link_libraries(ZEN PRIVATE CORE)
+target_link_libraries(ZEN PRIVATE CORE CORE_TYPES)
 target_link_libraries(ZEN PRIVATE glm::glm SDL3_image::SDL3_image SDL3::SDL3
                                   OpenGL::OpenGL)

@@ -8,72 +8,42 @@
 #include <SDL3/SDL_log.h>
 #include <SDL3/SDL_surface.h>
 #include <SDL3/SDL_video.h>
-#include <format>
 #include <iostream>
 #include <subsystem.h>
+#include <window_types.h>
 
 namespace Zen {
+
 class WindowSubsystem : public Subsystem {
 public:
-  WindowSubsystem(u_int systemId) : Subsystem(systemId) {
-    std::cout << std::format("[SID: {}] Hello!\n", getSystemId());
-    if (!init()) {
-      // SDL could not initialize properly
-    };
+  WindowSubsystem(WindowSettings *windowSettings, u_int systemId)
+      : Subsystem(systemId) {
+    m_winSettings = windowSettings;
+    m_mainWindow =
+        SDL_CreateWindow(m_winSettings->title, m_winSettings->width,
+                         m_winSettings->height, m_winSettings->flags);
+    m_glContext = SDL_GL_CreateContext(m_mainWindow);
     std::cout << "WindowSubsystem initialized!\n";
   };
 
   ~WindowSubsystem() {
-    std::cout << std::format("[SID: {}] Bye Bye!\n", getSystemId());
-    if (!shutdown()) {
-      // SDL could not shutdown properly
-    };
+    SDL_GL_DestroyContext(m_glContext);
+    SDL_DestroyWindow(m_mainWindow);
     std::cout << "WindowSubsystem destroyed!\n";
   };
 
-  void loop();
+  SDL_Window *getWindow();
+
   void emitEvent(u_int event);
   void handleEvent(u_int event);
 
 private:
-  int m_windowHeight, m_windowWidth;
+  WindowSettings *m_winSettings{nullptr};
   SDL_Window *m_mainWindow{nullptr};
-  SDL_Surface *m_mainSurface{nullptr};
-  SDL_GLContext m_glContext;
-
-  GLuint m_glProgramId;
-
-  bool init();
-  bool shutdown();
+  SDL_GLContext m_glContext{nullptr};
 };
 
-inline bool WindowSubsystem::init() {
-  bool success{true};
-  if (!SDL_Init(SDL_INIT_VIDEO)) {
-    SDL_Log("SDL did not initialize properly. SDL Error: %s/n", SDL_GetError());
-    success = false;
-  };
-
-  m_mainWindow = SDL_CreateWindow("Zen", m_windowWidth, m_windowHeight, 0);
-  if (m_mainWindow == nullptr) {
-    SDL_Log("SDL could not create a window. SDL Error: %s/n", SDL_GetError());
-    success = false;
-  } else {
-    m_mainSurface = SDL_GetWindowSurface(m_mainWindow);
-  };
-
-  return success;
-};
-
-inline bool WindowSubsystem::shutdown() {
-  SDL_DestroySurface(m_mainSurface);
-  SDL_DestroyWindow(m_mainWindow);
-  m_mainWindow = nullptr;
-  m_mainSurface = nullptr;
-
-  SDL_Quit();
-  return true;
-};
+inline SDL_Window *WindowSubsystem::getWindow() { return this->m_mainWindow; };
 
 }; // namespace Zen
 
