@@ -13,6 +13,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 # ##############################################################################
 # DIRECTORIES #
 # ##############################################################################
+add_subdirectory(include/Zen)
 add_subdirectory(src)
-add_subdirectory(include/zen/engine/)
-add_subdirectory(include/zen/engine/types/)

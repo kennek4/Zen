@@ -1,4 +1,5 @@
 project(ZEN)
+
 # SDL
 cmake_policy(SET CMP0072 NEW)
 
@@ -23,8 +24,8 @@ find_package(glm CONFIG REQUIRED)
 # ##############################################################################
 # ###### Main Program Exec #####################################################
 # ##############################################################################
-add_executable(ZEN main.cpp)
+add_executable(${PROJECT_NAME} main.cpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Zen")
-target_link_libraries(ZEN PRIVATE CORE CORE_TYPES)
-target_link_libraries(ZEN PRIVATE glm::glm SDL3_image::SDL3_image SDL3::SDL3
-                                  OpenGL::OpenGL)
+target_link_directories(ZEN PRIVATE include/Zen)
+target_link_libraries(ZEN PRIVATE ZenCore glm::glm SDL3_image::SDL3_image
+                                  SDL3::SDL3 OpenGL::OpenGL)
