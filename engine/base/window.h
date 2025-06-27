@@ -9,7 +9,7 @@
 #include <SDL3/SDL_surface.h>
 #include <SDL3/SDL_video.h>
 #include <iostream>
-#include <window_types.h>
+#include <zen/>
 
 namespace Zen {
 
