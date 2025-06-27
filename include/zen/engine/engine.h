@@ -9,8 +9,8 @@ namespace Zen {
 class Engine {
 public:
   Engine(WindowSettings *windowSettings) {
-    this->m_window = new WindowSubsystem(windowSettings, 1);
-    this->m_render = new RenderSubsystem(2);
+    this->m_window = new WindowSystem(windowSettings);
+    this->m_render = new RenderSystem();
   };
 
   ~Engine() {
@@ -22,8 +22,8 @@ public:
   void endLoop();
 
 private:
-  WindowSubsystem *m_window;
-  RenderSubsystem *m_render;
+  WindowSystem *m_window;
+  RenderSystem *m_render;
 };
 } // namespace Zen
 

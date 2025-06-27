@@ -9,15 +9,13 @@
 #include <SDL3/SDL_surface.h>
 #include <SDL3/SDL_video.h>
 #include <iostream>
-#include <subsystem.h>
 #include <window_types.h>
 
 namespace Zen {
 
-class WindowSubsystem : public Subsystem {
+class WindowSystem {
 public:
-  WindowSubsystem(WindowSettings *windowSettings, u_int systemId)
-      : Subsystem(systemId) {
+  WindowSystem(WindowSettings *windowSettings) {
     m_winSettings = windowSettings;
     m_mainWindow =
         SDL_CreateWindow(m_winSettings->title, m_winSettings->width,
@@ -26,7 +24,7 @@ public:
     std::cout << "WindowSubsystem initialized!\n";
   };
 
-  ~WindowSubsystem() {
+  ~WindowSystem() {
     SDL_GL_DestroyContext(m_glContext);
     SDL_DestroyWindow(m_mainWindow);
     std::cout << "WindowSubsystem destroyed!\n";
@@ -34,16 +32,13 @@ public:
 
   SDL_Window *getWindow();
 
-  void emitEvent(u_int event);
-  void handleEvent(u_int event);
-
 private:
   WindowSettings *m_winSettings{nullptr};
   SDL_Window *m_mainWindow{nullptr};
   SDL_GLContext m_glContext{nullptr};
 };
 
-inline SDL_Window *WindowSubsystem::getWindow() { return this->m_mainWindow; };
+inline SDL_Window *WindowSystem::getWindow() { return this->m_mainWindow; };
 
 }; // namespace Zen
 
