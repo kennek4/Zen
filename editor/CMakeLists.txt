@@ -1,17 +1,32 @@
-# Project Setup
-cmake_minimum_required(VERSION 3.12..4.0.1)
-project(
-  ZEN_CMAKE
-  VERSION 0.1.0
-  DESCRIPTION "A 2D game engine made by kennek4"
-  LANGUAGES CXX)
+project(ZenEditor)
+# SDL
+cmake_policy(SET CMP0072 NEW)
 
-# C++ Standard
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+# Create an option to switch between a system sdl library and a vendored SDL
+# library
+option(SDL_VENDORED "Use vendored libraries" OFF)
+if(SDL_VENDORED)
+  # This assumes you have added SDL as a submodule in vendored/SDL
+  add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
+else()
+  # 1. Look for a SDL3 package,
+  # 2. look for the SDL3-shared component, and
+  # 3. fail if the shared component cannot be found.
+  find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3-shared)
+  find_package(SDL3_image REQUIRED) # Find the SDL3_image package
+endif()
+
+# OpenGL
+find_package(OpenGL REQUIRED)
+find_package(glm CONFIG REQUIRED)
 
 # ##############################################################################
-# DIRECTORIES #
+# ###### Main Program Exec #####################################################
 # ##############################################################################
-add_subdirectory(include/Zen)
-add_subdirectory(src)
+add_executable(ZEN src/main.cpp)
+set_target_properties(ZEN PROPERTIES OUTPUT_NAME "Zen")
+
+target_link_directories(ZEN PRIVATE src)
+target_link_libraries(ZEN PRIVATE ZenEngine)
+target_link_libraries(ZEN PRIVATE ZenEngine glm::glm SDL3_image::SDL3_image
+                                  SDL3::SDL3 OpenGL::OpenGL)
