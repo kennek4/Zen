@@ -4,7 +4,7 @@
 
 class ZEN_Renderer {
 public:
-  ZEN_Renderer(ZEN_Renderer_API *api) {};
+  ZEN_Renderer(ZEN_Renderer_API api) {};
 
   ~ZEN_Renderer() {};
 
