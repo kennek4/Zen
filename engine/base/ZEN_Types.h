@@ -1,12 +1,23 @@
 #pragma once
 
 #include <SDL3/SDL_video.h>
+#include <sys/types.h>
 
-namespace Zen {
 typedef struct {
   const char *title;
   int height;
   int width;
   SDL_WindowFlags flags;
-} WindowSettings;
-} // namespace Zen
+} ZEN_Window_MetaData;
+
+typedef enum {
+  ZEN_RENDERER_OPENGL,
+  ZEN_RENDERER_VULKAN, // NOT IN USE
+} ZEN_Renderer_API;
+
+typedef struct {
+  const char *API_NAME;
+  const u_int MAJOR_VERSION;
+  const u_int MINOR_VERSION;
+  const u_int PATCH_VERSION;
+} ZEN_Graphics_MetaData;

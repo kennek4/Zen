@@ -1,7 +1,7 @@
 #include "zen.h"
 
 int main(int argc, char *argv[]) {
-  Zen::WindowSettings windowSettings{};
+  Zen::ZenWindowSettings windowSettings{};
   windowSettings.title = "Zen Editor";
   windowSettings.width = 1280;
   windowSettings.height = 720;

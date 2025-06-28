@@ -1,18 +1,17 @@
 #pragma once
 
-#include "ZEN_Types.h"
-#include "ZEN_Window.h"
-#include "render/ZEN_Render.h"
+#include <base/ZEN_Types.h>
+#include <base/ZEN_WindowManager.h>
+#include <renderer/ZEN_Renderer.h>
 
-namespace Zen {
-class Engine {
+class ZEN_Engine {
 public:
-  Engine(WindowSettings *windowSettings) {
-    this->m_window = new WindowSystem(windowSettings);
-    this->m_render = new RenderSystem();
+  ZEN_Engine(ZEN_Window_MetaData *winMetaData, ZEN_Renderer_API *graphicsApi) {
+    this->m_window = new ZEN_WindowManager(winMetaData);
+    this->m_render = new ZEN_Renderer(graphicsApi);
   };
 
-  ~Engine() {
+  ~ZEN_Engine() {
     delete this->m_render;
     delete this->m_window;
   };
@@ -20,7 +19,6 @@ public:
   void loop();
 
 private:
-  WindowSystem *m_window;
-  RenderSystem *m_render;
+  ZEN_WindowManager *m_window;
+  ZEN_Renderer *m_render;
 };
-} // namespace Zen
