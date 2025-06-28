@@ -1,13 +1,13 @@
 #include "zen.h"
 
 int main(int argc, char *argv[]) {
-  Zen::ZenWindowSettings windowSettings{};
-  windowSettings.title = "Zen Editor";
-  windowSettings.width = 1280;
-  windowSettings.height = 720;
-  windowSettings.flags = SDL_WINDOW_BORDERLESS;
+  ZEN_Window_MetaData winMetaData{};
+  winMetaData.title = "Zen Editor";
+  winMetaData.width = 1280;
+  winMetaData.height = 720;
+  winMetaData.flags = SDL_WINDOW_BORDERLESS;
 
-  Zen::Engine *engine = new Zen::Engine(&windowSettings);
+  ZEN_Engine *engine = new ZEN_Engine(&winMetaData, ZEN_RENDERER_OPENGL);
   engine->loop();
 
   delete engine;
