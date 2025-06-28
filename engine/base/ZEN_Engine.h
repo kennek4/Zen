@@ -6,9 +6,9 @@
 
 class ZEN_Engine {
 public:
-  ZEN_Engine(ZEN_Window_MetaData *winMetaData, ZEN_Renderer_API graphicsApi) {
+  ZEN_Engine(ZEN_Window_MetaData *winMetaData, ZEN_Renderer_API api) {
     this->m_window = new ZEN_WindowManager(winMetaData);
-    this->m_render = new ZEN_Renderer(graphicsApi);
+    this->m_render = new ZEN_Renderer(api);
   };
 
   ~ZEN_Engine() {
