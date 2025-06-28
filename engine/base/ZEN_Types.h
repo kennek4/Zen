@@ -17,7 +17,7 @@ typedef enum {
 
 typedef struct {
   const char *API_NAME;
-  const u_int MAJOR_VERSION;
-  const u_int MINOR_VERSION;
-  const u_int PATCH_VERSION;
+  u_int MAJOR_VERSION;
+  u_int MINOR_VERSION;
+  u_int PATCH_VERSION;
 } ZEN_Graphics_MetaData;
