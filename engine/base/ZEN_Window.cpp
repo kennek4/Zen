@@ -1,3 +1,2 @@
-#include "window.h"
-
+#include "ZEN_Window.h"
 namespace Zen {}; // namespace Zen

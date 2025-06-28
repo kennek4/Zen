@@ -1,5 +1,4 @@
-#ifndef ZEN_WINDOW_TYPES_H
-#define ZEN_WINDOW_TYPES_H
+#pragma once
 
 #include <SDL3/SDL_video.h>
 
@@ -11,5 +10,3 @@ typedef struct {
   SDL_WindowFlags flags;
 } WindowSettings;
 } // namespace Zen
-
-#endif // !ZEN_WINDOW_TYPES_H

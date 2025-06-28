@@ -1,6 +1,4 @@
-#ifndef ZEN_RENDER_SYSTEM
-#define ZEN_RENDER_SYSTEM
-
+#pragma once
 namespace Zen {
 class RenderSystem {
 public:
@@ -11,5 +9,3 @@ public:
 private:
 };
 }; // namespace Zen
-
-#endif // !ZEN_RENDER_SYSTEM

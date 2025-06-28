@@ -1,6 +1,6 @@
-#ifndef ZEN_WINDOW_SUBSYSTEM
-#define ZEN_WINDOW_SUBSYSTEM
+#pragma once
 
+#include "ZEN_Types.h"
 #include <GL/gl.h>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_error.h>
@@ -9,7 +9,6 @@
 #include <SDL3/SDL_surface.h>
 #include <SDL3/SDL_video.h>
 #include <iostream>
-#include <zen/>
 
 namespace Zen {
 
@@ -41,5 +40,3 @@ private:
 inline SDL_Window *WindowSystem::getWindow() { return this->m_mainWindow; };
 
 }; // namespace Zen
-
-#endif // !ZEN_WINDOW_SUBSYSTEM

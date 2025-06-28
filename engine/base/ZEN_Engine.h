@@ -1,9 +1,8 @@
-#ifndef ZEN_ENGINE
-#define ZEN_ENGINE
+#pragma once
 
-#include "window_types.h"
-#include <render.h>
-#include <window.h>
+#include "ZEN_Types.h"
+#include "ZEN_Window.h"
+#include "render/ZEN_Render.h"
 
 namespace Zen {
 class Engine {
@@ -18,13 +17,10 @@ public:
     delete this->m_window;
   };
 
-  void startLoop();
-  void endLoop();
+  void loop();
 
 private:
   WindowSystem *m_window;
   RenderSystem *m_render;
 };
 } // namespace Zen
-
-#endif // !ZEN_ENGINE
