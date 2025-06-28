@@ -1,6 +1,5 @@
 #include "ZEN_Engine.h"
-namespace Zen {
-void Engine::loop() {
+void ZEN_Engine::loop() {
   bool done = false;
   if (m_window->getWindow() != NULL) {
     while (!done) {
@@ -14,4 +13,3 @@ void Engine::loop() {
     }
   };
 };
-}; // namespace Zen
