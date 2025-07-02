@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
   winMetaData.flags = SDL_WINDOW_BORDERLESS | SDL_WINDOW_OPENGL;
 
   ZEN_Engine *engine = new ZEN_Engine(&winMetaData, ZEN_RENDERER_OPENGL);
-  engine->loop();
+  engine->startGame();
 
   delete engine;
 };
