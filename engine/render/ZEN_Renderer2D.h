@@ -2,12 +2,12 @@
 
 #include <SDL3/SDL_video.h>
 
-class ZEN_2D {
+class ZEN_Renderer2D {
 public:
-  ZEN_2D();
-  ~ZEN_2D();
+  ZEN_Renderer2D();
+  ~ZEN_Renderer2D();
 
-  void render();
+  void render(SDL_Window *mainWindow);
 
 private:
 };
