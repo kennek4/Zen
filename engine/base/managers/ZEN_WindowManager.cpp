@@ -2,8 +2,8 @@
 #include <base/managers/ZEN_WindowManager.h>
 #include <iostream>
 
-inline ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData,
-                                            ZEN_Renderer_API rendererApi) {
+ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData,
+                                     ZEN_Renderer_API rendererApi) {
   if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
     std::cout << "SDL Init Error: " << SDL_GetError() << std::endl;
   };
@@ -19,11 +19,4 @@ inline ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData,
   if (m_glContext == NULL) {
     std::cout << "SDL_GL_CreateContext Error: " << SDL_GetError() << std::endl;
   };
-
-  m_renderer2d = new ZEN_2D();
-};
-
-void ZEN_WindowManager::render() {
-  m_renderer2d->render();
-  SDL_GL_SwapWindow(m_mainWindow);
 };
