@@ -5,28 +5,27 @@
 #include <base/managers/ZEN_ResourceManager.h>
 #include <base/managers/ZEN_WindowManager.h>
 #include <iostream>
-#include <renderer/ZEN_2D.h>
 
 class ZEN_Engine {
 public:
-  ZEN_Engine(ZEN_Window_MetaData *winMetaData, ZEN_Renderer_API graphicsApi) {
-    this->m_windowManager = new ZEN_WindowManager(winMetaData);
-    this->m_render = new ZEN_2D(graphicsApi);
+  ZEN_Engine(ZEN_Window_MetaData *winMetaData, ZEN_Renderer_API rendererApi) {
+    this->m_gameManager = new ZEN_GameManager();
+    this->m_resourceManager = new ZEN_ResourceManager();
+    this->m_windowManager = new ZEN_WindowManager(winMetaData, rendererApi);
     std::cout << "Zen Engine Initialized!" << std::endl;
   };
 
   ~ZEN_Engine() {
-    delete this->m_render;
-    delete this->m_gameManager;
-    delete this->m_resourceManager;
     delete this->m_windowManager;
+    delete this->m_resourceManager;
+    delete this->m_gameManager;
   };
 
-  void loop();
+  void startGame();
+  void stopGame();
 
 private:
   ZEN_GameManager *m_gameManager;
   ZEN_ResourceManager *m_resourceManager;
   ZEN_WindowManager *m_windowManager;
-  ZEN_2D *m_render;
 };
