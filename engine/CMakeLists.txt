@@ -5,10 +5,9 @@ project(ZenEngineLib)
 
 include(base/CMakeLists.txt)
 include(renderer/CMakeLists.txt)
-include(renderer/2d/CMakeLists.txt)
 
-set(ZEN_HEADER zen.h ${ZEN_BASE_HEADER} ${ZEN_RENDERER_HEADER} ${ZEN_2D_HEADER})
-set(ZEN_SRC ${ZEN_BASE_SRC} ${ZEN_RENDERER_SRC} ${ZEN_2D_SRC})
+set(ZEN_HEADER zen.h ${ZEN_BASE_HEADER} ${ZEN_RENDERER_HEADER})
+set(ZEN_SRC ${ZEN_BASE_SRC} ${ZEN_RENDERER_SRC})
 
 list(APPEND ZEN_SRC ${ZEN_HEADER})
 add_library(ZenEngine STATIC ${ZEN_SRC})
@@ -18,8 +17,7 @@ target_include_directories(
   PUBLIC ${ZEN_ROOT_PATH}
   PUBLIC ${ZEN_ROOT_PATH}/engine
   INTERFACE ${ZEN_ROOT_PATH}/engine/base
-  INTERFACE ${ZEN_ROOT_PATH}/engine/renderer
-  INTERFACE ${ZEN_ROOT_PATH}/engine/renderer/2d)
+  INTERFACE ${ZEN_ROOT_PATH}/engine/renderer)
 
 # SDL
 cmake_policy(SET CMP0072 NEW)
