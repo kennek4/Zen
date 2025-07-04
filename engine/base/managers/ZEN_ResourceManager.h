@@ -1,14 +1,17 @@
 #pragma once
 
+#include <base/2d/ZEN_Texture2D.h>
+#include <map>
+
 class ZEN_ResourceManager {
 public:
-  ZEN_ResourceManager() {
+  static void clear();
 
-  };
-
-  ~ZEN_ResourceManager() {
-
-  };
+  static std::map<const char *, ZEN_Texture2D> Textures;
+  static ZEN_Texture2D getTexture(const char *name);
+  static ZEN_Texture2D loadTexture(const char *filePath, bool hasAlpha,
+                                   const char *name);
 
 private:
+  ZEN_ResourceManager() {};
 };
