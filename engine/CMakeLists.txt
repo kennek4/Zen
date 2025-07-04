@@ -18,6 +18,7 @@ target_include_directories(
   PUBLIC ${ZEN_ROOT_PATH}/engine
   INTERFACE ${ZEN_ROOT_PATH}/engine/base
   INTERFACE ${ZEN_ROOT_PATH}/engine/base/managers
+  INTERFACE ${ZEN_ROOT_PATH}/engine/base/2d
   INTERFACE ${ZEN_ROOT_PATH}/engine/render
   INTERFACE ${ZEN_ROOT_PATH}/engine/render/backend)
 
@@ -42,5 +43,9 @@ endif()
 find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
+# Include folder libraries
+target_link_libraries(ZenEngine STB_IMAGE)
+
+# External libraries
 target_link_libraries(ZenEngine glm::glm SDL3_image::SDL3_image SDL3::SDL3
                       OpenGL::OpenGL)

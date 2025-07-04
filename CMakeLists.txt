@@ -17,3 +17,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 # ##############################################################################
 add_subdirectory(engine)
 add_subdirectory(editor)
+add_subdirectory(include/stb_image)
