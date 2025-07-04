@@ -11,7 +11,6 @@ class ZEN_Engine {
 public:
   ZEN_Engine(ZEN_Window_MetaData *winMetaData, ZEN_Renderer_API rendererApi) {
     m_gameManager = new ZEN_GameManager();
-    m_resourceManager = new ZEN_ResourceManager();
     m_windowManager = new ZEN_WindowManager(winMetaData, rendererApi);
     m_renderer2d = new ZEN_Renderer2D();
     std::cout << "Zen Engine Initialized!" << std::endl;
@@ -19,12 +18,10 @@ public:
 
   ~ZEN_Engine() {
     delete m_windowManager;
-    delete m_resourceManager;
     delete m_gameManager;
     delete m_renderer2d;
 
     m_windowManager = nullptr;
-    m_resourceManager = nullptr;
     m_gameManager = nullptr;
     m_renderer2d = nullptr;
   };
@@ -34,7 +31,6 @@ public:
 
 private:
   ZEN_GameManager *m_gameManager{nullptr};
-  ZEN_ResourceManager *m_resourceManager{nullptr};
   ZEN_WindowManager *m_windowManager{nullptr};
   ZEN_Renderer2D *m_renderer2d{nullptr};
 };
