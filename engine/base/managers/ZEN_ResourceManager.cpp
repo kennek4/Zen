@@ -1,5 +1,3 @@
-#include "base/2d/ZEN_Texture2D.h"
-#include <GL/gl.h>
 #include <base/managers/ZEN_ResourceManager.h>
 
 #define STB_IMAGE_IMPLEMENTATION
