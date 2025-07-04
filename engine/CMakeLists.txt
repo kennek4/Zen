@@ -36,7 +36,6 @@ else()
   # 2. look for the SDL3-shared component, and
   # 3. fail if the shared component cannot be found.
   find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3-shared)
-  find_package(SDL3_image REQUIRED) # Find the SDL3_image package
 endif()
 
 # OpenGL
@@ -47,5 +46,4 @@ find_package(glm CONFIG REQUIRED)
 target_link_libraries(ZenEngine STB_IMAGE)
 
 # External libraries
-target_link_libraries(ZenEngine glm::glm SDL3_image::SDL3_image SDL3::SDL3
-                      OpenGL::OpenGL)
+target_link_libraries(ZenEngine glm::glm SDL3::SDL3 OpenGL::OpenGL)
