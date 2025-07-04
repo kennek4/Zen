@@ -18,8 +18,21 @@ typedef struct TextureProperties {
 class ZEN_Texture2D {
 public:
   ZEN_Texture2D();
-  void createTexture(GLuint width, GLuint height, unsigned char *data);
+  void create(GLuint width, GLuint height, unsigned char *data);
   void bind() const;
+
+  // Getters and setters
+  void setWidth(GLuint width);
+  void setHeight(GLuint height);
+  void setInternalFormat(GLuint internalFormat);
+  void setImageFormat(GLuint imageFormat);
+  void setMinFilter(GLuint minFilter);
+  void setMaxFilter(GLuint maxFilter);
+  void setSWrap(GLuint sWrap);
+  void setTWrap(GLuint tWrap);
+
+  ZEN::TextureProperties const &getProperties();
+  GLuint const &getId();
 
 private:
   GLuint m_id;
