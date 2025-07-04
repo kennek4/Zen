@@ -4,10 +4,10 @@ set(ZEN_ENGINE_VERSION 0.1.0)
 project(ZenEngineLib)
 
 include(base/CMakeLists.txt)
-include(renderer/CMakeLists.txt)
+include(render/CMakeLists.txt)
 
-set(ZEN_HEADER zen.h ${ZEN_BASE_HEADER} ${ZEN_RENDERER_HEADER})
-set(ZEN_SRC ${ZEN_BASE_SRC} ${ZEN_RENDERER_SRC})
+set(ZEN_HEADER zen.h ${ZEN_BASE_HEADER} ${ZEN_RENDER_HEADER})
+set(ZEN_SRC ${ZEN_BASE_SRC} ${ZEN_RENDER_SRC})
 
 list(APPEND ZEN_SRC ${ZEN_HEADER})
 add_library(ZenEngine STATIC ${ZEN_SRC})
@@ -17,7 +17,10 @@ target_include_directories(
   PUBLIC ${ZEN_ROOT_PATH}
   PUBLIC ${ZEN_ROOT_PATH}/engine
   INTERFACE ${ZEN_ROOT_PATH}/engine/base
-  INTERFACE ${ZEN_ROOT_PATH}/engine/renderer)
+  INTERFACE ${ZEN_ROOT_PATH}/engine/base/managers
+  INTERFACE ${ZEN_ROOT_PATH}/engine/base/2d
+  INTERFACE ${ZEN_ROOT_PATH}/engine/render
+  INTERFACE ${ZEN_ROOT_PATH}/engine/render/backend)
 
 # SDL
 cmake_policy(SET CMP0072 NEW)
@@ -33,12 +36,14 @@ else()
   # 2. look for the SDL3-shared component, and
   # 3. fail if the shared component cannot be found.
   find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3-shared)
-  find_package(SDL3_image REQUIRED) # Find the SDL3_image package
 endif()
 
 # OpenGL
 find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-target_link_libraries(ZenEngine glm::glm SDL3_image::SDL3_image SDL3::SDL3
-                      OpenGL::OpenGL)
+# Include folder libraries
+target_link_libraries(ZenEngine STB_IMAGE)
+
+# External libraries
+target_link_libraries(ZenEngine glm::glm SDL3::SDL3 OpenGL::OpenGL)
