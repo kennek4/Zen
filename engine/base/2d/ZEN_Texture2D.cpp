@@ -2,7 +2,8 @@
 
 ZEN_Texture2D::ZEN_Texture2D() { glGenTextures(1, &m_id); };
 
-void ZEN_Texture2D::create(GLuint width, GLuint height, unsigned char *data) {
+void ZEN_Texture2D::create(unsigned int width, unsigned int height,
+                           unsigned char *data) {
   m_properties.width = width;
   m_properties.height = height;
 
@@ -19,32 +20,40 @@ void ZEN_Texture2D::create(GLuint width, GLuint height, unsigned char *data) {
 
 void ZEN_Texture2D::bind() const { glBindTexture(GL_TEXTURE_2D, m_id); };
 
-void ZEN_Texture2D::setWidth(GLuint width) { m_properties.width = width; };
+void ZEN_Texture2D::setWidth(unsigned int width) {
+  m_properties.width = width;
+};
 
-void ZEN_Texture2D::setHeight(GLuint height) { m_properties.height = height; };
+void ZEN_Texture2D::setHeight(unsigned int height) {
+  m_properties.height = height;
+};
 
-void ZEN_Texture2D::setInternalFormat(GLuint internalFormat) {
+void ZEN_Texture2D::setInternalFormat(unsigned int internalFormat) {
   m_properties.internalFormat = internalFormat;
 };
 
-void ZEN_Texture2D::setImageFormat(GLuint imageFormat) {
+void ZEN_Texture2D::setImageFormat(unsigned int imageFormat) {
   m_properties.imageFormat = imageFormat;
 };
 
-void ZEN_Texture2D::setMinFilter(GLuint minFilter) {
+void ZEN_Texture2D::setMinFilter(unsigned int minFilter) {
   m_properties.minFilter = minFilter;
 };
 
-void ZEN_Texture2D::setMaxFilter(GLuint maxFilter) {
+void ZEN_Texture2D::setMaxFilter(unsigned int maxFilter) {
   m_properties.maxFilter = maxFilter;
 };
 
-void ZEN_Texture2D::setSWrap(GLuint sWrap) { m_properties.sWrap = sWrap; };
+void ZEN_Texture2D::setSWrap(unsigned int sWrap) {
+  m_properties.sWrap = sWrap;
+};
 
-void ZEN_Texture2D::setTWrap(GLuint tWrap) { m_properties.tWrap = tWrap; };
+void ZEN_Texture2D::setTWrap(unsigned int tWrap) {
+  m_properties.tWrap = tWrap;
+};
 
 ZEN::TextureProperties const &ZEN_Texture2D::getProperties() {
   return m_properties;
 };
 
-GLuint const &ZEN_Texture2D::getId() { return m_id; };
+unsigned int const &ZEN_Texture2D::getId() { return m_id; };
