@@ -1,10 +1,14 @@
 #include <base/managers/ZEN_ResourceManager.h>
+#include <map>
+// #include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <include/stb_image/stb_image.h>
 
+std::map<const char *, ZEN_Texture2D> ZEN_ResourceManager::Textures = {};
+
 void ZEN_ResourceManager::clear() {
-  // Deleting textures from ZEN_ResourceManager storage
+  // Deleting Textures from ZEN_ResourceManager storage
   for (auto iter : Textures) {
     glDeleteTextures(1, &iter.second.getId());
   };
@@ -33,6 +37,10 @@ ZEN_Texture2D ZEN_ResourceManager::loadTexture(const char *filePath,
 
   // Store texture into storage
   Textures[name] = texture;
+
+  // std::cout << "[Texture] " << name << " texture has been created
+  // successfully!"
+  //           << std::endl;
 
   return texture;
 };
