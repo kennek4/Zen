@@ -10,6 +10,6 @@ set(ZEN_BASE_HEADER
     base/managers/ZEN_ResourceManager.h)
 
 set(ZEN_BASE_SRC
-    base/ZEN_Engine.cpp base/2d/ZEN_GameObject2D.h
+    base/ZEN_Engine.cpp base/2d/ZEN_GameObject2D.cpp base/2d/ZEN_Texture2D.cpp
     base/managers/ZEN_WindowManager.cpp base/managers/ZEN_GameManager.cpp
     base/managers/ZEN_ResourceManager.cpp)
