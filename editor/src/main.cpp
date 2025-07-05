@@ -8,6 +8,9 @@ int main(int argc, char *argv[]) {
   winMetaData.flags = SDL_WINDOW_BORDERLESS | SDL_WINDOW_OPENGL;
 
   ZEN_Engine *engine = new ZEN_Engine(&winMetaData, ZEN_RENDERER_OPENGL);
+  ZEN_ResourceManager::loadTexture("../../data/snoopy1000x1000.jpg", false,
+                                   "Snoopy");
+
   engine->startGame();
 
   delete engine;
