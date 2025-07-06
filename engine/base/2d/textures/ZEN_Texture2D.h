@@ -17,8 +17,12 @@ typedef struct TextureProperties {
 
 class ZEN_Texture2D {
 public:
-  ZEN_Texture2D();
-  void create(unsigned int width, unsigned int height, unsigned char *data);
+  ZEN_Texture2D(unsigned int width, unsigned height,
+                unsigned int internalFormat, unsigned int imageFormat,
+                unsigned char *data);
+
+  ZEN_Texture2D(unsigned int width, unsigned height, unsigned char *data);
+
   void bind() const;
 
   // Getters and setters
@@ -31,8 +35,8 @@ public:
   void setSWrap(unsigned int sWrap);
   void setTWrap(unsigned int tWrap);
 
-  ZEN::TextureProperties const &getProperties();
   unsigned int const &getId();
+  ZEN::TextureProperties const &getProperties();
 
 private:
   unsigned int m_id;

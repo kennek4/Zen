@@ -1,20 +1,21 @@
-#include <base/2d/ZEN_Texture2D.h>
+#include <base/2d/textures/ZEN_Texture2D.h>
 
-ZEN_Texture2D::ZEN_Texture2D() { glGenTextures(1, &m_id); };
-
-void ZEN_Texture2D::create(unsigned int width, unsigned int height,
-                           unsigned char *data) {
-  m_properties.width = width;
-  m_properties.height = height;
-
+ZEN_Texture2D::ZEN_Texture2D(unsigned int width, unsigned height,
+                             unsigned char *data) {
+  glGenTextures(1, &m_id);
   glBindTexture(GL_TEXTURE_2D, m_id);
-  glTexImage2D(GL_TEXTURE_2D, 0, m_properties.internalFormat,
-               m_properties.width, m_properties.height, 0,
+  glTexImage2D(GL_TEXTURE_2D, 0, m_properties.internalFormat, width, height, 0,
                m_properties.imageFormat, GL_UNSIGNED_BYTE, data);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, m_properties.sWrap);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, m_properties.tWrap);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, m_properties.minFilter);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, m_properties.maxFilter);
+  glBindTexture(GL_TEXTURE_2D, 0);
+};
+
+ZEN_Texture2D::ZEN_Texture2D(unsigned int width, unsigned height,
+                             unsigned int internalFormat,
+                             unsigned int imageFormat, unsigned char *data) {
+  glGenTextures(1, &m_id);
+  glBindTexture(GL_TEXTURE_2D, m_id);
+  glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, imageFormat,
+               GL_UNSIGNED_BYTE, data);
   glBindTexture(GL_TEXTURE_2D, 0);
 };
 
