@@ -1,6 +1,6 @@
 #include <SDL3/SDL_video.h>
-#include <base/window/ZEN_WindowManager.h>
 #include <iostream>
+#include <zen/window/ZEN_WindowManager.h>
 
 ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData,
                                      ZEN_Renderer_API rendererApi) {

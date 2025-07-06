@@ -1,7 +1,7 @@
-#include <base/2d/textures/ZEN_TextureFactory2D.h>
-#include <base/resource/ZEN_ResourceManager.h>
 #include <iostream>
 #include <memory>
+#include <zen/resource/ZEN_ResourceManager.h>
+#include <zen/textures/ZEN_TextureFactory2D.h>
 
 ZEN_ResourceManager::~ZEN_ResourceManager() {
   for (auto iter : m_textures) {

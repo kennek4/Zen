@@ -1,8 +1,8 @@
 #pragma once
 
-#include <base/2d/textures/ZEN_Texture2D.h>
 #include <memory>
 #include <string>
+#include <zen/textures/ZEN_Texture2D.h>
 
 class ZEN_TextureFactory2D {
 public:

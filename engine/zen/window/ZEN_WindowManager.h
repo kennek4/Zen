@@ -7,7 +7,7 @@
 #include <SDL3/SDL_log.h>
 #include <SDL3/SDL_surface.h>
 #include <SDL3/SDL_video.h>
-#include <base/ZEN_Types.h>
+#include <zen/ZEN_Types.h>
 
 class ZEN_WindowManager {
 public:

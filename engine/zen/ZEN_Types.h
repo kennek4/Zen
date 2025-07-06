@@ -15,6 +15,7 @@ typedef enum {
   ZEN_RENDERER_VULKAN, // NOT IN USE
 } ZEN_Renderer_API;
 
+// TODO: Fix the u_int into a cross compileable type
 typedef struct {
   const char *API_NAME;
   u_int MAJOR_VERSION;

@@ -1,12 +1,12 @@
 #pragma once
 
-#include <base/2d/textures/ZEN_Texture2D.h>
 #include <cstdint>
 #include <memory>
 #include <sstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <zen/textures/ZEN_Texture2D.h>
 
 // Meyer's Singleton
 class ZEN_ResourceManager {

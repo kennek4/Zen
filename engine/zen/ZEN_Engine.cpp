@@ -1,5 +1,5 @@
 #include <SDL3/SDL_events.h>
-#include <base/ZEN_Engine.h>
+#include <zen/ZEN_Engine.h>
 
 void ZEN_Engine::startGame() {
   SDL_Window *mainWindow = m_windowManager->getWindow();

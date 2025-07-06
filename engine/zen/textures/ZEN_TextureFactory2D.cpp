@@ -1,6 +1,4 @@
-#include "base/2d/textures/ZEN_Texture2D.h"
-#include <base/2d/textures/ZEN_TextureFactory2D.h>
-#include <memory>
+#include <zen/textures/ZEN_TextureFactory2D.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <include/stb_image/stb_image.h>

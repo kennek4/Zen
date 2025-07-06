@@ -1,11 +1,11 @@
 #pragma once
 
-#include <base/ZEN_Types.h>
-#include <base/game/ZEN_GameManager.h>
-#include <base/resource/ZEN_ResourceManager.h>
-#include <base/window/ZEN_WindowManager.h>
 #include <iostream>
-#include <render/ZEN_Renderer2D.h>
+#include <zen/ZEN_Types.h>
+#include <zen/game/ZEN_GameManager.h>
+#include <zen/render/ZEN_Renderer2D.h>
+#include <zen/resource/ZEN_ResourceManager.h>
+#include <zen/window/ZEN_WindowManager.h>
 
 class ZEN_Engine {
 public:

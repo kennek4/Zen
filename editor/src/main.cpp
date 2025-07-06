@@ -1,5 +1,3 @@
-#include "resource/ZEN_ResourceManager.h"
-#include "textures/ZEN_Texture2D.h"
 #include "zen.h"
 #include <iostream>
 #include <memory>

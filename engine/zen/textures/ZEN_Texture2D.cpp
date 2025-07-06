@@ -1,4 +1,4 @@
-#include <base/2d/textures/ZEN_Texture2D.h>
+#include <zen/textures/ZEN_Texture2D.h>
 
 ZEN_Texture2D::ZEN_Texture2D(unsigned int width, unsigned height,
                              unsigned char *data) {

@@ -1,4 +1,4 @@
-#include <base/2d/ZEN_GameObject2D.h>
+#include <zen/2d/ZEN_GameObject2D.h>
 
 ZEN_GameObject2D::~ZEN_GameObject2D() {
 
