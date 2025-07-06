@@ -1,5 +1,5 @@
 #include <base/2d/textures/ZEN_TextureFactory2D.h>
-#include <base/managers/resource/ZEN_ResourceManager.h>
+#include <base/resource/ZEN_ResourceManager.h>
 #include <iostream>
 #include <memory>
 
