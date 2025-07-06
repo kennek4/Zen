@@ -6,15 +6,15 @@ set(ZEN_BASE_HEADER
     base/2d/textures/ZEN_Texture2D.h
     base/2d/textures/ZEN_TextureFactory2D.h
     base/2d/ZEN_Transform2D.h
-    base/managers/window/ZEN_WindowManager.h
-    base/managers/game/ZEN_GameManager.h
-    base/managers/resource/ZEN_ResourceManager.h)
+    base/window/ZEN_WindowManager.h
+    base/game/ZEN_GameManager.h
+    base/resource/ZEN_ResourceManager.h)
 
 set(ZEN_BASE_SRC
     base/ZEN_Engine.cpp
     base/2d/ZEN_GameObject2D.cpp
     base/2d/textures/ZEN_Texture2D.cpp
     base/2d/textures/ZEN_TextureFactory2D.cpp
-    base/managers/window/ZEN_WindowManager.cpp
-    base/managers/game/ZEN_GameManager.cpp
-    base/managers/resource/ZEN_ResourceManager.cpp)
+    base/window/ZEN_WindowManager.cpp
+    base/game/ZEN_GameManager.cpp
+    base/resource/ZEN_ResourceManager.cpp)
