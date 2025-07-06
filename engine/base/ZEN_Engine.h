@@ -1,9 +1,9 @@
 #pragma once
 
 #include <base/ZEN_Types.h>
-#include <base/managers/ZEN_GameManager.h>
-#include <base/managers/ZEN_ResourceManager.h>
-#include <base/managers/ZEN_WindowManager.h>
+#include <base/managers/game/ZEN_GameManager.h>
+#include <base/managers/resource/ZEN_ResourceManager.h>
+#include <base/managers/window/ZEN_WindowManager.h>
 #include <iostream>
 #include <render/ZEN_Renderer2D.h>
 
