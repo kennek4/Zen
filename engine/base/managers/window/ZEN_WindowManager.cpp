@@ -1,5 +1,5 @@
 #include <SDL3/SDL_video.h>
-#include <base/managers/ZEN_WindowManager.h>
+#include <base/managers/window/ZEN_WindowManager.h>
 #include <iostream>
 
 ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData,
