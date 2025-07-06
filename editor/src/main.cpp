@@ -16,11 +16,11 @@ int main(int argc, char *argv[]) {
 
   std::shared_ptr<ZEN_Texture2D> snoopy1 =
       ZEN_ResourceManager::getInstance().loadAlphaTexture(
-          "../../data/snoopy1000x1000.jpg", "Snoopy", true);
+          "../data/snoopy1000x1000.jpg", "Snoopy", true);
 
   std::shared_ptr<ZEN_Texture2D> snoopy2 =
       ZEN_ResourceManager::getInstance().loadAlphaTexture(
-          "../../data/snoopy1000x1000.jpg", "Snoopy", true);
+          "../data/snoopy1000x1000.jpg", "Snoopy1", true);
 
   std::cout << "After Loading..." << std::endl;
 
