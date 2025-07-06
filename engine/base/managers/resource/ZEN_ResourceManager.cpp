@@ -12,7 +12,7 @@ ZEN_ResourceManager::~ZEN_ResourceManager() {
 std::shared_ptr<ZEN_Texture2D> ZEN_ResourceManager::loadAlphaTexture(
     std::string const &path, std::string const &textureName, bool hasAlpha) {
   std::stringstream stream;
-  stream << textureName;
+  stream << path;
   std::string const &key = generateKey(stream);
 
   auto resourcePtr = getFromVector<ZEN_Texture2D>(key);
@@ -45,7 +45,7 @@ std::shared_ptr<ZEN_Texture2D>
 ZEN_ResourceManager::loadTexture(std::string const &path,
                                  std::string const &textureName) {
   std::stringstream stream;
-  stream << textureName;
+  stream << path;
   std::string const &key = generateKey(stream);
 
   auto resourcePtr = getFromVector<ZEN_Texture2D>(key);
