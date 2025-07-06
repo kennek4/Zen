@@ -2,12 +2,32 @@
 set(ZEN_ENGINE_VERSION 0.1.0)
 
 project(ZenEngineLib)
+include(zen/CMakeLists.txt)
+include(zen/2d/CMakeLists.txt)
+include(zen/game/CMakeLists.txt)
+include(zen/render/CMakeLists.txt)
+include(zen/resource/CMakeLists.txt)
+include(zen/textures/CMakeLists.txt)
+include(zen/window/CMakeLists.txt)
 
-include(base/CMakeLists.txt)
-include(render/CMakeLists.txt)
+set(ZEN_HEADER
+    zen.h
+    ${ZEN_BASE_HEADER}
+    ${ZEN_2D_HEADER}
+    ${ZEN_GAME_HEADER}
+    ${ZEN_RENDER_HEADER}
+    ${ZEN_RESOURCE_HEADER}
+    ${ZEN_TEXTURES_HEADER}
+    ${ZEN_WINDOW_HEADER})
 
-set(ZEN_HEADER zen.h ${ZEN_BASE_HEADER} ${ZEN_RENDER_HEADER})
-set(ZEN_SRC ${ZEN_BASE_SRC} ${ZEN_RENDER_SRC})
+set(ZEN_SRC
+    ${ZEN_BASE_SRC}
+    ${ZEN_2D_SRC}
+    ${ZEN_GAME_SRC}
+    ${ZEN_RENDER_SRC}
+    ${ZEN_RESOURCE_SRC}
+    ${ZEN_TEXTURES_SRC}
+    ${ZEN_WINDOW_SRC})
 
 list(APPEND ZEN_SRC ${ZEN_HEADER})
 add_library(ZenEngine STATIC ${ZEN_SRC})
@@ -16,11 +36,14 @@ target_include_directories(
   ZenEngine
   PUBLIC ${ZEN_ROOT_PATH}
   PUBLIC ${ZEN_ROOT_PATH}/engine
-  INTERFACE ${ZEN_ROOT_PATH}/engine/base
-  INTERFACE ${ZEN_ROOT_PATH}/engine/base/managers
-  INTERFACE ${ZEN_ROOT_PATH}/engine/base/2d
-  INTERFACE ${ZEN_ROOT_PATH}/engine/render
-  INTERFACE ${ZEN_ROOT_PATH}/engine/render/backend)
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/2d
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/game
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/render
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/resources
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/textures
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/ui
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/window)
 
 # SDL
 cmake_policy(SET CMP0072 NEW)
