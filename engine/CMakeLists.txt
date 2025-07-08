@@ -60,13 +60,12 @@ else()
   # 3. fail if the shared component cannot be found.
   find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3-shared)
 endif()
+set(SDL_SHARED OFF)
+set(SDL_STATIC ON)
 
 # OpenGL
 find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-# Include folder libraries
-target_link_libraries(ZenEngine STB_IMAGE)
-
-# External libraries
-target_link_libraries(ZenEngine glm::glm SDL3::SDL3 OpenGL::OpenGL)
+target_link_libraries(ZenEngine SDL3::SDL3 stb_image glad glm
+                      ${OPENGL_LIBRARIES})
