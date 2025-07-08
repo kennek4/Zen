@@ -15,6 +15,4 @@ public:
 
   ZEN_TextureFactory2D() {};
   ~ZEN_TextureFactory2D() {};
-
-private:
 }; // namespace ZEN_TextureFactory2D
