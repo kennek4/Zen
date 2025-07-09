@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <zen/render/ZEN_GLShader.h>
 #include <zen/textures/ZEN_Texture2D.h>
 
 // Meyer's Singleton
@@ -24,10 +25,18 @@ public:
   std::shared_ptr<T> getFromVector(std::string const &key) {
     int32_t id = -1;
     if constexpr (std::is_same_v<T, ZEN_Texture2D>) {
-      auto const it = nameToTexture.find(key);
-      if (it != nameToTexture.end()) {
+      auto const it = m_nameToTexture.find(key);
+      if (it != m_nameToTexture.end()) {
         id = it->second;
         return m_textures[id];
+      };
+    };
+
+    if constexpr (std::is_same_v<T, ZEN_GLShader>) {
+      auto const it = m_nameToShader.find(key);
+      if (it != m_nameToShader.end()) {
+        id = it->second;
+        return m_shaders[id];
       };
     };
 
@@ -42,6 +51,10 @@ public:
   std::shared_ptr<ZEN_Texture2D> loadTexture(std::string const &path,
                                              std::string const &textureName);
 
+  // Shaders
+  std::shared_ptr<ZEN_GLShader> loadShader(std::string const &vertexPath,
+                                           std::string const &fragmentPath);
+
 private:
   ZEN_ResourceManager() {};
   ~ZEN_ResourceManager();
@@ -49,5 +62,9 @@ private:
 
   // Texture Storage
   std::vector<std::shared_ptr<ZEN_Texture2D>> m_textures{};
-  std::unordered_map<std::string, uint16_t> nameToTexture{};
+  std::unordered_map<std::string, uint16_t> m_nameToTexture{};
+
+  // Shader Storage
+  std::vector<std::shared_ptr<ZEN_GLShader>> m_shaders{};
+  std::unordered_map<std::string, uint16_t> m_nameToShader{};
 };

@@ -1,6 +1,7 @@
 #include <GLES3/gl3.h>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_video.h>
+#include <glad/gl.h>
 #include <zen/render/ZEN_Renderer2D.h>
 
 ZEN_Renderer2D::ZEN_Renderer2D() {};

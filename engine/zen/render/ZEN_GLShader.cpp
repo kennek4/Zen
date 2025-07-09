@@ -8,16 +8,16 @@ ZEN_GLShader::ZEN_GLShader(std::string const &vertexPath,
 
   std::string vertCodeStr{};
   std::string fragCodeStr{};
-  std::ifstream vertShaderFile;
-  std::ifstream fragShaderFile;
+  std::ifstream vertShaderFile{};
+  std::ifstream fragShaderFile{};
 
   vertShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
   fragShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
   try {
 
-    vertShaderFile.open(vertexPath);
-    fragShaderFile.open(fragmentPath);
+    vertShaderFile.open(vertexPath.c_str());
+    fragShaderFile.open(fragmentPath.c_str());
 
     std::stringstream vertStringStream, fragStringStream;
     vertStringStream << vertShaderFile.rdbuf();
@@ -86,9 +86,21 @@ void ZEN_GLShader::setFloat(const std::string &name, float value) const {
   glUniform1f(glGetUniformLocation(m_glId, name.c_str()), value);
 };
 
+unsigned int const &ZEN_GLShader::getId() { return m_glId; };
+
 void ZEN_GLShader::create(ZEN::ShaderType type, GLuint *shader,
                           const char *shaderCode, GLint &compileStatus) {
-  *shader = glCreateShader(type);
+
+  switch (type) {
+  case ZEN::VERTEX:
+    *shader = glCreateShader(GL_VERTEX_SHADER);
+    break;
+
+  case ZEN::FRAGMENT:
+    *shader = glCreateShader(GL_FRAGMENT_SHADER);
+    break;
+  };
+
   glShaderSource(*shader, 1, &shaderCode, nullptr);
   glCompileShader(*shader);
   glGetShaderiv(*shader, GL_COMPILE_STATUS, &compileStatus);
