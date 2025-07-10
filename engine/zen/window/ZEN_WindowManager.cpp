@@ -24,6 +24,15 @@ ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData) {
     std::cout << "SDL_GL_CreateContext Error: " << SDL_GetError() << std::endl;
   };
 
+  // Set OpenGL Attributes
+  SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+  SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+  SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+  SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+  SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
+  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+
   // Initialize GLAD
   int version = gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
   // TODO: Add log event to show GLAD version here

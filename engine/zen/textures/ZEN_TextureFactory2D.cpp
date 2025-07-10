@@ -18,7 +18,7 @@ std::shared_ptr<ZEN_Texture2D> ZEN_TextureFactory2D::createTexture(
   // Loading the image at the given filePath
   int width, height, nrChannels;
   unsigned char *dataPtr =
-      stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+      stbi_load(path.c_str(), &width, &height, &nrChannels, STBI_rgb_alpha);
 
   if (stbi_failure_reason())
     std::cout << stbi_failure_reason() << std::endl;
@@ -29,7 +29,14 @@ std::shared_ptr<ZEN_Texture2D> ZEN_TextureFactory2D::createTexture(
   std::shared_ptr<ZEN_Texture2D> texture = std::make_shared<ZEN_Texture2D>(
       width, height, internalFormat, imageFormat, dataPtr);
 
+  std::cout << "Texture ID: " << texture->getId() << std::endl;
+  std::cout << "Texture internalFormat:"
+            << texture->getProperties().internalFormat << std::endl;
+
   stbi_image_free(dataPtr);
+  if (stbi_failure_reason())
+    std::cout << stbi_failure_reason() << std::endl;
+
   return texture;
 };
 
@@ -39,7 +46,7 @@ ZEN_TextureFactory2D::createTexture(std::string const &path,
   // Loading the image at the given filePath
   int width, height, nrChannels;
   unsigned char *dataPtr =
-      stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+      stbi_load(path.c_str(), &width, &height, &nrChannels, STBI_rgb);
 
   std::shared_ptr<ZEN_Texture2D> texture =
       std::make_shared<ZEN_Texture2D>(width, height, dataPtr);

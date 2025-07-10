@@ -46,26 +46,23 @@ ZEN_GLShader::ZEN_GLShader(std::string const &vertexPath,
   create(ZEN::VERTEX, &vertex, vertCode, status);
   if (status != GL_TRUE) {
     glGetShaderInfoLog(vertex, 1024, &log_length, message);
-    // TODO: Add custom error handling here
   };
 
-  create(ZEN::FRAGMENT, &fragment, vertCode, status);
+  create(ZEN::FRAGMENT, &fragment, fragCode, status);
   if (status != GL_TRUE) {
     glGetShaderInfoLog(fragment, 1024, &log_length, message);
-    // TODO: Add custom error handling here
   };
 
-  m_glId = glCreateProgram();
+  this->m_glId = glCreateProgram();
 
-  glAttachShader(m_glId, vertex);
-  glAttachShader(m_glId, fragment);
-  glLinkProgram(m_glId);
+  glAttachShader(this->m_glId, vertex);
+  glAttachShader(this->m_glId, fragment);
+  glLinkProgram(this->m_glId);
 
   // Check to see if shaders were linked to program
   glGetProgramiv(m_glId, GL_LINK_STATUS, &status);
   if (status != GL_TRUE) {
     glGetShaderInfoLog(fragment, 1024, &log_length, message);
-    // TODO: Add custom error handling here
   };
 
   // Safe to delete
@@ -74,14 +71,14 @@ ZEN_GLShader::ZEN_GLShader(std::string const &vertexPath,
 };
 
 ZEN_GLShader &ZEN_GLShader::use() {
-  glUseProgram(m_glId);
+  glUseProgram(this->m_glId);
   return *this;
 };
 
 void ZEN_GLShader::setBool(const std::string &name, bool value,
                            bool useShader) {
   if (useShader) {
-    this->use();
+    use();
   };
 
   glUniform1i(glGetUniformLocation(m_glId, name.c_str()), (int)value);
@@ -89,7 +86,7 @@ void ZEN_GLShader::setBool(const std::string &name, bool value,
 
 void ZEN_GLShader::setInt(const std::string &name, int value, bool useShader) {
   if (useShader) {
-    ZEN_GLShader::use();
+    use();
   };
 
   glUniform1i(glGetUniformLocation(m_glId, name.c_str()), value);
@@ -99,7 +96,7 @@ void ZEN_GLShader::setFloat(const std::string &name, float value,
                             bool useShader) {
 
   if (useShader) {
-    ZEN_GLShader::use();
+    use();
   };
 
   glUniform1f(glGetUniformLocation(m_glId, name.c_str()), value);
@@ -109,7 +106,7 @@ void ZEN_GLShader::setMatrix4(const std::string &name, glm::mat4 value,
                               bool useShader) {
 
   if (useShader) {
-    ZEN_GLShader::use();
+    use();
   };
 
   glUniformMatrix4fv(glGetUniformLocation(m_glId, name.c_str()), 1, false,
@@ -120,7 +117,7 @@ void ZEN_GLShader::setVector3f(const std::string &name, glm::vec3 value,
                                bool useShader) {
 
   if (useShader) {
-    ZEN_GLShader::use();
+    use();
   };
 
   glUniform3f(glGetUniformLocation(m_glId, name.c_str()), value.x, value.y,

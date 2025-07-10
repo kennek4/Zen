@@ -7,13 +7,53 @@
 #include <iostream>
 #include <zen/render/ZEN_Renderer2D.h>
 
-void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id,
-                                GLenum severity, GLsizei length,
-                                const GLchar *message, const void *userParam) {
-  fprintf(stderr,
-          "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
-          (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""), type, severity,
-          message);
+void GLAPIENTRY openglCallbackFunction(GLenum source, GLenum type, GLuint id,
+                                       GLenum severity, GLsizei length,
+                                       const GLchar *message,
+                                       const void *userParam) {
+
+  std::cout << "---------------------opengl-callback-start------------"
+            << std::endl;
+  std::cout << "message: " << message << std::endl;
+  std::cout << "type: ";
+  switch (type) {
+  case GL_DEBUG_TYPE_ERROR:
+    std::cout << "ERROR";
+    break;
+  case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+    std::cout << "DEPRECATED_BEHAVIOR";
+    break;
+  case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+    std::cout << "UNDEFINED_BEHAVIOR";
+    break;
+  case GL_DEBUG_TYPE_PORTABILITY:
+    std::cout << "PORTABILITY";
+    break;
+  case GL_DEBUG_TYPE_PERFORMANCE:
+    std::cout << "PERFORMANCE";
+    break;
+  case GL_DEBUG_TYPE_OTHER:
+    std::cout << "OTHER";
+    break;
+  }
+  std::cout << std::endl;
+
+  std::cout << "id: " << id << std::endl;
+  std::cout << "severity: ";
+  switch (severity) {
+  case GL_DEBUG_SEVERITY_LOW:
+    std::cout << "LOW";
+    break;
+  case GL_DEBUG_SEVERITY_MEDIUM:
+    std::cout << "MEDIUM";
+    break;
+  case GL_DEBUG_SEVERITY_HIGH:
+    std::cout << "HIGH";
+    break;
+  }
+  std::cout << std::endl;
+  std::cout << "---------------------opengl-callback-end--------------"
+            << std::endl;
 };
 
 ZEN_Renderer2D::ZEN_Renderer2D() {
@@ -29,9 +69,14 @@ void ZEN_Renderer2D::setShader(std::shared_ptr<ZEN_GLShader> shader) {
 std::shared_ptr<ZEN_GLShader> ZEN_Renderer2D::getShader() { return m_shader; };
 
 void ZEN_Renderer2D::initOpenGL() {
-  std::cout << "Initializing OpenGL" << std::endl;
-  glEnable(GL_BLEND | GL_DEPTH_TEST | GL_DEBUG_OUTPUT);
-  glDebugMessageCallback(MessageCallback, 0);
+  glEnable(GL_DEBUG_OUTPUT);
+  glDebugMessageCallback(openglCallbackFunction, NULL);
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_CULL_FACE);
 
   // Configure VAO/VBO
   GLuint VBO;
@@ -41,13 +86,13 @@ void ZEN_Renderer2D::initOpenGL() {
 
       0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f};
 
-  glGenVertexArrays(1, &m_quadVAO);
+  glGenVertexArrays(1, &this->m_quadVAO);
   glGenBuffers(1, &VBO);
 
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-  glBindVertexArray(m_quadVAO);
+  glBindVertexArray(this->m_quadVAO);
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -77,9 +122,8 @@ void ZEN_Renderer2D::renderGameObject(
   m_shader->setVector3f("spriteColor", sprite.colour, true);
 
   glActiveTexture(GL_TEXTURE0);
-  //
-  // std::cout << "Texture ID: " << sprite.texture->getId() << std::endl;
   gameObject->getSprite().texture->bind();
+  // std::cout << "Texture ID: " << sprite.texture->getId() << std::endl;
 
   glBindVertexArray(m_quadVAO);
   glDrawArrays(GL_TRIANGLES, 0, 6);

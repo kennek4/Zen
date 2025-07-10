@@ -20,11 +20,13 @@ public:
   ZEN_GLShader &use();
 
   // Utility for Uniforms
-  void setInt(const std::string &name, int value, bool useShader);
-  void setFloat(const std::string &name, float value, bool useShader);
-  void setBool(const std::string &name, bool value, bool useShader);
-  void setMatrix4(const std::string &name, glm::mat4 value, bool useShader);
-  void setVector3f(const std::string &name, glm::vec3 value, bool useShader);
+  void setInt(const std::string &name, int value, bool useShader = true);
+  void setFloat(const std::string &name, float value, bool useShader = true);
+  void setBool(const std::string &name, bool value, bool useShader = true);
+  void setMatrix4(const std::string &name, glm::mat4 value,
+                  bool useShader = true);
+  void setVector3f(const std::string &name, glm::vec3 value,
+                   bool useShader = true);
 
   unsigned int const &getId();
 
