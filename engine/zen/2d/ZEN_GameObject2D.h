@@ -2,11 +2,15 @@
 
 #include <glm/vec2.hpp>
 #include <glm/vec4.hpp>
+#include <string>
+#include <zen/2d/ZEN_Sprite.h>
 #include <zen/2d/ZEN_Transform2D.h>
 
 class ZEN_GameObject2D {
 public:
-  ZEN_GameObject2D(const char *name) : m_name(name) {};
+  ZEN_GameObject2D(std::string name, ZEN::Transform2D transform,
+                   ZEN::Sprite sprite)
+      : m_name(name), m_transform(transform), m_sprite(sprite) {};
   ~ZEN_GameObject2D();
 
   void translate(float xOffset = 0.0f, float yOffset = 0.0f);
@@ -24,8 +28,10 @@ public:
   glm::vec2 const &getSize();
   float const &getRotation();
   ZEN::Transform2D const &getTransform();
+  ZEN::Sprite const &getSprite();
 
 private:
-  const char *m_name;
+  std::string m_name;
   ZEN::Transform2D m_transform{};
+  ZEN::Sprite m_sprite{};
 };

@@ -6,8 +6,8 @@ namespace ZEN {
 typedef struct TextureProperties {
   unsigned int width{0};
   unsigned int height{0};
-  unsigned int internalFormat{GL_RGB};
-  unsigned int imageFormat{GL_RGB};
+  unsigned int internalFormat{GL_RGBA};
+  unsigned int imageFormat{GL_RGBA};
   unsigned int minFilter{GL_LINEAR};
   unsigned int maxFilter{GL_LINEAR};
   unsigned int sWrap{GL_REPEAT};
@@ -17,11 +17,11 @@ typedef struct TextureProperties {
 
 class ZEN_Texture2D {
 public:
-  ZEN_Texture2D(unsigned int width, unsigned height,
+  ZEN_Texture2D(unsigned int width, unsigned int height,
                 unsigned int internalFormat, unsigned int imageFormat,
                 unsigned char *data);
 
-  ZEN_Texture2D(unsigned int width, unsigned height, unsigned char *data);
+  ZEN_Texture2D(unsigned int width, unsigned int height, unsigned char *data);
 
   void bind() const;
 

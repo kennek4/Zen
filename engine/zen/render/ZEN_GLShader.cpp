@@ -1,5 +1,6 @@
 #include <GLES3/gl3.h>
 #include <fstream>
+#include <glm/gtc/type_ptr.hpp>
 #include <sstream>
 #include <zen/render/ZEN_GLShader.h>
 
@@ -72,18 +73,58 @@ ZEN_GLShader::ZEN_GLShader(std::string const &vertexPath,
   glDeleteShader(fragment);
 };
 
-void ZEN_GLShader::use() { glUseProgram(m_glId); };
+ZEN_GLShader &ZEN_GLShader::use() {
+  glUseProgram(m_glId);
+  return *this;
+};
 
-void ZEN_GLShader::setBool(const std::string &name, bool value) const {
+void ZEN_GLShader::setBool(const std::string &name, bool value,
+                           bool useShader) {
+  if (useShader) {
+    this->use();
+  };
+
   glUniform1i(glGetUniformLocation(m_glId, name.c_str()), (int)value);
 };
 
-void ZEN_GLShader::setInt(const std::string &name, int value) const {
+void ZEN_GLShader::setInt(const std::string &name, int value, bool useShader) {
+  if (useShader) {
+    ZEN_GLShader::use();
+  };
+
   glUniform1i(glGetUniformLocation(m_glId, name.c_str()), value);
 };
 
-void ZEN_GLShader::setFloat(const std::string &name, float value) const {
+void ZEN_GLShader::setFloat(const std::string &name, float value,
+                            bool useShader) {
+
+  if (useShader) {
+    ZEN_GLShader::use();
+  };
+
   glUniform1f(glGetUniformLocation(m_glId, name.c_str()), value);
+};
+
+void ZEN_GLShader::setMatrix4(const std::string &name, glm::mat4 value,
+                              bool useShader) {
+
+  if (useShader) {
+    ZEN_GLShader::use();
+  };
+
+  glUniformMatrix4fv(glGetUniformLocation(m_glId, name.c_str()), 1, false,
+                     glm::value_ptr(value));
+};
+
+void ZEN_GLShader::setVector3f(const std::string &name, glm::vec3 value,
+                               bool useShader) {
+
+  if (useShader) {
+    ZEN_GLShader::use();
+  };
+
+  glUniform3f(glGetUniformLocation(m_glId, name.c_str()), value.x, value.y,
+              value.z);
 };
 
 unsigned int const &ZEN_GLShader::getId() { return m_glId; };

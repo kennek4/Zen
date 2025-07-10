@@ -1,15 +1,17 @@
+#include <iostream>
 #include <zen/textures/ZEN_Texture2D.h>
 
-ZEN_Texture2D::ZEN_Texture2D(unsigned int width, unsigned height,
+ZEN_Texture2D::ZEN_Texture2D(unsigned int width, unsigned int height,
                              unsigned char *data) {
   glGenTextures(1, &m_id);
   glBindTexture(GL_TEXTURE_2D, m_id);
   glTexImage2D(GL_TEXTURE_2D, 0, m_properties.internalFormat, width, height, 0,
                m_properties.imageFormat, GL_UNSIGNED_BYTE, data);
+
   glBindTexture(GL_TEXTURE_2D, 0);
 };
 
-ZEN_Texture2D::ZEN_Texture2D(unsigned int width, unsigned height,
+ZEN_Texture2D::ZEN_Texture2D(unsigned int width, unsigned int height,
                              unsigned int internalFormat,
                              unsigned int imageFormat, unsigned char *data) {
   glGenTextures(1, &m_id);

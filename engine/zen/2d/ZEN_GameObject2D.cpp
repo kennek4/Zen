@@ -53,3 +53,5 @@ float const &ZEN_GameObject2D::getRotation() { return m_transform.rotation; };
 ZEN::Transform2D const &ZEN_GameObject2D::getTransform() {
   return m_transform;
 };
+
+ZEN::Sprite const &ZEN_GameObject2D::getSprite() { return m_sprite; };

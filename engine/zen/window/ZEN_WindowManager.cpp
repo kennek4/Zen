@@ -4,8 +4,7 @@
 #include <iostream>
 #include <zen/window/ZEN_WindowManager.h>
 
-ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData,
-                                     ZEN_Renderer_API rendererApi) {
+ZEN_WindowManager::ZEN_WindowManager(ZEN_Window_MetaData *winMetaData) {
   if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
     // TODO:: Add error to logging
     std::cout << "SDL Init Error: " << SDL_GetError() << std::endl;

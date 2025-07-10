@@ -11,8 +11,7 @@
 
 class ZEN_WindowManager {
 public:
-  ZEN_WindowManager(ZEN_Window_MetaData *winMetaData,
-                    ZEN_Renderer_API rendererApi);
+  ZEN_WindowManager(ZEN_Window_MetaData *winMetaData);
 
   ~ZEN_WindowManager() {
     SDL_GL_DestroyContext(m_glContext);

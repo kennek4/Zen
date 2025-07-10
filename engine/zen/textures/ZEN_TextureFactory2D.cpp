@@ -1,3 +1,4 @@
+#include <iostream>
 #include <zen/textures/ZEN_TextureFactory2D.h>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -18,6 +19,12 @@ std::shared_ptr<ZEN_Texture2D> ZEN_TextureFactory2D::createTexture(
   int width, height, nrChannels;
   unsigned char *dataPtr =
       stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+
+  if (stbi_failure_reason())
+    std::cout << stbi_failure_reason() << std::endl;
+
+  std::cout << "Width: " << width << std::endl;
+  std::cout << "Height: " << height << std::endl;
 
   std::shared_ptr<ZEN_Texture2D> texture = std::make_shared<ZEN_Texture2D>(
       width, height, internalFormat, imageFormat, dataPtr);

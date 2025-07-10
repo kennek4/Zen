@@ -8,10 +8,8 @@ int main(int argc, char *argv[]) {
   winMetaData.height = 720;
   winMetaData.flags = SDL_WINDOW_BORDERLESS | SDL_WINDOW_OPENGL;
 
-  ZEN_Engine *engine = new ZEN_Engine(&winMetaData, ZEN_RENDERER_OPENGL);
+  ZEN_Engine *engine = new ZEN_Engine(&winMetaData);
+  engine->startGame();
 
-  std::shared_ptr<ZEN_GLShader> shader =
-      ZEN_ResourceManager::getInstance().loadShader("./data/basic.vert",
-                                                    "./data/basic.frag");
   delete engine;
 };

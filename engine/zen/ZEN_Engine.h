@@ -1,6 +1,7 @@
 #pragma once
 
-#include <iostream>
+#include <glm/ext/matrix_clip_space.hpp>
+#include <memory>
 #include <zen/ZEN_Types.h>
 #include <zen/game/ZEN_GameManager.h>
 #include <zen/render/ZEN_Renderer2D.h>
@@ -9,28 +10,15 @@
 
 class ZEN_Engine {
 public:
-  ZEN_Engine(ZEN_Window_MetaData *winMetaData, ZEN_Renderer_API rendererApi) {
-    m_gameManager = new ZEN_GameManager();
-    m_windowManager = new ZEN_WindowManager(winMetaData, rendererApi);
-    m_renderer2d = new ZEN_Renderer2D();
-    std::cout << "Zen Engine Initialized!" << std::endl;
-  };
+  ZEN_Engine(ZEN_Window_MetaData *winMetaData);
+  ~ZEN_Engine();
 
-  ~ZEN_Engine() {
-    delete m_windowManager;
-    delete m_gameManager;
-    delete m_renderer2d;
-
-    m_windowManager = nullptr;
-    m_gameManager = nullptr;
-    m_renderer2d = nullptr;
-  };
-
+  void init();
   void startGame();
   void stopGame();
 
 private:
-  ZEN_GameManager *m_gameManager{nullptr};
-  ZEN_WindowManager *m_windowManager{nullptr};
-  ZEN_Renderer2D *m_renderer2d{nullptr};
+  std::unique_ptr<ZEN_WindowManager> m_windowManager;
+  std::unique_ptr<ZEN_GameManager> m_gameManger;
+  std::unique_ptr<ZEN_Renderer2D> m_renderer;
 };
