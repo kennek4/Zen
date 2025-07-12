@@ -6,6 +6,7 @@ project(ZenEngineLib)
 include(base/CMakeLists.txt)
 include(render/CMakeLists.txt)
 
+
 set(ZEN_HEADER zen.h ${ZEN_BASE_HEADER} ${ZEN_RENDER_HEADER})
 set(ZEN_SRC ${ZEN_BASE_SRC} ${ZEN_RENDER_SRC})
 
@@ -42,8 +43,19 @@ endif()
 find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
+
+include(FetchContent)
+
+FetchContent_Declare(
+  fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt
+  GIT_TAG        e69e5f977d458f2650bb346dadf2ad30c5320281) # 10.2.1
+FetchContent_MakeAvailable(fmt)
+
 # Include folder libraries
 target_link_libraries(ZenEngine STB_IMAGE)
+target_link_libraries(ZenEngine SPDLOG)
+target_link_libraries(ZenEngine DOCTEST)
 
 # External libraries
-target_link_libraries(ZenEngine glm::glm SDL3::SDL3 OpenGL::OpenGL)
+target_link_libraries(ZenEngine glm::glm SDL3::SDL3 OpenGL::OpenGL fmt::fmt)
