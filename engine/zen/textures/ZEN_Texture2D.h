@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GL/gl.h>
+#include <string>
 
 namespace ZEN {
 typedef struct TextureProperties {
@@ -12,6 +13,8 @@ typedef struct TextureProperties {
   unsigned int maxFilter{GL_LINEAR};
   unsigned int sWrap{GL_REPEAT};
   unsigned int tWrap{GL_REPEAT};
+  std::string pathToTexture;
+  std::string textureName;
 } TextureProperties;
 }; // namespace ZEN
 

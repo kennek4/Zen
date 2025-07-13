@@ -7,10 +7,6 @@
 class ZEN_TextureFactory2D {
 public:
   std::shared_ptr<ZEN_Texture2D> createTexture(std::string const &path,
-                                               std::string const &textureName,
-                                               bool hasAlpha);
-
-  std::shared_ptr<ZEN_Texture2D> createTexture(std::string const &path,
                                                std::string const &textureName);
 
   ZEN_TextureFactory2D() {};
