@@ -29,8 +29,8 @@ int main(int argc, char *argv[]) {
 
   ZENLOG::trace("After Loading...");
 
-  ZENLOG::info("Snoopy 1 glID: ",snoopy1->getId());
-  ZENLOG::info("Snoopy 2 glID: ",snoopy2->getId());
+  ZENLOG::info("Snoopy 1 glID: {}",snoopy1->getId());
+  ZENLOG::info("Snoopy 2 glID: {}",snoopy2->getId());
 
   ZENLOG::trace("After cout");
 
