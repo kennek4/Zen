@@ -1,12 +1,17 @@
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
 #include "resource/ZEN_ResourceManager.h"
 #include "textures/ZEN_Texture2D.h"
 #include "zen.h"
 #include <iostream>
 #include <memory>
-#include <spdlog/spdlog.h>
+
 
 
 int main(int argc, char *argv[]) {
+
+  using ZENLOG = ZEN_LoggerManager; //ZENLOG is an alias for ZEN_LogggerManager
+  ZENLOG::init();
+
   ZEN_Window_MetaData winMetaData{};
   winMetaData.title = "Zen Editor";
   winMetaData.width = 1280;
@@ -14,7 +19,7 @@ int main(int argc, char *argv[]) {
   winMetaData.flags = SDL_WINDOW_BORDERLESS | SDL_WINDOW_OPENGL;
 
   ZEN_Engine *engine = new ZEN_Engine(&winMetaData, ZEN_RENDERER_OPENGL);
-  std::cout << "Before Loading..." << std::endl;
+  ZENLOG::info("Before Loading...");
 
   std::shared_ptr<ZEN_Texture2D> snoopy1 =
       ZEN_ResourceManager::getInstance().loadAlphaTexture(
@@ -52,10 +57,21 @@ int main(int argc, char *argv[]) {
   //SPDLOG_TRACE("Some trace message with param {}", 42);
   //SPDLOG_DEBUG("Some debug message");
   
-  ZEN_LoggerManager log;
-  log.SetLevel(ZEN_LoggerManager::LevelInfo);
-  log.Warn("Bruh");
-  //log.Info("Snoopy 1 glID: ", snoopy1->getID());
+  
+  
+  ZENLOG::info("hi");
+  ZENLOG::warn("Snoopy 1 glID: {}", snoopy1->getId());
+  ZENLOG::trace("CAN YOU SEE THIS");
+  ZENLOG::debug("CAN YOU SEE THIS");
+
+  if (__cplusplus == 202302L) std::cout << "C++23";
+    else if (__cplusplus == 202002L) std::cout << "C++20";
+    else if (__cplusplus == 201703L) std::cout << "C++17";
+    else if (__cplusplus == 201402L) std::cout << "C++14";
+    else if (__cplusplus == 201103L) std::cout << "C++11";
+    else if (__cplusplus == 199711L) std::cout << "C++98";
+    else std::cout << "pre-standard C++." << __cplusplus;
+    std::cout << "\n";
 
   delete engine;
 };

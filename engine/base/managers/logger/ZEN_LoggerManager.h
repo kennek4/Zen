@@ -2,31 +2,45 @@
 
 #include<base/ZEN_Types.h>
 #include <spdlog/spdlog.h>
+#include <spdlog/fmt/fmt.h>
+#include <format>
+#include <memory>
 
+// spdlog wrapper
 class ZEN_LoggerManager {
-    public: 
-        enum Level {
-            LevelError = 0, LevelWarning, LevelInfo
-        };
+  public: 
 
-        void SetLevel(Level level) {
-            m_LogLevel = level;
-        }
+    static void init();
 
-        void Info(const char* message) {
-            if (m_LogLevel >= LevelInfo)
-                spdlog::info(message);
-        }
-        
-        void Warn(const char* message) {
-            if (m_LogLevel >= LevelWarning)
-                spdlog::warn(message);
-        }
+    template <typename... Args>
+    static void trace(fmt::format_string<Args...> fmt, Args&&... args) {
+      SPDLOG_TRACE(fmt, std::forward<Args>(args)...);
+    }
 
-        void Error(const char* message) {
-            if (m_LogLevel >= LevelError)    
-                spdlog::error(message);
-        }
-    private:
-        Level m_LogLevel = LevelInfo;
+    template <typename... Args>
+    static void debug(fmt::format_string<Args...> fmt, Args&&... args) {
+      spdlog::debug(fmt, std::forward<Args>(args)...);
+      SPDLOG_DEBUG(fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    static void info(fmt::format_string<Args...> fmt, Args&&... args) {
+      spdlog::info(fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    static void warn(fmt::format_string<Args...> fmt, Args&&... args) {
+      spdlog::warn(fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    static void error(fmt::format_string<Args...> fmt, Args&&... args) {
+      spdlog::error(fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    static void critical(fmt::format_string<Args...> fmt, Args&&... args) {
+      spdlog::critical(fmt, std::forward<Args>(args)...);
+    }
+
 };
