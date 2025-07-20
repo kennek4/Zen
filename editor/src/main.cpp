@@ -44,12 +44,18 @@ int main(int argc, char *argv[]) {
   spdlog::debug("This message should be displayed..");    
   
   // change log pattern
-  spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
+  //spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
   
   // Compile time log levels
   // Note that this does not change the current log level, it will only
   // remove (depending on SPDLOG_ACTIVE_LEVEL) the call on the release code.
-  SPDLOG_TRACE("Some trace message with param {}", 42);
-  SPDLOG_DEBUG("Some debug message");
+  //SPDLOG_TRACE("Some trace message with param {}", 42);
+  //SPDLOG_DEBUG("Some debug message");
+  
+  ZEN_LoggerManager log;
+  log.SetLevel(ZEN_LoggerManager::LevelInfo);
+  log.Warn("Bruh");
+  //log.Info("Snoopy 1 glID: ", snoopy1->getID());
+
   delete engine;
 };

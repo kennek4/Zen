@@ -7,6 +7,7 @@
 #include "base/managers/game/ZEN_GameManager.h"
 #include "base/managers/resource/ZEN_ResourceManager.h"
 #include "base/managers/window/ZEN_WindowManager.h"
+#include "base/managers/logger/ZEN_LoggerManager.h"
 
 // Render
 #include "render/ZEN_Renderer2D.h"

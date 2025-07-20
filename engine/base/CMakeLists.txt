@@ -8,7 +8,8 @@ set(ZEN_BASE_HEADER
     base/2d/ZEN_Transform2D.h
     base/managers/window/ZEN_WindowManager.h
     base/managers/game/ZEN_GameManager.h
-    base/managers/resource/ZEN_ResourceManager.h)
+    base/managers/resource/ZEN_ResourceManager.h
+    base/managers/logger/ZEN_LoggerManager.h)
 
 set(ZEN_BASE_SRC
     base/ZEN_Engine.cpp
@@ -17,4 +18,5 @@ set(ZEN_BASE_SRC
     base/2d/textures/ZEN_TextureFactory2D.cpp
     base/managers/window/ZEN_WindowManager.cpp
     base/managers/game/ZEN_GameManager.cpp
-    base/managers/resource/ZEN_ResourceManager.cpp)
+    base/managers/resource/ZEN_ResourceManager.cpp
+    base/managers/logger/ZEN_LoggerManager.cpp)
