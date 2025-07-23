@@ -67,5 +67,21 @@ set(SDL_STATIC ON)
 find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
+
+include(FetchContent)
+
+FetchContent_Declare(
+  fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt
+  GIT_TAG        e69e5f977d458f2650bb346dadf2ad30c5320281) # 10.2.1
+FetchContent_MakeAvailable(fmt)
+
+# Include folder libraries
+target_link_libraries(ZenEngine STB_IMAGE)
+target_link_libraries(ZenEngine SPDLOG)
+target_link_libraries(ZenEngine DOCTEST)
+
+# External libraries
+target_link_libraries(ZenEngine glm::glm SDL3::SDL3 OpenGL::OpenGL fmt::fmt)
 target_link_libraries(ZenEngine SDL3::SDL3 stb_image glad glm
                       ${OPENGL_LIBRARIES})

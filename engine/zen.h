@@ -10,6 +10,8 @@
 #include "zen/game/ZEN_GameManager.h"
 #include "zen/resource/ZEN_ResourceManager.h"
 #include "zen/window/ZEN_WindowManager.h"
+#include "zen/logger/ZEN_LoggerManager.h"
+
 
 // Render
 #include "zen/render/ZEN_Renderer2D.h"

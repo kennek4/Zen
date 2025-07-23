@@ -9,7 +9,7 @@ project(
 set(ZEN_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 # C++ Standard
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 # ##############################################################################
@@ -18,4 +18,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 add_subdirectory(engine)
 add_subdirectory(editor)
 add_subdirectory(include/stb_image)
+add_subdirectory(include/spdlog)
+add_subdirectory(include/doctest)
 add_subdirectory(include/glad)

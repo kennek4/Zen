@@ -21,4 +21,4 @@ CMakeUserPresets.json
 .cache/
 out/
 build/
-.vscode
+.vscode/
