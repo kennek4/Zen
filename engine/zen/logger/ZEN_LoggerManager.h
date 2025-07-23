@@ -1,6 +1,5 @@
 #pragma once
 
-#include<base/ZEN_Types.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/fmt.h>
 #include <format>
