@@ -1,13 +1,21 @@
-#include <iostream>
+#include "zen/resource/ZEN_ResourceManager.h"
 #include <memory>
-#include <utility>
-#include <zen/render/ZEN_GLShaderFactory.h>
-#include <zen/resource/ZEN_ResourceManager.h>
+#include <zen/opengl/ZEN_Shader.h>
+#include <zen/textures/ZEN_Image.h>
+#include <zen/textures/ZEN_Texture.h>
 #include <zen/textures/ZEN_TextureFactory2D.h>
 
-ZEN_ResourceManager::~ZEN_ResourceManager() {
+#define STB_IMAGE_IMPLEMENTATION
+#include <include/stb_image/stb_image.h>
+
+namespace Zen {
+ResourceManager::ResourceManager() {
+
+};
+
+ResourceManager::~ResourceManager() {
   for (auto iter : m_textures) {
-    glDeleteTextures(1, &iter->getId());
+    glDeleteTextures(1, &iter->id);
   };
 
   for (auto iter : m_shaders) {
@@ -15,59 +23,102 @@ ZEN_ResourceManager::~ZEN_ResourceManager() {
   };
 };
 
-bool ZEN_ResourceManager::createTexture(std::string const &path,
-                                        std::string const &textureName) {
+bool ResourceManager::createShader(std::string const &vertexPath,
+                                   std::string const &fragmentPath,
+                                   std::string &shaderName) {
   bool success = true;
 
-  if (loadTexture(textureName) != nullptr) {
+  if (loadShader(shaderName) != nullptr) {
     // TODO: Custom error handling here
     // Texture already exists
     success = false;
   };
 
-  std::unique_ptr<ZEN_TextureFactory2D> textureFactory =
-      std::unique_ptr<ZEN_TextureFactory2D>();
+  std::unique_ptr<ZEN_GLShaderFactory> shaderFactory =
+      std::unique_ptr<ZEN_GLShaderFactory>();
 
-  // If not in m_textures, create texture and add to m_textures
-  auto resourcePtr = textureFactory->createTexture(path, textureName);
-  resourcePtr = m_textures.emplace_back(resourcePtr);
-  m_nameToTexture.insert(std::make_pair(textureName, m_textures.size() - 1));
+  auto resourcePtr = shaderFactory->createShader(vertexPath, fragmentPath);
+  resourcePtr = m_shaders.emplace_back(resourcePtr);
+  m_nameToShader.insert(std::make_pair(shaderName, m_shaders.size() - 1));
 
   return success;
 };
 
-std::shared_ptr<ZEN_Texture2D>
-ZEN_ResourceManager::loadTexture(std::string const &textureName) {
-  auto texturePtr = getFromVector<ZEN_Texture2D>(textureName);
-  return texturePtr;
+std::weak_ptr<Zen::Shader> ResourceManager::loadShader(const char *shaderName) {
+  auto shaderPtr = getFromVector<Zen::Shader>(shaderName);
+  return shaderPtr;
 };
 
-std::shared_ptr<ZEN_GLShader>
-ZEN_ResourceManager::loadShader(std::string const &vertexPath,
-                                std::string const &fragmentPath,
-                                std::string const &shaderName) {
+bool ResourceManager::loadImage(const char *filePath) {
+  bool imageLoaded = true;
 
-  std::stringstream stream;
-  stream << vertexPath << fragmentPath;
-  std::string const &key = generateKey(stream);
+  if (!m_pathToImage.contains(filePath)) {
+    // Loading the image at the given filePath
+    int width, height, nrChannels;
+    unsigned char *dataPtr =
+        stbi_load(filePath, &width, &height, &nrChannels, STBI_rgb_alpha);
 
-  auto resourcePtr = getFromVector<ZEN_GLShader>(key);
+    const char *error = stbi_failure_reason();
+    if (error) {
+      // TODO: Custom error handling
+      // [ERROR] - Image data from, {filePath}, failed to load.
+      // {error}
+      stbi_image_free(dataPtr);
+      return !imageLoaded;
+    };
 
-  if (resourcePtr != nullptr) {
-    return resourcePtr;
+    std::shared_ptr<Zen::Image> image =
+        std::make_shared<Zen::Image>(dataPtr, width, height, filePath);
+    m_images.emplace_back(image);
+    m_pathToImage.insert(std::make_pair(filePath, m_pathToImage.size() - 1));
+
+    stbi_image_free(dataPtr);
   };
 
-  std::unique_ptr<ZEN_GLShaderFactory> shaderFactory =
-      std::unique_ptr<ZEN_GLShaderFactory>();
-
-  resourcePtr = shaderFactory->createShader(vertexPath, fragmentPath);
-  resourcePtr = m_shaders.emplace_back(resourcePtr);
-  m_nameToShader.insert(std::make_pair(key, m_shaders.size() - 1));
-
-  return resourcePtr;
+  return imageLoaded;
 };
 
-std::string
-ZEN_ResourceManager::generateKey(std::stringstream const &stream) const {
-  return stream.str();
+bool ResourceManager::createTexture(const char *imageFilePath,
+                                    const char *textureName) {
+
+  bool textureWasCreated = true;
+  if (!m_pathToImage.contains(imageFilePath)) {
+    // TODO: Custom error handling
+    // [WARNING] - An image with the given file path was not found. Try loading
+    // the image first.
+    return !textureWasCreated;
+  };
+
+  if (m_nameToTexture.contains(textureName)) {
+    // TODO: Custom error handling
+    // [ERROR] - The given texture name is already in use. Please use a
+    // different name.
+    return !textureWasCreated;
+  };
+
+  std::weak_ptr<Zen::Image> image = m_images[m_pathToImage.at(imageFilePath)];
+  if (image.expired()) {
+    // TODO: Custom error handling
+    // [ERROR] - The given image is no longer available.
+    return !textureWasCreated;
+  };
+
+  std::shared_ptr<Zen::Texture> texture =
+      std::make_shared<Zen::Texture>(textureName, image);
+  m_textures.emplace_back(texture);
+  m_nameToTexture.insert(
+      std::make_pair(textureName, m_nameToTexture.size() - 1));
+
+  return textureWasCreated;
 };
+
+std::weak_ptr<Zen::Texture>
+ResourceManager::loadTexture(const char *textureName) {
+  if (!m_nameToTexture.contains(textureName)) {
+    // TODO: Custom error handling
+    // [WARNING] - The texture, {textureName}, does not exist.
+  };
+  auto texturePtr = getFromVector<Zen::Texture>(textureName);
+  return texturePtr;
+};
+}; // namespace Zen

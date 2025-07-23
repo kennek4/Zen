@@ -1,40 +1,24 @@
 #pragma once
 
 #include <cstdint>
-#include <functional>
 #include <memory>
-#include <set>
-#include <sstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <zen/render/ZEN_GLShader.h>
+#include <zen/opengl/ZEN_Shader.h>
+#include <zen/textures/ZEN_Image.h>
+#include <zen/textures/ZEN_Texture.h>
 #include <zen/textures/ZEN_Texture2D.h>
 
-// Meyer's Singleton
-class ZEN_ResourceManager {
+namespace Zen {
+class ResourceManager {
 public:
-  // Remove copy and assignment operator
-  ZEN_ResourceManager(const ZEN_ResourceManager &) = delete;
-  ZEN_ResourceManager &operator=(const ZEN_ResourceManager &) = delete;
+  ResourceManager();
+  ~ResourceManager();
 
-  static ZEN_ResourceManager &getInstance() {
-    static ZEN_ResourceManager instance;
-    return instance;
-  };
-
-  template <typename T>
-  std::shared_ptr<T> getFromVector(std::string const &key) {
+  template <typename T> std::weak_ptr<T> getFromVector(const char *&key) {
     int32_t id = -1;
-    if constexpr (std::is_same_v<T, ZEN_Texture2D>) {
-      auto const it = m_nameToTexture.find(key);
-      if (it != m_nameToTexture.end()) {
-        id = it->second;
-        return m_textures[id];
-      };
-    };
-
-    if constexpr (std::is_same_v<T, ZEN_GLShader>) {
+    if constexpr (std::is_same_v<T, Zen::Shader>) {
       auto const it = m_nameToShader.find(key);
       if (it != m_nameToShader.end()) {
         id = it->second;
@@ -42,31 +26,49 @@ public:
       };
     };
 
+    if constexpr (std::is_same_v<T, Zen::Image>) {
+      auto const it = m_pathToImage.find(key);
+      if (it != m_pathToImage.end()) {
+        id = it->second;
+        return m_images[id];
+      };
+    };
+
+    if constexpr (std::is_same_v<T, Zen::Texture>) {
+      auto const it = m_nameToTexture.find(key);
+      if (it != m_nameToTexture.end()) {
+        id = it->second;
+        return m_textures[id];
+      };
+    };
+
     return nullptr;
   };
-
-  void initResources();
-
-  // Textures
-  bool createTexture(std::string const &path, std::string const &textureName);
-  std::shared_ptr<ZEN_Texture2D> loadTexture(std::string const &textureName);
 
   // Shaders
   bool createShader(std::string const &vertexPath,
                     std::string const &fragmentPath, std::string &shaderName);
-  std::shared_ptr<ZEN_GLShader> loadShader(std::string const &shaderName);
+  std::weak_ptr<Zen::Shader> loadShader(const char *shaderName);
+
+  // Images
+  bool loadImage(const char *filePath);
+
+  // Textures
+  bool createTexture(const char *filePath, const char *textureName);
+  [[nodiscard]] std::weak_ptr<Zen::Texture>
+  loadTexture(const char *textureName);
 
 private:
-  ZEN_ResourceManager() {};
-  ~ZEN_ResourceManager();
-  [[nodiscard]] std::string generateKey(std::stringstream const &stream) const;
+  // Shader Storage
+  std::vector<std::shared_ptr<Zen::Shader>> m_shaders{};
+  std::unordered_map<std::string, uint16_t> m_nameToShader{};
+
+  // Image Storage
+  std::vector<std::shared_ptr<Zen::Image>> m_images{};
+  std::unordered_map<const char *, uint16_t> m_pathToImage{};
 
   // Texture Storage
-  std::unordered_map<std::string, std::shared_ptr<ZEN_Texture2D>>
-      m_nameToTexture{};
-  std::set<std::string> m_texturePaths{};
-
-  // Shader Storage
-  std::vector<std::shared_ptr<ZEN_GLShader>> m_shaders{};
-  std::unordered_map<std::string, uint16_t> m_nameToShader{};
+  std::vector<std::shared_ptr<Zen::Texture>> m_textures{};
+  std::unordered_map<const char *, uint16_t> m_nameToTexture{};
 };
+}; // namespace Zen

@@ -8,6 +8,7 @@ include(zen/game/CMakeLists.txt)
 include(zen/render/CMakeLists.txt)
 include(zen/resource/CMakeLists.txt)
 include(zen/textures/CMakeLists.txt)
+include(zen/util/CMakeLists.txt)
 include(zen/window/CMakeLists.txt)
 
 set(ZEN_HEADER
@@ -18,6 +19,7 @@ set(ZEN_HEADER
     ${ZEN_RENDER_HEADER}
     ${ZEN_RESOURCE_HEADER}
     ${ZEN_TEXTURES_HEADER}
+    ${ZEN_UTIL_HEADER}
     ${ZEN_WINDOW_HEADER})
 
 set(ZEN_SRC
@@ -27,6 +29,7 @@ set(ZEN_SRC
     ${ZEN_RENDER_SRC}
     ${ZEN_RESOURCE_SRC}
     ${ZEN_TEXTURES_SRC}
+    ${ZEN_UTIL_SRC}
     ${ZEN_WINDOW_SRC})
 
 list(APPEND ZEN_SRC ${ZEN_HEADER})
@@ -43,6 +46,7 @@ target_include_directories(
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/resources
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/textures
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/ui
+  INTERFACE ${ZEN_ROOT_PATH}/engine/zen/util
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/window)
 
 # SDL

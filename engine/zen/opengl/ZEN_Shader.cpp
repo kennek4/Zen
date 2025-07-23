@@ -2,10 +2,10 @@
 #include <fstream>
 #include <glm/gtc/type_ptr.hpp>
 #include <sstream>
-#include <zen/render/ZEN_GLShader.h>
+#include <zen/opengl/ZEN_Shader.h>
 
-ZEN_GLShader::ZEN_GLShader(std::string const &vertexPath,
-                           std::string const &fragmentPath) {
+namespace Zen {
+Shader::Shader(std::string const &vertexPath, std::string const &fragmentPath) {
 
   std::string vertCodeStr{};
   std::string fragCodeStr{};
@@ -43,24 +43,24 @@ ZEN_GLShader::ZEN_GLShader(std::string const &vertexPath,
   GLsizei log_length = 0;
   GLchar message[1024];
 
-  create(ZEN::VERTEX, &vertex, vertCode, status);
+  create(Zen::ShaderType::VERTEX, &vertex, vertCode, status);
   if (status != GL_TRUE) {
     glGetShaderInfoLog(vertex, 1024, &log_length, message);
   };
 
-  create(ZEN::FRAGMENT, &fragment, fragCode, status);
+  create(Zen::ShaderType::VERTEX, &fragment, fragCode, status);
   if (status != GL_TRUE) {
     glGetShaderInfoLog(fragment, 1024, &log_length, message);
   };
 
-  this->m_glId = glCreateProgram();
+  this->m_id = glCreateProgram();
 
-  glAttachShader(this->m_glId, vertex);
-  glAttachShader(this->m_glId, fragment);
-  glLinkProgram(this->m_glId);
+  glAttachShader(this->m_id, vertex);
+  glAttachShader(this->m_id, fragment);
+  glLinkProgram(this->m_id);
 
   // Check to see if shaders were linked to program
-  glGetProgramiv(m_glId, GL_LINK_STATUS, &status);
+  glGetProgramiv(m_id, GL_LINK_STATUS, &status);
   if (status != GL_TRUE) {
     glGetShaderInfoLog(fragment, 1024, &log_length, message);
   };
@@ -70,71 +70,69 @@ ZEN_GLShader::ZEN_GLShader(std::string const &vertexPath,
   glDeleteShader(fragment);
 };
 
-ZEN_GLShader &ZEN_GLShader::use() {
-  glUseProgram(this->m_glId);
+Shader &Shader::use() {
+  glUseProgram(this->m_id);
   return *this;
 };
 
-void ZEN_GLShader::setBool(const std::string &name, bool value,
-                           bool useShader) {
+void Shader::setBool(const std::string &name, bool value, bool useShader) {
   if (useShader) {
     use();
   };
 
-  glUniform1i(glGetUniformLocation(m_glId, name.c_str()), (int)value);
+  glUniform1i(glGetUniformLocation(m_id, name.c_str()), (int)value);
 };
 
-void ZEN_GLShader::setInt(const std::string &name, int value, bool useShader) {
+void Shader::setInt(const std::string &name, int value, bool useShader) {
   if (useShader) {
     use();
   };
 
-  glUniform1i(glGetUniformLocation(m_glId, name.c_str()), value);
+  glUniform1i(glGetUniformLocation(m_id, name.c_str()), value);
 };
 
-void ZEN_GLShader::setFloat(const std::string &name, float value,
-                            bool useShader) {
+void Shader::setFloat(const std::string &name, float value, bool useShader) {
 
   if (useShader) {
     use();
   };
 
-  glUniform1f(glGetUniformLocation(m_glId, name.c_str()), value);
+  glUniform1f(glGetUniformLocation(m_id, name.c_str()), value);
 };
 
-void ZEN_GLShader::setMatrix4(const std::string &name, glm::mat4 value,
-                              bool useShader) {
+void Shader::setMatrix4(const std::string &name, glm::mat4 value,
+                        bool useShader) {
 
   if (useShader) {
     use();
   };
 
-  glUniformMatrix4fv(glGetUniformLocation(m_glId, name.c_str()), 1, false,
+  glUniformMatrix4fv(glGetUniformLocation(m_id, name.c_str()), 1, false,
                      glm::value_ptr(value));
 };
 
-void ZEN_GLShader::setVector3f(const std::string &name, glm::vec3 value,
-                               bool useShader) {
+void Shader::setVector3f(const std::string &name, glm::vec3 value,
+                         bool useShader) {
 
   if (useShader) {
     use();
   };
 
-  glUniform3f(glGetUniformLocation(m_glId, name.c_str()), value.x, value.y,
+  glUniform3f(glGetUniformLocation(m_id, name.c_str()), value.x, value.y,
               value.z);
 };
 
-unsigned int const &ZEN_GLShader::getId() { return m_glId; };
+unsigned int const &Shader::getId() { return m_id; };
 
-void ZEN_GLShader::create(ZEN::ShaderType type, GLuint *shader,
-                          const char *shaderCode, GLint &compileStatus) {
+void Shader::create(Zen::ShaderType type, GLuint *shader,
+                    const char *shaderCode, GLint &compileStatus) {
 
   switch (type) {
-  case ZEN::VERTEX:
+  case Zen::ShaderType::VERTEX:
     *shader = glCreateShader(GL_VERTEX_SHADER);
     break;
 
-  case ZEN::FRAGMENT:
+  case Zen::ShaderType::FRAGMENT:
     *shader = glCreateShader(GL_FRAGMENT_SHADER);
     break;
   };
@@ -143,3 +141,4 @@ void ZEN_GLShader::create(ZEN::ShaderType type, GLuint *shader,
   glCompileShader(*shader);
   glGetShaderiv(*shader, GL_COMPILE_STATUS, &compileStatus);
 };
+}; // namespace Zen

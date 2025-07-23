@@ -17,34 +17,6 @@ void ZEN_Renderer2D::setShader(std::shared_ptr<ZEN_GLShader> shader) {
 
 std::shared_ptr<ZEN_GLShader> ZEN_Renderer2D::getShader() { return m_shader; };
 
-void ZEN_Renderer2D::initOpenGL() {
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-  glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
-
-  // Configure VAO/VBO
-  GLuint VBO;
-  float vertices[] = {
-      // pos      // tex
-      0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-
-      0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f};
-
-  glGenVertexArrays(1, &this->m_quadVAO);
-  glGenBuffers(1, &VBO);
-
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-  glBindVertexArray(this->m_quadVAO);
-  glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
-  glBindVertexArray(0);
-};
-
 void ZEN_Renderer2D::renderGameObject(
     std::shared_ptr<ZEN_GameObject2D> gameObject) {
   m_shader->use();

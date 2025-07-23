@@ -7,17 +7,13 @@
 #include <glm/glm.hpp>
 #include <string>
 
-namespace ZEN {
-typedef enum ShaderType {
-  VERTEX = GL_VERTEX_SHADER,
-  FRAGMENT = GL_FRAGMENT_SHADER,
-} ShaderType;
-};
+namespace Zen {
+enum class ShaderType { VERTEX, FRAGMENT };
 
-class ZEN_GLShader {
+class Shader {
 public:
-  ZEN_GLShader(std::string const &vertexPath, std::string const &fragmentPath);
-  ZEN_GLShader &use();
+  Shader(std::string const &vertexPath, std::string const &fragmentPath);
+  Shader &use();
 
   // Utility for Uniforms
   void setInt(const std::string &name, int value, bool useShader = true);
@@ -28,10 +24,11 @@ public:
   void setVector3f(const std::string &name, glm::vec3 value,
                    bool useShader = true);
 
-  unsigned int const &getId();
+  const unsigned int &getId();
 
 private:
-  void create(ZEN::ShaderType type, GLuint *shader, const char *shaderCode,
-              GLint &compileStatus);
-  unsigned int m_glId;
+  void create(Zen::ShaderType shaderType, GLuint *shaderId,
+              const char *shaderCode, GLint &compileStatus);
+  unsigned int m_id;
 };
+}; // namespace Zen
