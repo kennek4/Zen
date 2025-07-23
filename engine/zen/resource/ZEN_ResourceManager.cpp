@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include <sstream>
 #include <utility>
 #include <zen/render/ZEN_GLShaderFactory.h>
 #include <zen/resource/ZEN_ResourceManager.h>
@@ -16,57 +15,37 @@ ZEN_ResourceManager::~ZEN_ResourceManager() {
   };
 };
 
-std::shared_ptr<ZEN_Texture2D> ZEN_ResourceManager::loadAlphaTexture(
-    std::string const &path, std::string const &textureName, bool hasAlpha) {
-  std::stringstream stream;
-  stream << path;
-  std::string const &key = generateKey(stream);
+bool ZEN_ResourceManager::createTexture(std::string const &path,
+                                        std::string const &textureName) {
+  bool success = true;
 
-  auto resourcePtr = getFromVector<ZEN_Texture2D>(key);
-
-  if (resourcePtr != nullptr) {
-    return resourcePtr;
+  if (loadTexture(textureName) != nullptr) {
+    // TODO: Custom error handling here
+    // Texture already exists
+    success = false;
   };
 
-  std::unique_ptr<ZEN_TextureFactory2D> textureFactory2D =
-      std::make_unique<ZEN_TextureFactory2D>();
-
-  // If not in m_textures, create texture and add to m_textures
-  resourcePtr =
-      textureFactory2D.get()->createTexture(path, textureName, hasAlpha);
-  resourcePtr = m_textures.emplace_back(resourcePtr);
-  m_nameToTexture.insert(std::make_pair(key, m_textures.size() - 1));
-
-  return resourcePtr;
-};
-
-std::shared_ptr<ZEN_Texture2D>
-ZEN_ResourceManager::loadTexture(std::string const &path,
-                                 std::string const &textureName) {
-  std::stringstream stream;
-  stream << path;
-  std::string const &key = generateKey(stream);
-
-  auto resourcePtr = getFromVector<ZEN_Texture2D>(key);
-
-  if (resourcePtr != nullptr) {
-    return resourcePtr;
-  };
-
-  std::unique_ptr<ZEN_TextureFactory2D> textureFactory2D =
+  std::unique_ptr<ZEN_TextureFactory2D> textureFactory =
       std::unique_ptr<ZEN_TextureFactory2D>();
 
   // If not in m_textures, create texture and add to m_textures
-  resourcePtr = textureFactory2D->createTexture(path, textureName);
+  auto resourcePtr = textureFactory->createTexture(path, textureName);
   resourcePtr = m_textures.emplace_back(resourcePtr);
-  m_nameToTexture.insert(std::make_pair(key, m_textures.size() - 1));
+  m_nameToTexture.insert(std::make_pair(textureName, m_textures.size() - 1));
 
-  return resourcePtr;
+  return success;
+};
+
+std::shared_ptr<ZEN_Texture2D>
+ZEN_ResourceManager::loadTexture(std::string const &textureName) {
+  auto texturePtr = getFromVector<ZEN_Texture2D>(textureName);
+  return texturePtr;
 };
 
 std::shared_ptr<ZEN_GLShader>
 ZEN_ResourceManager::loadShader(std::string const &vertexPath,
-                                std::string const &fragmentPath) {
+                                std::string const &fragmentPath,
+                                std::string const &shaderName) {
 
   std::stringstream stream;
   stream << vertexPath << fragmentPath;

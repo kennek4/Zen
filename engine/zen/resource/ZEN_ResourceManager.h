@@ -1,7 +1,9 @@
 #pragma once
 
 #include <cstdint>
+#include <functional>
 #include <memory>
+#include <set>
 #include <sstream>
 #include <string>
 #include <unordered_map>
@@ -43,17 +45,16 @@ public:
     return nullptr;
   };
 
-  // Textures
-  std::shared_ptr<ZEN_Texture2D>
-  loadAlphaTexture(std::string const &path, std::string const &textureName,
-                   bool hasAlpha);
+  void initResources();
 
-  std::shared_ptr<ZEN_Texture2D> loadTexture(std::string const &path,
-                                             std::string const &textureName);
+  // Textures
+  bool createTexture(std::string const &path, std::string const &textureName);
+  std::shared_ptr<ZEN_Texture2D> loadTexture(std::string const &textureName);
 
   // Shaders
-  std::shared_ptr<ZEN_GLShader> loadShader(std::string const &vertexPath,
-                                           std::string const &fragmentPath);
+  bool createShader(std::string const &vertexPath,
+                    std::string const &fragmentPath, std::string &shaderName);
+  std::shared_ptr<ZEN_GLShader> loadShader(std::string const &shaderName);
 
 private:
   ZEN_ResourceManager() {};
@@ -61,8 +62,9 @@ private:
   [[nodiscard]] std::string generateKey(std::stringstream const &stream) const;
 
   // Texture Storage
-  std::vector<std::shared_ptr<ZEN_Texture2D>> m_textures{};
-  std::unordered_map<std::string, uint16_t> m_nameToTexture{};
+  std::unordered_map<std::string, std::shared_ptr<ZEN_Texture2D>>
+      m_nameToTexture{};
+  std::set<std::string> m_texturePaths{};
 
   // Shader Storage
   std::vector<std::shared_ptr<ZEN_GLShader>> m_shaders{};

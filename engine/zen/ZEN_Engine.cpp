@@ -37,9 +37,8 @@ void ZEN_Engine::init() {
           "./data/redbaron.png", "SnoopyTexture", true);
 
   m_gameManger->addGameObject2D("Snoopy", texture);
-  std::cout
-      << m_gameManger->getGameObject("Snoopy")->getSprite().texture->getId()
-      << std::endl;
+  std::cout << m_gameManger->getGameObject("Snoopy")->texture->getId()
+            << std::endl;
 };
 
 void ZEN_Engine::startGame() {
@@ -71,7 +70,6 @@ void ZEN_Engine::startGame() {
     glClear(GL_DEPTH_BUFFER_BIT);
 
     m_renderer->renderGameObject(m_gameManger->getGameObject("Snoopy"));
-
     SDL_GL_SwapWindow(mainWindow);
   };
 };

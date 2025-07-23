@@ -14,6 +14,7 @@ public:
   ~ZEN_Engine();
 
   void init();
+  void initResources();
   void startGame();
   void stopGame();
 
