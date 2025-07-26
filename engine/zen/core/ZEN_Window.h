@@ -1,67 +1,51 @@
 #pragma once
 
+#include <SDL3/SDL_events.h>
 #include <cstdint>
-#include <zen/ZEN_Types.h>
-#include <zen/core/ZEN_SDL.h>
+#include <functional>
+#include <memory>
+#include <string>
+
+#ifndef __ZEN_GLAD_H
+#include <glad/gl.h>
+#endif // !__ZEN_GLAD_H
 
 namespace Zen {
-typedef struct {
-  const char *title;
-  bool ready;
-  bool fullscreen;
-  Zen::Size screen;
-  Zen::Size monitor;
-  uint32_t flags;
-} WindowProperties;
+struct WindowProperties {
+    std::string title;
+    uint32_t width;
+    uint32_t height;
+    bool vsync;
+    bool fullscreen;
 
-typedef enum {
-  FLAG_WINDOW_VSYNC = 0x00000040,      // Set to try enabling V-Sync on GPU
-  FLAG_WINDOW_FULLSCREEN = 0x00000002, // Set to run program in fullscreen
-  FLAG_WINDOW_RESIZABLE = 0x00000004,  // Set to allow resizable window
-  FLAG_WINDOW_UNDECORATED =
-      0x00000008, // Set to disable window decoration (frame and buttons)
-  FLAG_WINDOW_HIDDEN = 0x00000080,    // Set to hide window
-  FLAG_WINDOW_MINIMIZED = 0x00000200, // Set to minimize window (iconify)
-  FLAG_WINDOW_MAXIMIZED =
-      0x00000400, // Set to maximize window (expanded to monitor)
-  FLAG_WINDOW_ALWAYS_RUN =
-      0x00000100, // Set to allow windows running while minimized
-  FLAG_WINDOW_TRANSPARENT = 0x00000010, // Set to allow transparent framebuffer
-  FLAG_WINDOW_HIGHDPI = 0x00002000,     // Set to support HighDPI
-  FLAG_WINDOW_MOUSE_PASSTHROUGH =
-      0x00004000, // Set to support mouse passthrough, only supported when
-                  // FLAG_WINDOW_UNDECORATED
-  FLAG_BORDERLESS_WINDOWED_MODE =
-      0x00008000, // Set to run program in borderless windowed mode
-} ZEN_WindowFlags;
+    WindowProperties(const std::string title = "Zen Application",
+                     uint32_t width = 1280, uint32_t height = 720,
+                     bool vsync = false, bool fullscreen = false) {
+        this->title = title;
+        this->width = width;
+        this->height = height;
+        this->vsync = vsync;
+        this->fullscreen = fullscreen;
+    };
+};
 
 class Window {
-public:
-  Window();
-  Window(WindowProperties properties);
-  ~Window();
+  public:
+    using EventCallbackFunction = std::function<void(SDL_Event &)>;
 
-  bool init();
-  bool shutdown();
+    virtual ~Window() {};
 
-  // SDL Window
-  void setWindowTitle(const char *newTitle);
-  void maximize();
-  void minimize();
-  void toggleFullscreen();
-  void swapScreenBuffer();
+    virtual void onUpdate() = 0;
+    virtual uint32_t getWidth() = 0;
+    virtual uint32_t getHeight() = 0;
 
-  // SDL Cursor
-  void showCursor();
-  void hideCursor();
-  void enableCursor();
-  void disableCursor();
+    virtual void setVSync(bool enabled) = 0;
+    virtual bool isVSyncEnabled() const = 0;
+    virtual void toggleFullscreen() = 0;
 
-  // SDL Timer
-  double getTime();
+    virtual void setEventCallback(const EventCallbackFunction &callback) = 0;
 
-private:
-  WindowProperties m_properties;
-  SDLData m_sdlData;
+    static std::unique_ptr<Window>
+    create(const Zen::WindowProperties &properties = WindowProperties());
 };
 }; // namespace Zen
