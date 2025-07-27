@@ -24,19 +24,16 @@ void LinuxWindow::init(const WindowProperties &properties) {
     m_windowProperties.height = properties.height;
 
     // TODO: ZEN_LOG
-    // [INFO] - Creating New Window, {m_windowProperties.title}, W:
-    // {m_windowProperties.width} H: {m_windowProperties.height}
+    ZEN_LOG_INFO("Creating New Window {}, W:{} H: {}", m_windowProperties.title, m_windowProperties.width, m_windowProperties.height);
     if (!s_SDLInitialized) {
         bool success = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
         if (!success) {
-            // TODO: ZEN_LOG
-            // [ERROR] - SDL was not initialized properly. {
-            // SDL_GetError() }
-            std::cout << "SDL Initialization Error: " << SDL_GetError()
-                      << std::endl;
+
+            ZEN_LOG_ERROR("SDL was not initialized properly: {}", SDL_GetError());
+            //std::cout << "SDL Initialization Error: " << SDL_GetError() << std::endl;
         };
 
-        std::cout << "SDL Successfully Initialized!" << std::endl;
+        ZEN_LOG_INFO("SDL Successfully Initialized!");
         s_SDLInitialized = true;
     };
 
@@ -50,20 +47,16 @@ void LinuxWindow::init(const WindowProperties &properties) {
                                 m_windowProperties.width,
                                 m_windowProperties.height, flags);
     if (m_window == nullptr) {
-        // TODO: ZEN_LOG
-        // [ERROR] - The SDL Window could not be initialized. {
-        // SDL_GetError() }
-        std::cout << "Window Initialization Error: " << SDL_GetError()
-                  << std::endl;
+
+        ZEN_LOG_ERROR("The SDL Window could not be initialized. {}", SDL_GetError());
+        //std::cout << "Window Initialization Error: " << SDL_GetError() << std::endl;
     };
 
     m_glContext = SDL_GL_CreateContext(m_window);
     if (m_glContext == nullptr) {
-        // TODO: ZEN_LOG
-        // [ERROR] - The SDL OpenGL context could not be initialized. {
-        // SDL_GetError() }
-        std::cout << "OpenGL Context Initialization Error: " << SDL_GetError()
-                  << std::endl;
+
+        ZEN_LOG_ERROR("The SDL OpenGL context could not be initialized: {}", SDL_GetError());
+        //std::cout << "OpenGL Context Initialization Error: " << SDL_GetError() << std::endl;
     };
 
     gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
@@ -71,7 +64,7 @@ void LinuxWindow::init(const WindowProperties &properties) {
     setVSync(m_windowProperties.vsync);
 
     // SET EVENT CALLBACKS HERE
-    std::cout << "Window Successfully Initialized!" << std::endl;
+    ZEN_LOG_INFO("Window Successfully Initialized!");
 };
 
 void LinuxWindow::shutdown() {
@@ -84,10 +77,10 @@ void LinuxWindow::onUpdate() {
     SDL_Event event;
     SDL_PollEvent(&event);
 
-    // std::cout << "Invoking callback..." << std::endl;
+    // ZEN_LOG_INFO("Invoking callback...");
     m_eventCallbackFunction(event);
 
-    // std::cout << "Clearing color buffer..." << std::endl;
+    // ZEN_LOG_INFO("Clearing color buffer...");
     glClearColor(0.7f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     SDL_GL_SwapWindow(m_window);
@@ -100,12 +93,11 @@ uint32_t LinuxWindow::getHeight() { return m_windowProperties.height; };
 void LinuxWindow::setVSync(bool enabled) {
     if (enabled) {
         SDL_GL_SetSwapInterval(1);
-        // TODO: ZEN_LOG
-        // [INFO] - VSync On
+        ZEN_LOG_INFO("VSync On");
+
     } else {
         SDL_GL_SetSwapInterval(0);
-        // TODO: ZEN_LOG
-        // [INFO] - VSync Off
+        ZEN_LOG_INFO("VSync Off");
     };
 };
 

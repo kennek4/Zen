@@ -1,17 +1,20 @@
 #pragma once
 
 #include <zen/core/ZEN_Application.h>
+#include <ZEN_Core.h>
+
 
 #ifdef __ZEN_PLATFORM_LINUX
 extern Zen::Application *Zen::CreateApplication();
 #include <iostream>
 
 int main(int argc, char *argv[]) {
-    std::cout << "Hello, Linux!" << std::endl;
+    ZEN_LoggerManager::init();
+    ZEN_LOG_INFO("Hello, Linux!");
     auto app = Zen::CreateApplication();
     app->run();
 
-    std::cout << "Deleting app..." << std::endl;
+    ZEN_LOG_INFO("Deleting app...");
     delete app;
 };
 

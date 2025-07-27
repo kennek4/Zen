@@ -1,6 +1,7 @@
 #pragma once
 
 #include "zen/core/ZEN_Window.h"
+#include <zen/core/ZEN_Core.h>
 #include <SDL3/SDL_events.h>
 #include <memory>
 

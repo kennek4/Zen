@@ -1,10 +1,12 @@
 #pragma once
 
+#include <zen/core/ZEN_Core.h>
 #include <SDL3/SDL_events.h>
 #include <cstdint>
 #include <functional>
 #include <memory>
 #include <string>
+
 
 #ifndef __ZEN_GLAD_H
 #include <glad/gl.h>

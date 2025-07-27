@@ -2,6 +2,8 @@
 
 #include "zen/core/ZEN_Window.h"
 #include <SDL3/SDL_video.h>
+#include <zen/core/ZEN_Core.h>
+
 
 namespace Zen {
 class LinuxWindow : public Window {

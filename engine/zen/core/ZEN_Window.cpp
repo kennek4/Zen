@@ -8,7 +8,7 @@ namespace Zen {
 std::unique_ptr<Window>
 Window::create(const Zen::WindowProperties &properties) {
 #ifdef __ZEN_PLATFORM_LINUX
-    std::cout << "Creating a Linux Window..." << std::endl;
+    ZEN_LOG_INFO("Creating a Linux Window...");
     return std::make_unique<LinuxWindow>(properties);
 #endif              // __ZEN_PLATFORM_LINUX
 #ifdef __ZEN_PLATFORM_WINDOWS

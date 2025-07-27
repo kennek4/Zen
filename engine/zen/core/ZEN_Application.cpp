@@ -28,10 +28,11 @@ void Application::onEvent(SDL_Event &event) {
 
 void Application::run() {
     std::cout << "Running Application..." << std::endl;
+    ZEN_LOG_INFO("Running Application fr");
     while (m_isRunning) {
         // std::cout << "Updating window..." << std::endl;
         m_window.get()->onUpdate();
     };
-    std::cout << "Closing Application..." << std::endl;
+    ZEN_LOG_INFO("Closing Application...");
 };
 }; // namespace Zen
