@@ -1,12 +1,11 @@
 #pragma once
 
-#include <zen/core/ZEN_Core.h>
 #include <SDL3/SDL_events.h>
 #include <cstdint>
 #include <functional>
 #include <memory>
 #include <string>
-
+#include <zen/core/ZEN_Core.h>
 
 #ifndef __ZEN_GLAD_H
 #include <glad/gl.h>
@@ -46,6 +45,8 @@ class Window {
     virtual void toggleFullscreen() = 0;
 
     virtual void setEventCallback(const EventCallbackFunction &callback) = 0;
+
+    virtual void emitErrorMessage(const char *message) = 0;
 
     static std::unique_ptr<Window>
     create(const Zen::WindowProperties &properties = WindowProperties());

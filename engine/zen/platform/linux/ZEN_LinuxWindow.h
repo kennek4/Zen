@@ -4,7 +4,6 @@
 #include <SDL3/SDL_video.h>
 #include <zen/core/ZEN_Core.h>
 
-
 namespace Zen {
 class LinuxWindow : public Window {
   public:
@@ -20,6 +19,7 @@ class LinuxWindow : public Window {
     void toggleFullscreen() override;
 
     void setEventCallback(const EventCallbackFunction &callback) override;
+    void emitErrorMessage(const char *message) override;
 
   private:
     virtual void init(const WindowProperties &properties);

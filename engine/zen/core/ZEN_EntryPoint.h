@@ -1,15 +1,13 @@
 #pragma once
 
+#include "ZEN_Core.h"
 #include <zen/core/ZEN_Application.h>
-#include <ZEN_Core.h>
-
 
 #ifdef __ZEN_PLATFORM_LINUX
 extern Zen::Application *Zen::CreateApplication();
-#include <iostream>
 
 int main(int argc, char *argv[]) {
-    ZEN_LoggerManager::init();
+    Zen::Logger::init();
     ZEN_LOG_INFO("Hello, Linux!");
     auto app = Zen::CreateApplication();
     app->run();

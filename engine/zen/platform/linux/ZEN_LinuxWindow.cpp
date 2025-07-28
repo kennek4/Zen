@@ -1,11 +1,11 @@
-#include "zen/core/ZEN_Window.h"
 #include <SDL3/SDL_error.h>
 #include <SDL3/SDL_events.h>
 #include <SDL3/SDL_init.h>
+#include <SDL3/SDL_messagebox.h>
 #include <SDL3/SDL_oldnames.h>
 #include <SDL3/SDL_video.h>
 #include <cstdint>
-#include <iostream>
+#include <zen/core/ZEN_Window.h>
 #include <zen/platform/linux/ZEN_LinuxWindow.h>
 
 namespace Zen {
@@ -24,39 +24,49 @@ void LinuxWindow::init(const WindowProperties &properties) {
     m_windowProperties.height = properties.height;
 
     // TODO: ZEN_LOG
-    ZEN_LOG_INFO("Creating New Window {}, W:{} H: {}", m_windowProperties.title, m_windowProperties.width, m_windowProperties.height);
+    ZEN_LOG_INFO("Creating new SDL Window: {}, W:{} H: {}",
+                 m_windowProperties.title, m_windowProperties.width,
+                 m_windowProperties.height);
     if (!s_SDLInitialized) {
         bool success = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
         if (!success) {
-
-            ZEN_LOG_ERROR("SDL was not initialized properly: {}", SDL_GetError());
-            //std::cout << "SDL Initialization Error: " << SDL_GetError() << std::endl;
+            const char *error = SDL_GetError();
+            emitErrorMessage(error);
+            ZEN_LOG_ERROR("SDL was not initialized properly: {}", error);
+            // std::cout << "SDL Initialization Error: " << SDL_GetError() <<
+            // std::endl;
         };
 
         ZEN_LOG_INFO("SDL Successfully Initialized!");
         s_SDLInitialized = true;
     };
 
-    SDL_WindowFlags flags = 0;
-    flags |= SDL_WINDOW_OPENGL;
-    flags |= SDL_WINDOW_INPUT_FOCUS;
-    flags |= SDL_WINDOW_MOUSE_FOCUS;
-    flags |= SDL_WINDOW_MOUSE_CAPTURE;
+    constexpr SDL_WindowFlags flags =
+        SDL_WINDOW_OPENGL | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS |
+        SDL_WINDOW_MOUSE_CAPTURE;
+
+    // UNCOMMENT BELOW TO FORCE ERROR
+    // SDL_WindowFlags flags;
 
     m_window = SDL_CreateWindow(m_windowProperties.title.c_str(),
                                 m_windowProperties.width,
                                 m_windowProperties.height, flags);
     if (m_window == nullptr) {
-
-        ZEN_LOG_ERROR("The SDL Window could not be initialized. {}", SDL_GetError());
-        //std::cout << "Window Initialization Error: " << SDL_GetError() << std::endl;
+        const char *error = SDL_GetError();
+        emitErrorMessage(error);
+        ZEN_LOG_ERROR("The SDL Window could not be initialized. {}", error);
+        // std::cout << "Window Initialization Error: " << SDL_GetError() <<
+        // std::endl;
     };
 
     m_glContext = SDL_GL_CreateContext(m_window);
     if (m_glContext == nullptr) {
-
-        ZEN_LOG_ERROR("The SDL OpenGL context could not be initialized: {}", SDL_GetError());
-        //std::cout << "OpenGL Context Initialization Error: " << SDL_GetError() << std::endl;
+        const char *error = SDL_GetError();
+        emitErrorMessage(error);
+        ZEN_LOG_ERROR("The SDL OpenGL context could not be initialized: {}",
+                      error);
+        // std::cout << "OpenGL Context Initialization Error: " <<
+        // SDL_GetError() << std::endl;
     };
 
     gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
@@ -110,6 +120,12 @@ void LinuxWindow::toggleFullscreen() {
 
 void LinuxWindow::setEventCallback(const EventCallbackFunction &callback) {
     m_eventCallbackFunction = callback;
+};
+
+// This should ONLY BE CALLED ON THE MAIN THREAD
+void LinuxWindow::emitErrorMessage(const char *message) {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Zen Error", message,
+                             nullptr);
 };
 
 }; // namespace Zen

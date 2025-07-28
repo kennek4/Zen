@@ -1,7 +1,6 @@
-#include "zen/platform/linux/ZEN_LinuxWindow.h"
-#include <iostream>
 #include <memory>
 #include <zen/core/ZEN_Window.h>
+#include <zen/platform/linux/ZEN_LinuxWindow.h>
 
 namespace Zen {
 
