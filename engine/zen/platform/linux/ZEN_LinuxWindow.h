@@ -5,6 +5,13 @@
 #include <zen/core/ZEN_Core.h>
 
 namespace Zen {
+
+// TEMP
+struct WindowData {
+    SDL_Window *window;
+    SDL_GLContext glContext;
+};
+
 class LinuxWindow : public Window {
   public:
     LinuxWindow(const WindowProperties &properties);
@@ -21,14 +28,20 @@ class LinuxWindow : public Window {
     void setEventCallback(const EventCallbackFunction &callback) override;
     void emitErrorMessage(const char *message) override;
 
+    // TEMP
+    WindowData &getWindowData();
+    WindowProperties &getProperties();
+
   private:
     virtual void init(const WindowProperties &properties);
     virtual void shutdown();
 
   private:
-    SDL_Window *m_window;
-    SDL_GLContext m_glContext;
     EventCallbackFunction m_eventCallbackFunction;
+
+    // TEMP
+    WindowData m_windowData;
+
     WindowProperties m_windowProperties;
 };
 }; // namespace Zen
