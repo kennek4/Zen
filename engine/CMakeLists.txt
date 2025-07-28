@@ -42,6 +42,8 @@ target_include_directories(
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/platform
   INTERFACE ${ZEN_ROOT_PATH}/engine/zen/textures)
 
+include(FetchContent)
+
 # SDL
 cmake_policy(SET CMP0072 NEW)
 
@@ -64,18 +66,28 @@ set(SDL_STATIC ON)
 find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-include(FetchContent)
+if(NOT TARGET fmt)
+  FetchContent_Declare(
+    fmt
+    GIT_REPOSITORY https://github.com/fmtlib/fmt
+    GIT_TAG e69e5f977d458f2650bb346dadf2ad30c5320281
+    FIND_PACKAGE_ARGS REQUIRED) # 10.2.1
 
-FetchContent_Declare(
-  fmt
-  GIT_REPOSITORY https://github.com/fmtlib/fmt
-  GIT_TAG e69e5f977d458f2650bb346dadf2ad30c5320281) # 10.2.1
-FetchContent_MakeAvailable(fmt)
+endif()
 
-# Include folder libraries
-target_link_libraries(ZenEngine SPDLOG)
+# spdlog
+if(NOT TARGET spdlog)
+  # Stand-alone build
+  find_package(spdlog REQUIRED)
+endif()
 
 # External libraries
-target_link_libraries(ZenEngine glm::glm SDL3::SDL3 OpenGL::OpenGL fmt::fmt)
-target_link_libraries(ZenEngine SDL3::SDL3 stb_image glad glm
-                      ${OPENGL_LIBRARIES})
+target_link_libraries(
+  ZenEngine
+  glad
+  glm
+  stb_image
+  SDL3::SDL3
+  fmt::fmt
+  spdlog::spdlog
+  ${OPENGL_LIBRARIES})
