@@ -26,7 +26,7 @@ WindowProperties &LinuxWindow::getProperties() { return m_windowProperties; };
 
 static bool resizeEvent(void *windowData, SDL_Event *event) {
     // Handles if the event provided is something we care about or not
-    if (!(event->type == SDL_EVENT_WINDOW_RESIZED)) {
+    if (event->type != SDL_EVENT_WINDOW_RESIZED) {
         return false;
     };
 
@@ -52,6 +52,19 @@ static bool resizeEvent(void *windowData, SDL_Event *event) {
     ZEN_LOG_INFO("New WinProp Width: {}", props.width);
     ZEN_LOG_INFO("New WinProp Height: {}", props.height);
 
+    return true;
+};
+
+static bool mouseClickEvent(void *userdata, SDL_Event *event) {
+
+    // Makes sure the event is what we want
+    if (event->type != SDL_EVENT_MOUSE_BUTTON_DOWN) {
+        return false;
+    };
+
+    // Use the event data provided
+    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event->button.x,
+                 event->button.y);
     return true;
 };
 
@@ -112,6 +125,7 @@ void LinuxWindow::init(const WindowProperties &properties) {
 
     // SET EVENT CALLBACKS HERE
     SDL_AddEventWatch(resizeEvent, this);
+    SDL_AddEventWatch(mouseClickEvent, nullptr);
 
     ZEN_LOG_INFO("Window Successfully Initialized!");
 };
