@@ -4,7 +4,6 @@
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_video.h>
 #include <functional>
-#include <iostream>
 #include <memory>
 #include <zen/core/ZEN_Application.h>
 
@@ -27,8 +26,7 @@ void Application::onEvent(SDL_Event &event) {
 };
 
 void Application::run() {
-    std::cout << "Running Application..." << std::endl;
-    ZEN_LOG_INFO("Running Application fr");
+    ZEN_LOG_INFO("Running Application...");
     while (m_isRunning) {
         // std::cout << "Updating window..." << std::endl;
         m_window.get()->onUpdate();
