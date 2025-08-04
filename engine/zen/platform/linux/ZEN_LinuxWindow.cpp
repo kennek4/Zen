@@ -13,8 +13,8 @@ namespace Zen {
 
 static bool s_SDLInitialized = false;
 
-LinuxWindow::LinuxWindow(const WindowProperties &properties) {
-    init(properties);
+LinuxWindow::LinuxWindow(const WindowProperties &properties, Events *dispatcher) {
+    init(properties, dispatcher);
 };
 
 LinuxWindow::~LinuxWindow() { shutdown(); };
@@ -24,54 +24,40 @@ WindowData &LinuxWindow::getWindowData() { return m_windowData; };
 
 WindowProperties &LinuxWindow::getProperties() { return m_windowProperties; };
 
-static bool resizeEvent(void *windowData, SDL_Event *event) {
-    // Handles if the event provided is something we care about or not
-    if (event->type != SDL_EVENT_WINDOW_RESIZED) {
-        return false;
-    };
-
-    // Converts from void* type to the respective type THAT THIS CALLBACK
-    // --SHOULD-- be given;
-    LinuxWindow *pWinData = reinterpret_cast<LinuxWindow *>(windowData);
-
-    WindowProperties &props = pWinData->getProperties();
-
+bool LinuxWindow::resizeEvent(const SDL_Event &event) {
+ 
     int newWidth, newHeight;
-    SDL_GetWindowSize(pWinData->getWindowData().window, &newWidth, &newHeight);
+    SDL_GetWindowSize(m_windowData.window, &newWidth, &newHeight);
 
     // Logs the new window width and height
     ZEN_LOG_INFO("Window Width: {}", newWidth);
     ZEN_LOG_INFO("Window Height: {}", newHeight);
 
     // Assigns the window properties to their new values
-    props.width = newWidth;
-    props.height = newHeight;
+    m_windowProperties.width = newWidth;
+    m_windowProperties.height = newHeight;
 
     // Checks to test if the window properties was actually changed by the
     // above assignments to newWidth and newHeight respectively.
-    ZEN_LOG_INFO("New WinProp Width: {}", props.width);
-    ZEN_LOG_INFO("New WinProp Height: {}", props.height);
+    ZEN_LOG_INFO("New WinProp Width: {}", m_windowProperties.width);
+    ZEN_LOG_INFO("New WinProp Height: {}", m_windowProperties.height);
 
     return true;
 };
 
-static bool mouseClickEvent(void *userdata, SDL_Event *event) {
-
-    // Makes sure the event is what we want
-    if (event->type != SDL_EVENT_MOUSE_BUTTON_DOWN) {
-        return false;
-    };
-
+bool LinuxWindow::mouseClickEvent(const SDL_Event &event) {
     // Use the event data provided
-    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event->button.x,
-                 event->button.y);
+    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event.button.x,
+                 event.button.y);
     return true;
 };
 
-void LinuxWindow::init(const WindowProperties &properties) {
+void LinuxWindow::init(const WindowProperties &properties, Events *dispatcher) {
     m_windowProperties.title = properties.title;
     m_windowProperties.width = properties.width;
     m_windowProperties.height = properties.height;
+
+    dispatcher->registerListener(1, this);
 
     // TODO: ZEN_LOG
     ZEN_LOG_INFO("Creating new SDL Window: {}, W:{} H: {}",
@@ -123,13 +109,23 @@ void LinuxWindow::init(const WindowProperties &properties) {
 
     setVSync(m_windowProperties.vsync);
 
-    // SET EVENT CALLBACKS HERE
-    SDL_AddEventWatch(resizeEvent, this);
-    SDL_AddEventWatch(mouseClickEvent, nullptr);
 
     ZEN_LOG_INFO("Window Successfully Initialized!");
 };
 
+bool LinuxWindow::onEvent(const SDL_Event &event) {
+      // Handles if the event provided is something we care about or not
+    if (event.type == SDL_EVENT_WINDOW_RESIZED) {
+      return resizeEvent(event);
+    }
+
+    // Makes sure the event is what we want
+    if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+     return mouseClickEvent(event);
+    }
+
+    return false;
+};
 void LinuxWindow::shutdown() {
     SDL_GL_DestroyContext(m_windowData.glContext);
     SDL_DestroyWindow(m_windowData.window);
@@ -137,12 +133,6 @@ void LinuxWindow::shutdown() {
 };
 
 void LinuxWindow::onUpdate() {
-    SDL_Event event;
-    SDL_PollEvent(&event);
-
-    // ZEN_LOG_INFO("Invoking callback...");
-    m_eventCallbackFunction(event);
-
     // ZEN_LOG_INFO("Clearing color buffer...");
     glClearColor(0.7f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);

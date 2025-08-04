@@ -30,7 +30,7 @@ struct WindowProperties {
     };
 };
 
-class Window {
+class Window : public EventListener {
   public:
     using EventCallbackFunction = std::function<void(SDL_Event &)>;
 
@@ -49,6 +49,8 @@ class Window {
     virtual void emitErrorMessage(const char *message) = 0;
 
     static std::unique_ptr<Window>
-    create(const Zen::WindowProperties &properties = WindowProperties());
+    create(const Zen::WindowProperties &properties = WindowProperties(), Zen::Events *dispatcher = nullptr);
+
+    virtual bool onEvent(const SDL_Event& event) = 0;
 };
 }; // namespace Zen

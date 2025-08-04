@@ -6,17 +6,19 @@
 #include <zen/core/ZEN_Window.h>
 
 namespace Zen {
-class Application {
+class Application : public EventListener {
   public:
     Application();
     virtual ~Application();
 
     void run();
-    void onEvent(SDL_Event &event);
+    bool onEvent(const SDL_Event &event);
 
   private:
     std::unique_ptr<Window> m_window;
     bool m_isRunning = true;
+
+    Events m_eventDispatcher;
 };
 
 // Defined Client Side

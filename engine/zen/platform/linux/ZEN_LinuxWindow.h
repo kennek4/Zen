@@ -14,7 +14,7 @@ struct WindowData {
 
 class LinuxWindow : public Window {
   public:
-    LinuxWindow(const WindowProperties &properties);
+    LinuxWindow(const WindowProperties &properties, Events *dispatcher);
     virtual ~LinuxWindow();
 
     void onUpdate() override;
@@ -31,9 +31,13 @@ class LinuxWindow : public Window {
     // TEMP
     WindowData &getWindowData();
     WindowProperties &getProperties();
+    
+    bool resizeEvent(const SDL_Event &event);
+    bool mouseClickEvent(const SDL_Event &event);
+    bool onEvent(const SDL_Event &event);
 
   private:
-    virtual void init(const WindowProperties &properties);
+    virtual void init(const WindowProperties &properties, Events *dispatcher);
     virtual void shutdown();
 
   private:
@@ -43,5 +47,6 @@ class LinuxWindow : public Window {
     WindowData m_windowData;
 
     WindowProperties m_windowProperties;
+
 };
 }; // namespace Zen

@@ -5,10 +5,10 @@
 namespace Zen {
 
 std::unique_ptr<Window>
-Window::create(const Zen::WindowProperties &properties) {
+Window::create(const Zen::WindowProperties &properties, Zen::Events *dispatcher) {
 #ifdef __ZEN_PLATFORM_LINUX
     ZEN_LOG_INFO("Creating a Linux Window...");
-    return std::make_unique<LinuxWindow>(properties);
+    return std::make_unique<LinuxWindow>(properties, dispatcher);
 #endif              // __ZEN_PLATFORM_LINUX
 #ifdef __ZEN_PLATFORM_WINDOWS
     return nullptr; // NOT SUPPORTED
