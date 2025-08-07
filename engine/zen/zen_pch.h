@@ -24,6 +24,5 @@
 #include <SDL3/SDL_hints.h>
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_messagebox.h>
-#include <SDL3/SDL_oldnames.h>
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_video.h>
