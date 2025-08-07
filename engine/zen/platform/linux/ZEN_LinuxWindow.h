@@ -14,7 +14,7 @@ struct WindowData {
 
 class LinuxWindow : public Window {
   public:
-    LinuxWindow(const WindowProperties &properties, Events *dispatcher);
+    LinuxWindow(const WindowProperties &properties, EventsDispatcher *dispatcher);
     virtual ~LinuxWindow();
 
     void onUpdate() override;
@@ -37,7 +37,7 @@ class LinuxWindow : public Window {
     bool onEvent(const SDL_Event &event) override;
 
   private:
-    virtual void init(const WindowProperties &properties, Events *dispatcher);
+    virtual void init(const WindowProperties &properties, EventsDispatcher *dispatcher);
     virtual void shutdown();
 
   private:

@@ -16,7 +16,7 @@ class Application : public EventListener {
     std::unique_ptr<Window> m_window;
     bool m_isRunning = true;
 
-    Events m_eventDispatcher;
+    EventsDispatcher m_eventDispatcher;
 };
 
 // Defined Client Side

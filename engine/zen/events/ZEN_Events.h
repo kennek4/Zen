@@ -9,7 +9,7 @@ class EventListener {
     virtual ~EventListener() = default;
 };
 
-class Events {
+class EventsDispatcher {
   public:
     void dispatch(const SDL_Event &event);
     void poll();

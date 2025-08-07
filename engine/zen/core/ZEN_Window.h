@@ -47,7 +47,7 @@ class Window : public EventListener {
 
     static std::unique_ptr<Window>
     create(const Zen::WindowProperties &properties = WindowProperties(),
-           Zen::Events *dispatcher = nullptr);
+           Zen::EventsDispatcher *dispatcher = nullptr);
 
     virtual bool onEvent(const SDL_Event &event) = 0;
 };

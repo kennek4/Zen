@@ -8,7 +8,7 @@ namespace Zen {
 static bool s_SDLInitialized = false;
 
 LinuxWindow::LinuxWindow(const WindowProperties &properties,
-                         Events *dispatcher) {
+                         EventsDispatcher *dispatcher) {
     init(properties, dispatcher);
 };
 
@@ -46,7 +46,7 @@ bool LinuxWindow::mouseClickEvent(const SDL_Event &event) {
     return true;
 };
 
-void LinuxWindow::init(const WindowProperties &properties, Events *dispatcher) {
+void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dispatcher) {
     m_windowProperties.title = properties.title;
     m_windowProperties.width = properties.width;
     m_windowProperties.height = properties.height;
