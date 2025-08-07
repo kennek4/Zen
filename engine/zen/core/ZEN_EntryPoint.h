@@ -7,7 +7,7 @@
 extern Zen::Application *Zen::CreateApplication();
 
 int main(int argc, char *argv[]) {
-    Zen::Logger::init();
+    Zen::Log::init();
     ZEN_LOG_INFO("Hello, Linux!");
     auto app = Zen::CreateApplication();
     app->run();

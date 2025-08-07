@@ -1,4 +1,3 @@
-#include "zen/logger/ZEN_Logger.h"
 #include <SDL3/SDL_error.h>
 #include <SDL3/SDL_events.h>
 #include <SDL3/SDL_init.h>
@@ -7,13 +6,15 @@
 #include <SDL3/SDL_video.h>
 #include <cstdint>
 #include <zen/core/ZEN_Window.h>
+#include <zen/log/ZEN_Log.h>
 #include <zen/platform/linux/ZEN_LinuxWindow.h>
 
 namespace Zen {
 
 static bool s_SDLInitialized = false;
 
-LinuxWindow::LinuxWindow(const WindowProperties &properties, Events *dispatcher) {
+LinuxWindow::LinuxWindow(const WindowProperties &properties,
+                         Events *dispatcher) {
     init(properties, dispatcher);
 };
 
@@ -25,7 +26,7 @@ WindowData &LinuxWindow::getWindowData() { return m_windowData; };
 WindowProperties &LinuxWindow::getProperties() { return m_windowProperties; };
 
 bool LinuxWindow::resizeEvent(const SDL_Event &event) {
- 
+
     int newWidth, newHeight;
     SDL_GetWindowSize(m_windowData.window, &newWidth, &newHeight);
 
@@ -47,8 +48,7 @@ bool LinuxWindow::resizeEvent(const SDL_Event &event) {
 
 bool LinuxWindow::mouseClickEvent(const SDL_Event &event) {
     // Use the event data provided
-    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event.button.x,
-                 event.button.y);
+    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event.button.x, event.button.y);
     return true;
 };
 
@@ -109,19 +109,18 @@ void LinuxWindow::init(const WindowProperties &properties, Events *dispatcher) {
 
     setVSync(m_windowProperties.vsync);
 
-
     ZEN_LOG_INFO("Window Successfully Initialized!");
 };
 
 bool LinuxWindow::onEvent(const SDL_Event &event) {
-      // Handles if the event provided is something we care about or not
+    // Handles if the event provided is something we care about or not
     if (event.type == SDL_EVENT_WINDOW_RESIZED) {
-      return resizeEvent(event);
+        return resizeEvent(event);
     }
 
     // Makes sure the event is what we want
     if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
-     return mouseClickEvent(event);
+        return mouseClickEvent(event);
     }
 
     return false;
