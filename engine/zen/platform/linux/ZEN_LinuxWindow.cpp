@@ -1,13 +1,7 @@
-#include <SDL3/SDL_error.h>
-#include <SDL3/SDL_events.h>
-#include <SDL3/SDL_init.h>
-#include <SDL3/SDL_messagebox.h>
-#include <SDL3/SDL_oldnames.h>
-#include <SDL3/SDL_video.h>
-#include <cstdint>
 #include <zen/core/ZEN_Window.h>
 #include <zen/log/ZEN_Log.h>
 #include <zen/platform/linux/ZEN_LinuxWindow.h>
+#include <zen/zen_pch.h>
 
 namespace Zen {
 

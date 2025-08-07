@@ -1,16 +1,11 @@
-#include "zen/core/ZEN_Window.h"
-#include <SDL3/SDL_events.h>
-#include <SDL3/SDL_hints.h>
-#include <SDL3/SDL_scancode.h>
-#include <SDL3/SDL_video.h>
-#include <functional>
-#include <memory>
 #include <zen/core/ZEN_Application.h>
+#include <zen/core/ZEN_Window.h>
+#include <zen/zen_pch.h>
 
 namespace Zen {
 Application::Application() {
     WindowProperties properties = {"Zen Window Test", 1280, 720, true, false};
-    m_eventDispatcher.registerListener(0,this);
+    m_eventDispatcher.registerListener(0, this);
     m_window = Window::create(properties, &m_eventDispatcher);
 };
 

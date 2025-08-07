@@ -1,9 +1,7 @@
 #pragma once
 
-#include <GL/gl.h>
-#include <cstdint>
-#include <memory>
 #include <zen/textures/ZEN_Image.h>
+#include <zen/zen_pch.h>
 
 namespace Zen {
 typedef struct Texture {
@@ -27,7 +25,7 @@ typedef struct Texture {
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1.0f);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY, 1.0f);
 
         glBindTexture(GL_TEXTURE_2D, 0);
     };

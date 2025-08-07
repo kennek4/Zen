@@ -37,6 +37,9 @@ elseif(WIN32)
   target_compile_definitions(ZenEngine PUBLIC __ZEN_PLATFORM_WINDOWS)
 endif()
 
+# Pre-compiled Headers
+target_precompile_headers(ZenEngine PRIVATE zen/zen_pch.h)
+
 target_include_directories(
   ZenEngine
   PUBLIC ${ZEN_ROOT_PATH}

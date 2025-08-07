@@ -1,8 +1,8 @@
 #pragma once
 
-#include "zen/core/ZEN_Window.h"
 #include <SDL3/SDL_video.h>
 #include <zen/core/ZEN_Core.h>
+#include <zen/core/ZEN_Window.h>
 
 namespace Zen {
 
@@ -31,10 +31,10 @@ class LinuxWindow : public Window {
     // TEMP
     WindowData &getWindowData();
     WindowProperties &getProperties();
-    
+
     bool resizeEvent(const SDL_Event &event);
     bool mouseClickEvent(const SDL_Event &event);
-    bool onEvent(const SDL_Event &event);
+    bool onEvent(const SDL_Event &event) override;
 
   private:
     virtual void init(const WindowProperties &properties, Events *dispatcher);
@@ -47,6 +47,5 @@ class LinuxWindow : public Window {
     WindowData m_windowData;
 
     WindowProperties m_windowProperties;
-
 };
 }; // namespace Zen
