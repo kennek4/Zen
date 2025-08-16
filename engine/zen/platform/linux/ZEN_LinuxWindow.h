@@ -43,9 +43,14 @@ class LinuxWindow : public Window {
   private:
     EventCallbackFunction m_eventCallbackFunction;
 
+    
+
+
     // TEMP
     WindowData m_windowData;
 
     WindowProperties m_windowProperties;
+    
+    unsigned int m_vertexArray, m_vertexBuffer, m_indexBuffer;
 };
 }; // namespace Zen
