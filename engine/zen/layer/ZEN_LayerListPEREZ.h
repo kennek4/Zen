@@ -12,10 +12,10 @@ namespace Zen {
       LayerListPEREZ() = default;
       ~LayerListPEREZ() = default;
 
-      void PushLayer(Layer *layer);
-      void PushOverlay(Layer *overlay);
-      void PopLayer(Layer *layer);
-      void PopOverlay(Layer *overlay);
+      void PushLayer(std::unique_ptr<Layer> layer);
+      void PushOverlay(std::unique_ptr<Layer> overlay);
+      std::unique_ptr<Layer> PopLayer(Layer *layer);
+      std::unique_ptr<Layer> PopOverlay(Layer *overlay);
 
       using ListOfLayers = std::vector<std::unique_ptr<Layer>>;
 
@@ -26,7 +26,7 @@ namespace Zen {
 
     private:
       ListOfLayers m_layers; //vector of layers
-      unsigned int m_layerInsertIndex = 0;
+      std::size_t m_layerInsertIndex = 0;
 
   };
 }; // namespace Zen
