@@ -1,15 +1,16 @@
 #pragma once
 
-#include <SDL3/SDL_video.h>
+#include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/core/ZEN_Window.h>
+#include <zen/log/ZEN_Log.h>
+#include <zen/renderer/ZEN_GraphicsContext.h>
 
 namespace Zen {
-
 // TEMP
 struct WindowData {
     SDL_Window *window;
-    SDL_GLContext glContext;
+    std::unique_ptr<GraphicsContext> context;
 };
 
 class LinuxWindow : public Window {
@@ -43,14 +44,12 @@ class LinuxWindow : public Window {
   private:
     EventCallbackFunction m_eventCallbackFunction;
 
-    
-
-
     // TEMP
     WindowData m_windowData;
 
     WindowProperties m_windowProperties;
     
     unsigned int m_vertexArray, m_vertexBuffer, m_indexBuffer;
+
 };
 }; // namespace Zen

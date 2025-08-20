@@ -1,10 +1,6 @@
-#include <zen/core/ZEN_Window.h>
-#include <zen/log/ZEN_Log.h>
 #include <zen/platform/linux/ZEN_LinuxWindow.h>
-#include <zen/zen_pch.h>
 
 namespace Zen {
-
 static bool s_SDLInitialized = false;
 
 LinuxWindow::LinuxWindow(const WindowProperties &properties,
@@ -42,33 +38,6 @@ LinuxWindow::~LinuxWindow() { shutdown(); };
 WindowData &LinuxWindow::getWindowData() { return m_windowData; };
 
 WindowProperties &LinuxWindow::getProperties() { return m_windowProperties; };
-
-bool LinuxWindow::resizeEvent(const SDL_Event &event) {
-
-    int newWidth, newHeight;
-    SDL_GetWindowSize(m_windowData.window, &newWidth, &newHeight);
-
-    // Logs the new window width and height
-    ZEN_LOG_INFO("Window Width: {}", newWidth);
-    ZEN_LOG_INFO("Window Height: {}", newHeight);
-
-    // Assigns the window properties to their new values
-    m_windowProperties.width = newWidth;
-    m_windowProperties.height = newHeight;
-
-    // Checks to test if the window properties was actually changed by the
-    // above assignments to newWidth and newHeight respectively.
-    ZEN_LOG_INFO("New WinProp Width: {}", m_windowProperties.width);
-    ZEN_LOG_INFO("New WinProp Height: {}", m_windowProperties.height);
-
-    return true;
-};
-
-bool LinuxWindow::mouseClickEvent(const SDL_Event &event) {
-    // Use the event data provided
-    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event.button.x, event.button.y);
-    return true;
-};
 
 void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dispatcher) {
     m_windowProperties.title = properties.title;
@@ -113,8 +82,10 @@ void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dis
         // std::endl;
     };
 
-    m_windowData.glContext = SDL_GL_CreateContext(m_windowData.window);
-    if (m_windowData.glContext == nullptr) {
+    // m_windowData.glContext = SDL_GL_CreateContext(m_windowData.window);
+    m_windowData.context = GraphicsContext::Create(m_windowData.window);
+    m_windowData.context->init();
+    if (m_windowData.context == nullptr) {
         const char *error = SDL_GetError();
         emitErrorMessage(error);
         ZEN_LOG_ERROR("The SDL OpenGL context could not be initialized: {}",
@@ -122,7 +93,7 @@ void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dis
         // std::cout << "OpenGL Context Initialization Error: " <<
         // SDL_GetError() << std::endl;
     };
-
+    
     gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
 
     setVSync(m_windowProperties.vsync);
@@ -144,7 +115,7 @@ bool LinuxWindow::onEvent(const SDL_Event &event) {
     return false;
 };
 void LinuxWindow::shutdown() {
-    SDL_GL_DestroyContext(m_windowData.glContext);
+  m_windowData.context->shutdown();
     SDL_DestroyWindow(m_windowData.window);
     SDL_Quit();
 };
@@ -189,6 +160,33 @@ void LinuxWindow::setEventCallback(const EventCallbackFunction &callback) {
 void LinuxWindow::emitErrorMessage(const char *message) {
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Zen Error", message,
                              nullptr);
+};
+
+bool LinuxWindow::resizeEvent(const SDL_Event &event) {
+
+    int newWidth, newHeight;
+    SDL_GetWindowSize(m_windowData.window, &newWidth, &newHeight);
+
+    // Logs the new window width and height
+    ZEN_LOG_INFO("Window Width: {}", newWidth);
+    ZEN_LOG_INFO("Window Height: {}", newHeight);
+
+    // Assigns the window properties to their new values
+    m_windowProperties.width = newWidth;
+    m_windowProperties.height = newHeight;
+
+    // Checks to test if the window properties was actually changed by the
+    // above assignments to newWidth and newHeight respectively.
+    ZEN_LOG_INFO("New WinProp Width: {}", m_windowProperties.width);
+    ZEN_LOG_INFO("New WinProp Height: {}", m_windowProperties.height);
+
+    return true;
+};
+
+bool LinuxWindow::mouseClickEvent(const SDL_Event &event) {
+    // Use the event data provided
+    ZEN_LOG_INFO("Mouse click at X: {}, Y: {}", event.button.x, event.button.y);
+    return true;
 };
 
 }; // namespace Zen
