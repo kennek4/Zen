@@ -1,8 +1,7 @@
 #pragma once
 
-#include <SDL3/SDL_events.h>
-#include <zen/core/ZEN_Core.h>
 #include <zen/zen_pch.h>
+#include <zen/core/ZEN_Core.h>
 
 #ifndef __ZEN_GLAD_H
 #include <glad/gl.h>

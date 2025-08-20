@@ -4,8 +4,6 @@
 #include <zen/core/ZEN_Core.h>
 #include <zen/layer/ZEN_Layer.h>
 
-#include <vector>
-
 namespace Zen {
   class LayerListPEREZ {
     public:

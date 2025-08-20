@@ -1,7 +1,6 @@
 #include <zen/layer/ZEN_LayerList.h>
 
 namespace Zen {
-
   LayerList::~LayerList() {
     for (Layer *layer : m_layers) {
       layer->onDetach();

@@ -1,7 +1,6 @@
 #include <zen/layer/ZEN_LayerListPEREZ.h>
 
 namespace Zen {
-
   void LayerListPEREZ::PushLayer(std::unique_ptr<Layer> layer) {
     if (!layer) return;
     m_layers.insert(m_layers.begin() + m_layerInsertIndex, std::move(layer));

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/core/ZEN_Window.h>
 

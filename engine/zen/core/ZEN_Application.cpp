@@ -1,6 +1,5 @@
 #include <zen/core/ZEN_Application.h>
 #include <zen/core/ZEN_Window.h>
-#include <zen/zen_pch.h>
 
 namespace Zen {
 Application::Application() {
