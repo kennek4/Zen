@@ -117,7 +117,9 @@ bool LinuxWindow::onEvent(const SDL_Event &event) {
 void LinuxWindow::shutdown() {
   m_windowData.context->shutdown();
     SDL_DestroyWindow(m_windowData.window);
+    ZEN_LOG_INFO("SDL Window destroyed");
     SDL_Quit();
+    ZEN_LOG_INFO("SDL Quit");
 };
 
 void LinuxWindow::onUpdate() {
@@ -127,7 +129,9 @@ void LinuxWindow::onUpdate() {
     // TEMP
     glBindVertexArray(m_vertexArray);
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
-    SDL_GL_SwapWindow(m_windowData.window);
+    
+    //SDL_GL_SwapWindow(m_windowData.window);
+    m_windowData.context->swapBuffers();
 };
 
 uint32_t LinuxWindow::getWidth() { return m_windowProperties.width; };

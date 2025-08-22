@@ -11,7 +11,7 @@ namespace Zen {
       ~OpenGLContext() override;
 
       void init() override;  
-      //void swapBuffers() override;
+      void swapBuffers() override;
 
       void shutdown() override;
 
