@@ -26,3 +26,6 @@
 #include <SDL3/SDL_messagebox.h>
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_video.h>
+
+//ZEN
+#include <zen/log/ZEN_Log.h>

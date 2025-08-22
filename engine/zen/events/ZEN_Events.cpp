@@ -19,6 +19,7 @@ void EventsDispatcher::poll() {
 
 void EventsDispatcher::registerListener(int priority, EventListener *listener) {
     m_listeners[priority].push_back(listener);
+    ZEN_LOG_INFO("Event listener with priority {} registered", priority);
 }
 
 void EventsDispatcher::unregisterListener(EventListener *listener) {
@@ -31,6 +32,7 @@ void EventsDispatcher::unregisterListener(EventListener *listener) {
             }
         }
     }
+    ZEN_LOG_INFO("Event listener unregistered");
 }
 
 }; // namespace Zen

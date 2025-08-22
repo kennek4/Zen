@@ -1,7 +1,6 @@
 #pragma once
 
 #include <zen/zen_pch.h>
-#include <zen/log/ZEN_Log.h>
 
 namespace Zen {
   class GraphicsContext {

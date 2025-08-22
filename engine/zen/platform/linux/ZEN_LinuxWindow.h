@@ -3,7 +3,6 @@
 #include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/core/ZEN_Window.h>
-#include <zen/log/ZEN_Log.h>
 #include <zen/renderer/ZEN_GraphicsContext.h>
 
 namespace Zen {
