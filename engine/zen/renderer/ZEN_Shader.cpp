@@ -28,10 +28,10 @@ namespace Zen {
         vertexCode   = vShaderStream.str();
         fragmentCode = fShaderStream.str();	
 
-        ZEN_LOG_INFO("{}", vertexCode);
-        ZEN_LOG_INFO("{}", fragmentCode);
-        ZEN_LOG_INFO("{}", vertexPath);
-        ZEN_LOG_INFO("{}", fragmentPath);
+        //ZEN_LOG_INFO("{}", vertexCode);
+        //ZEN_LOG_INFO("{}", fragmentCode);
+        //ZEN_LOG_INFO("{}", vertexPath);
+        //ZEN_LOG_INFO("{}", fragmentPath);
     }
     catch(std::ifstream::failure e)
     {
