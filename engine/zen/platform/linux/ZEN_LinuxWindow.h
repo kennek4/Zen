@@ -5,6 +5,7 @@
 #include <zen/core/ZEN_Window.h>
 #include <zen/renderer/ZEN_GraphicsContext.h>
 #include <zen/renderer/ZEN_Shader.h>
+#include<zen/renderer/ZEN_Buffer.h>
 
 namespace Zen {
 // TEMP
@@ -49,9 +50,11 @@ class LinuxWindow : public Window {
 
     WindowProperties m_windowProperties;
     
-    unsigned int m_vertexArray, m_vertexBuffer, m_indexBuffer;
+    unsigned int m_vertexArray;
 
     std::unique_ptr<Shader> m_shader;
+    std::unique_ptr<VertexBuffer> m_vertexBuffer;
+    std::unique_ptr<IndexBuffer> m_indexBuffer;
 
-};
+  };
 }; // namespace Zen
