@@ -5,8 +5,13 @@
 namespace Zen {
   class Shader {
     public:
-      Shader();
+      Shader(const char *vertexPath, const char *fragmentPath);
       ~Shader();
 
+      void bind() const;
+      void unBind() const;
+    
+    private:
+      uint32_t m_rendererId;
   };
 } // namespace Zen

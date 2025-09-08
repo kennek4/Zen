@@ -8,6 +8,9 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 // OpenGL
 #ifndef __ZEN_OPENGL_H
