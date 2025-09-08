@@ -99,8 +99,8 @@ namespace Zen {
     // Vertex and fragment shaders are successfully compiled.
     // Now time to link them together into a program.
     // Get a program object.
-    m_rendererId = glCreateProgram();
-    GLuint program = m_rendererId;
+    m_rendererID = glCreateProgram();
+    GLuint program = m_rendererID;
 
     // Attach our shaders to our program
     glAttachShader(program, vertexShader);
@@ -141,12 +141,12 @@ namespace Zen {
 
   Shader::~Shader() {
     ZEN_LOG_INFO("Shader deconstructed");
-    glDeleteProgram(m_rendererId);
+    glDeleteProgram(m_rendererID);
   }
 
   void Shader::bind() const {
     //ZEN_LOG_INFO("Shader binded");
-    glUseProgram(m_rendererId);
+    glUseProgram(m_rendererID);
   }
 
   void Shader::unBind() const {

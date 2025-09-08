@@ -12,6 +12,6 @@ namespace Zen {
       void unBind() const;
     
     private:
-      uint32_t m_rendererId;
+      uint32_t m_rendererID;
   };
 } // namespace Zen
