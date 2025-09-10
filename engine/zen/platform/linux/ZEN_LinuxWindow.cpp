@@ -76,8 +76,7 @@ void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dis
 
     setVSync(m_windowProperties.vsync);
     // TEMP
-    glGenVertexArrays(1, &m_vertexArray);
-    glBindVertexArray(m_vertexArray);
+    m_vertexArray.reset(VertexArray::Create());
 
     float vertices[3*7] = {
     -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
@@ -86,35 +85,17 @@ void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dis
     }; 
 
     m_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+    BufferLayout layout = { 
+      {ShaderDataType::Float3, "a_position"},
+      {ShaderDataType::Float4, "a_color"}
+    };
+    m_vertexBuffer->setLayout(layout);
+  
+    m_vertexArray->addVertexBuffer(m_vertexBuffer);
 
-    {
-      BufferLayout layout = { 
-        {ShaderDataType::Float3, "a_position"},
-        {ShaderDataType::Float4, "a_color"}
-      };
-      m_vertexBuffer->setLayout(layout);
-    }
-
-    uint32_t index = 0;
-
-    const auto &layout = m_vertexBuffer->getLayout();
-    for (const auto &element : layout) {
-      glEnableVertexAttribArray(index);
-      glVertexAttribPointer(
-                            index, 
-                            element.GetComponentCount(), 
-                            ShaderDataTypeToOpenGLBaseType(element.type), 
-                            element.isNormalized ? GL_TRUE : GL_FALSE, 
-                            layout.getStride(),
-                            (const void *)element.offset);
-      ZEN_LOG_INFO("index:{}, component count: {}, type:{}, normalized;{}, stride:{}, offset:{}", index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.type),element.isNormalized, layout.getStride(), (const void *)element.offset);
-      index++;
-    }
-    m_vertexBuffer->bind();
     uint32_t indices[3] = {0,1,2};
     m_indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
-    m_indexBuffer->bind();
-    m_indexBuffer->getCount();
+    m_vertexArray->setIndexBuffer(m_indexBuffer);
 
     const char* base = SDL_GetBasePath();                   
     std::string vPath = std::string(base) + "data/basic.vert";
@@ -154,7 +135,7 @@ void LinuxWindow::onUpdate() {
     glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     // TEMP
-    glBindVertexArray(m_vertexArray);
+    m_vertexArray->bind();
     m_shader->bind();
     glDrawElements(GL_TRIANGLES, m_indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
     
