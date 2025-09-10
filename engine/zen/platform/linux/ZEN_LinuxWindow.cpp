@@ -79,20 +79,43 @@ void LinuxWindow::init(const WindowProperties &properties, EventsDispatcher *dis
     glGenVertexArrays(1, &m_vertexArray);
     glBindVertexArray(m_vertexArray);
 
-    float vertices[] = {
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.0f,  0.5f, 0.0f
+    float vertices[3*7] = {
+    -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
+     0.5f, -0.5f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
+     0.0f,  0.5f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f 
     }; 
-    uint32_t indices[3] = {0,1,2};
-    
+
     m_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+
+    {
+      BufferLayout layout = { 
+        {ShaderDataType::Float3, "a_position"},
+        {ShaderDataType::Float4, "a_color"}
+      };
+      m_vertexBuffer->setLayout(layout);
+    }
+
+    uint32_t index = 0;
+
+    const auto &layout = m_vertexBuffer->getLayout();
+    for (const auto &element : layout) {
+      glEnableVertexAttribArray(index);
+      glVertexAttribPointer(
+                            index, 
+                            element.GetComponentCount(), 
+                            ShaderDataTypeToOpenGLBaseType(element.type), 
+                            element.isNormalized ? GL_TRUE : GL_FALSE, 
+                            layout.getStride(),
+                            (const void *)element.offset);
+      ZEN_LOG_INFO("index:{}, component count: {}, type:{}, normalized;{}, stride:{}, offset:{}", index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.type),element.isNormalized, layout.getStride(), (const void *)element.offset);
+      index++;
+    }
+    m_vertexBuffer->bind();
+    uint32_t indices[3] = {0,1,2};
     m_indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
+    m_indexBuffer->bind();
     m_indexBuffer->getCount();
 
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-    
     const char* base = SDL_GetBasePath();                   
     std::string vPath = std::string(base) + "data/basic.vert";
     std::string fPath = std::string(base) + "data/basic.frag";
