@@ -73,12 +73,14 @@ void LinuxWindow::init(const WindowProperties &properties,
 
   setVSync(m_windowProperties.vsync);
   // TEMP
+  
   m_vertexArray.reset(VertexArray::Create());
 
   float vertices[3 * 7] = {-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
                            0.5f,  -0.5f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
                            0.0f,  0.5f,  0.0f, 0.2f, 0.2f, 0.8f, 1.0f};
 
+  std::shared_ptr<VertexBuffer> m_vertexBuffer;
   m_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
   BufferLayout layout = {{ShaderDataType::Float3, "a_position"},
                          {ShaderDataType::Float4, "a_color"}};
@@ -87,6 +89,8 @@ void LinuxWindow::init(const WindowProperties &properties,
   m_vertexArray->addVertexBuffer(m_vertexBuffer);
 
   uint32_t indices[3] = {0, 1, 2};
+
+  std::shared_ptr<IndexBuffer> m_indexBuffer;
   m_indexBuffer.reset(
       IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
   m_vertexArray->setIndexBuffer(m_indexBuffer);
@@ -129,7 +133,7 @@ void LinuxWindow::onUpdate() {
   // TEMP
   m_vertexArray->bind();
   m_shader->bind();
-  glDrawElements(GL_TRIANGLES, m_indexBuffer->getCount(), GL_UNSIGNED_INT,
+  glDrawElements(GL_TRIANGLES, m_vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT,
                  nullptr);
 
   // SDL_GL_SwapWindow(m_windowData.window);
