@@ -3,6 +3,12 @@
 #include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/core/ZEN_Window.h>
+#include <zen/renderer/ZEN_GraphicsContext.h>
+#include <zen/renderer/ZEN_Shader.h>
+#include <zen/renderer/ZEN_Buffer.h>
+#include <zen/renderer/ZEN_VertexArray.h>
+#include <zen/renderer/ZEN_Renderer.h>
+
 
 namespace Zen {
 class Application : public EventListener {
@@ -18,6 +24,9 @@ class Application : public EventListener {
     bool m_isRunning = true;
 
     EventsDispatcher m_eventDispatcher;
+
+    std::shared_ptr<Shader> m_shader;
+    std::shared_ptr<VertexArray> m_vertexArray;
 };
 
 // Defined Client Side
