@@ -30,5 +30,8 @@
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_video.h>
 
+// GLM
+#include <glm/glm.hpp>
+
 //ZEN
 #include <zen/log/ZEN_Log.h>

@@ -2,17 +2,18 @@
 
 #include <zen/zen_pch.h>
 
-#include <zen/renderer/ZEN_RendererAPI.h>
+#include <zen/renderer/ZEN_RenderCommand.h>
+
 namespace Zen {
   class Renderer {
     public:
-      //void init();
-      //void shutdown();
-    
-      inline static RendererAPI getAPI() {return s_rendererAPI;}
+      static void beginScene();
+      static void endScene();
 
-    private:
-      static RendererAPI s_rendererAPI;
+      static void submit(const std::shared_ptr<VertexArray> &vertexArray);
+    
+      static RendererAPI::API getAPI() {return RendererAPI::getAPI();}
+
   };
 
 }; // namespace Zen

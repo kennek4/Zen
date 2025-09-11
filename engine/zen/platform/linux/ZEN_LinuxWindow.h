@@ -5,8 +5,9 @@
 #include <zen/core/ZEN_Window.h>
 #include <zen/renderer/ZEN_GraphicsContext.h>
 #include <zen/renderer/ZEN_Shader.h>
-#include<zen/renderer/ZEN_Buffer.h>
-#include<zen/renderer/ZEN_VertexArray.h>
+#include <zen/renderer/ZEN_Buffer.h>
+#include <zen/renderer/ZEN_VertexArray.h>
+#include <zen/renderer/ZEN_Renderer.h>
 
 namespace Zen {
 // TEMP

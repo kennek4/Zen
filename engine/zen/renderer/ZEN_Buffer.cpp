@@ -1,15 +1,16 @@
 #include <zen/renderer/ZEN_Buffer.h>
 
+#include <zen/renderer/ZEN_Renderer.h>
 #include <zen/platform/OpenGL/ZEN_OpenGLBuffer.h>
 
 namespace Zen {
   VertexBuffer *VertexBuffer::Create(float *vertices, uint32_t size) {
     switch (Renderer::getAPI()) {
-      case RendererAPI::None: 
+      case RendererAPI::API::None: 
         ZEN_LOG_ERROR("Renderer API is not supported"); 
         return nullptr;
       
-      case RendererAPI::OpenGL: 
+      case RendererAPI::API::OpenGL: 
         ZEN_LOG_INFO("Vertex buffer: Using OpenGL renderer API");
         return new OpenGLVertexBuffer(vertices, size);
     }
@@ -19,11 +20,11 @@ namespace Zen {
 
   IndexBuffer *IndexBuffer::Create(uint32_t *indices, uint32_t count) {
     switch (Renderer::getAPI()) {
-      case RendererAPI::None: 
+      case RendererAPI::API::None: 
         ZEN_LOG_ERROR("Renderer API is not supported");
         return nullptr;
       
-      case RendererAPI::OpenGL: 
+      case RendererAPI::API::OpenGL: 
         ZEN_LOG_INFO("Index buffer: Using OpenGL renderer API");
         return new OpenGLIndexBuffer(indices, count);
     }

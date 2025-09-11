@@ -128,14 +128,12 @@ void LinuxWindow::shutdown() {
 
 void LinuxWindow::onUpdate() {
   // ZEN_LOG_INFO("Clearing color buffer...");
-  glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  RenderCommand::setClearColour({0.2f, 0.2f, 0.2f, 1.0f});
+  RenderCommand::clear();
   // TEMP
   m_vertexArray->bind();
   m_shader->bind();
-  glDrawElements(GL_TRIANGLES, m_vertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT,
-                 nullptr);
-
+  RenderCommand::drawIndexed(m_vertexArray);
   // SDL_GL_SwapWindow(m_windowData.window);
   m_windowData.context->swapBuffers();
 };
