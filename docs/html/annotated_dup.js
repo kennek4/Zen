@@ -1,0 +1,35 @@
+var annotated_dup =
+[
+    [ "Zen", null, [
+      [ "Application", "classZen_1_1Application.html", null ],
+      [ "BufferElement", "structZen_1_1BufferElement.html", null ],
+      [ "BufferLayout", "classZen_1_1BufferLayout.html", null ],
+      [ "EventListener", "classZen_1_1EventListener.html", null ],
+      [ "EventsDispatcher", "classZen_1_1EventsDispatcher.html", null ],
+      [ "GraphicsContext", "classZen_1_1GraphicsContext.html", null ],
+      [ "Image", "structZen_1_1Image.html", null ],
+      [ "IndexBuffer", "classZen_1_1IndexBuffer.html", null ],
+      [ "Layer", "classZen_1_1Layer.html", null ],
+      [ "LayerList", "classZen_1_1LayerList.html", null ],
+      [ "LayerListPEREZ", "classZen_1_1LayerListPEREZ.html", null ],
+      [ "LinuxWindow", "classZen_1_1LinuxWindow.html", null ],
+      [ "Log", "classZen_1_1Log.html", null ],
+      [ "OpenGLContext", "classZen_1_1OpenGLContext.html", null ],
+      [ "OpenGLIndexBuffer", "classZen_1_1OpenGLIndexBuffer.html", null ],
+      [ "OpenGLRendererAPI", "classZen_1_1OpenGLRendererAPI.html", null ],
+      [ "OpenGLVertexArray", "classZen_1_1OpenGLVertexArray.html", null ],
+      [ "OpenGLVertexBuffer", "classZen_1_1OpenGLVertexBuffer.html", null ],
+      [ "RenderCommand", "classZen_1_1RenderCommand.html", null ],
+      [ "Renderer", "classZen_1_1Renderer.html", null ],
+      [ "RendererAPI", "classZen_1_1RendererAPI.html", null ],
+      [ "Shader", "classZen_1_1Shader.html", null ],
+      [ "Size", "structZen_1_1Size.html", null ],
+      [ "Texture", "structZen_1_1Texture.html", null ],
+      [ "VertexArray", "classZen_1_1VertexArray.html", null ],
+      [ "VertexBuffer", "classZen_1_1VertexBuffer.html", null ],
+      [ "Window", "classZen_1_1Window.html", null ],
+      [ "WindowData", "structZen_1_1WindowData.html", null ],
+      [ "WindowProperties", "structZen_1_1WindowProperties.html", null ]
+    ] ],
+    [ "Zenith", "classZenith.html", null ]
+];

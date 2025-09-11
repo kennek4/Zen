@@ -1,0 +1,18 @@
+\doxysection{ZEN\+\_\+\+Log.\+cpp}
+\hypertarget{ZEN__Log_8cpp_source}{}\label{ZEN__Log_8cpp_source}\index{engine/zen/log/ZEN\_Log.cpp@{engine/zen/log/ZEN\_Log.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/log/ZEN\_Log.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00004}00004\ \textcolor{keywordtype}{void}\ Log::init()\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keyword}{auto}\ console\ =\ std::make\_shared<spdlog::sinks::stdout\_color\_sink\_mt>();}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00006}00006\ \ \ \ \ console-\/>set\_pattern(\textcolor{stringliteral}{"{}[\%Y-\/\%m-\/\%d\ \%H:\%M:\%S]\ [\%\string^\%l\%\$]\ \%v"{}});}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{auto}\ logger\ =\ std::make\_shared<spdlog::logger>(\textcolor{stringliteral}{"{}ZEN\_Log"{}},\ console);}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00009}00009\ \ \ \ \ logger-\/>set\_level(spdlog::level::trace);}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00010}00010\ \ \ \ \ spdlog::set\_default\_logger(logger);}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__Log_8cpp_source_l00012}00012\ \};\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

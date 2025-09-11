@@ -1,0 +1,126 @@
+\doxysection{Zen\+::Layer Class Reference}
+\hypertarget{classZen_1_1Layer}{}\label{classZen_1_1Layer}\index{Zen::Layer@{Zen::Layer}}
+Inheritance diagram for Zen\+::Layer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classZen_1_1Layer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classZen_1_1Layer_a3095172a10c7082d2d7d72a1742a0bdd}{Layer}} (const std\+::string \&name="{}Layer"{})
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_a3b711332534f887dfea85308bc2a0c84}{on\+Attach}} ()
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf}{on\+Detach}} ()
+\item 
+virtual void \mbox{\hyperlink{classZen_1_1Layer_a4d3f9e404d8031bf5e749bf86e45515c}{on\+Update}} ()
+\item 
+virtual bool \mbox{\hyperlink{classZen_1_1Layer_a0e3df6d508a9a1a18dba8814b4216a58}{on\+Event}} (const SDL\+\_\+\+Event \&event)=0
+\item 
+const std\+::string \& \mbox{\hyperlink{classZen_1_1Layer_a98563790f366816ff677605c95e77c79}{Get\+Name}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classZen_1_1Layer_a707226564506cc7ced008fbcaba4af67}{m\+\_\+\+Debug\+Name}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00007}{7}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1Layer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1Layer_a3095172a10c7082d2d7d72a1742a0bdd}\index{Zen::Layer@{Zen::Layer}!Layer@{Layer}}
+\index{Layer@{Layer}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{Layer()}{Layer()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a3095172a10c7082d2d7d72a1742a0bdd} 
+Zen\+::\+Layer\+::\+Layer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{ = {\ttfamily "{}Layer"{}}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{ZEN__Layer_8cpp_source}{ZEN\+\_\+\+Layer.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1Layer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1Layer_a98563790f366816ff677605c95e77c79}\index{Zen::Layer@{Zen::Layer}!GetName@{GetName}}
+\index{GetName@{GetName}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a98563790f366816ff677605c95e77c79} 
+const std\+::string \& Zen\+::\+Layer\+::\+Get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00017}{17}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+\Hypertarget{classZen_1_1Layer_a3b711332534f887dfea85308bc2a0c84}\index{Zen::Layer@{Zen::Layer}!onAttach@{onAttach}}
+\index{onAttach@{onAttach}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onAttach()}{onAttach()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a3b711332534f887dfea85308bc2a0c84} 
+virtual void Zen\+::\+Layer\+::on\+Attach (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00012}{12}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+\Hypertarget{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf}\index{Zen::Layer@{Zen::Layer}!onDetach@{onDetach}}
+\index{onDetach@{onDetach}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onDetach()}{onDetach()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_abf7f3e7e03875c8d55fd7921cdeb92bf} 
+virtual void Zen\+::\+Layer\+::on\+Detach (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00013}{13}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+\Hypertarget{classZen_1_1Layer_a0e3df6d508a9a1a18dba8814b4216a58}\index{Zen::Layer@{Zen::Layer}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a0e3df6d508a9a1a18dba8814b4216a58} 
+virtual bool Zen\+::\+Layer\+::on\+Event (\begin{DoxyParamCaption}\item[{const SDL\+\_\+\+Event \&}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1EventListener}{Zen\+::\+Event\+Listener}}.
+
+\Hypertarget{classZen_1_1Layer_a4d3f9e404d8031bf5e749bf86e45515c}\index{Zen::Layer@{Zen::Layer}!onUpdate@{onUpdate}}
+\index{onUpdate@{onUpdate}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{onUpdate()}{onUpdate()}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a4d3f9e404d8031bf5e749bf86e45515c} 
+virtual void Zen\+::\+Layer\+::on\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00014}{14}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classZen_1_1Layer_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classZen_1_1Layer_a707226564506cc7ced008fbcaba4af67}\index{Zen::Layer@{Zen::Layer}!m\_DebugName@{m\_DebugName}}
+\index{m\_DebugName@{m\_DebugName}!Zen::Layer@{Zen::Layer}}
+\doxysubsubsection{\texorpdfstring{m\_DebugName}{m\_DebugName}}
+{\footnotesize\ttfamily \label{classZen_1_1Layer_a707226564506cc7ced008fbcaba4af67} 
+std\+::string Zen\+::\+Layer\+::m\+\_\+\+Debug\+Name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Layer_8h_source_l00020}{20}} of file \mbox{\hyperlink{ZEN__Layer_8h_source}{ZEN\+\_\+\+Layer.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/layer/ZEN\+\_\+\+Layer.\+h\item 
+engine/zen/layer/ZEN\+\_\+\+Layer.\+cpp\end{DoxyCompactItemize}

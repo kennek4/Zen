@@ -1,0 +1,56 @@
+\doxysection{ZEN\+\_\+\+Layer\+List\+PEREZ.\+cpp}
+\hypertarget{ZEN__LayerListPEREZ_8cpp_source}{}\label{ZEN__LayerListPEREZ_8cpp_source}\index{engine/zen/layer/ZEN\_LayerListPEREZ.cpp@{engine/zen/layer/ZEN\_LayerListPEREZ.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <zen/layer/ZEN\_LayerListPEREZ.h>}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00003}00003\ \textcolor{keyword}{namespace\ }Zen\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00004}00004\ \ \ \textcolor{keywordtype}{void}\ LayerListPEREZ::PushLayer(std::unique\_ptr<Layer>\ layer)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordflow}{if}\ (!layer)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00006}00006\ \ \ \ \ m\_layers.insert(m\_layers.begin()\ +\ m\_layerInsertIndex,\ std::move(layer));}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{comment}{//m\_layers[m\_layerInsertIndex\ -\/\ 1]-\/>onAttach();}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00008}00008\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00009}00009\ \ \ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00010}00010\ \ \ \textcolor{keywordtype}{void}\ LayerListPEREZ::PushOverlay(std::unique\_ptr<Layer>\ overlay)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (!overlay)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00012}00012\ \ \ \ \ m\_layers.emplace\_back(overlay);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{comment}{//m\_layers[m\_layerInsertIndex]-\/>onAttach();}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00014}00014\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00016}00016\ \ \ std::unique\_ptr<Layer>\ LayerListPEREZ::PopLayer(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *layer)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (!layer)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ m\_layerInsertIndex;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00019}00019\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_layers[i].get()\ ==\ layer)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ temp\ =\ std::move(m\_layers[i]);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ temp-\/>onDetach();}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ m\_layers.erase(m\_layers.begin()\ +\ i);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ m\_layerInsertIndex)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ m\_layerInsertIndex-\/-\/;}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(temp);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00029}00029\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00031}00031\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00033}00033\ \ \ std::unique\_ptr<Layer>\ LayerListPEREZ::PopOverlay(\mbox{\hyperlink{classZen_1_1Layer}{Layer}}\ *overlay)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ (!overlay)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ m\_layerInsertIndex;\ i\ <\ m\_layers.size();\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00036}00036\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_layers[i].get()\ ==\ overlay)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ temp\ =\ std::move(m\_layers[i]);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ temp-\/>onDetach();}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ m\_layers.erase(m\_layers.begin()\ +\ i);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ m\_layerInsertIndex)\ \{}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ m\_layerInsertIndex-\/-\/;}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(temp);}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00046}00046\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00049}00049\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ZEN__LayerListPEREZ_8cpp_source_l00050}00050\ \}\ \textcolor{comment}{//\ namespace\ Zen}}
+
+\end{DoxyCode}

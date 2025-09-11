@@ -1,0 +1,283 @@
+\doxysection{Zen\+::Linux\+Window Class Reference}
+\hypertarget{classZen_1_1LinuxWindow}{}\label{classZen_1_1LinuxWindow}\index{Zen::LinuxWindow@{Zen::LinuxWindow}}
+Inheritance diagram for Zen\+::Linux\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classZen_1_1LinuxWindow}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classZen_1_1Window_adc10180589f4a6f01c7f579c02d408bd}{Event\+Callback\+Function}} = std\+::function$<$void(SDL\+\_\+\+Event \&)$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classZen_1_1LinuxWindow_aa0d5f8119d53bf93e8fb84c9901ff87c}{Linux\+Window}} (const \mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}} \&properties, \mbox{\hyperlink{classZen_1_1EventsDispatcher}{Events\+Dispatcher}} \texorpdfstring{$\ast$}{*}dispatcher)
+\item 
+void \mbox{\hyperlink{classZen_1_1LinuxWindow_a31d46106f45fd2625b24476a11ec94b7}{on\+Update}} () override
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classZen_1_1LinuxWindow_af873e9b97446e39a1abb67c2e496c934}{get\+Width}} () override
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classZen_1_1LinuxWindow_ae27fe3bfddb141460e7be3b1398876bf}{get\+Height}} () override
+\item 
+void \mbox{\hyperlink{classZen_1_1LinuxWindow_a4af2559ff8b572e0fc11b68b0e783663}{set\+VSync}} (bool enabled) override
+\item 
+bool \mbox{\hyperlink{classZen_1_1LinuxWindow_a927fd80abea8ff4780aacf0a752a8367}{is\+VSync\+Enabled}} () const override
+\item 
+void \mbox{\hyperlink{classZen_1_1LinuxWindow_a62c52712dfc8d92a4c322c51bfcf7e18}{toggle\+Fullscreen}} () override
+\item 
+void \mbox{\hyperlink{classZen_1_1LinuxWindow_a014ee38b55db16ae155c00bb929738cc}{set\+Event\+Callback}} (const Event\+Callback\+Function \&callback) override
+\item 
+void \mbox{\hyperlink{classZen_1_1LinuxWindow_a3e1fd1b5fb2a39d7eb7b1b4307cb9a11}{emit\+Error\+Message}} (const char \texorpdfstring{$\ast$}{*}message) override
+\item 
+\mbox{\hyperlink{structZen_1_1WindowData}{Window\+Data}} \& \mbox{\hyperlink{classZen_1_1LinuxWindow_a4b7b6dde50c6ee07edfd82b578f8d2cb}{get\+Window\+Data}} ()
+\item 
+\mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}} \& \mbox{\hyperlink{classZen_1_1LinuxWindow_a63b0443feb78ca74b79c46671135ed61}{get\+Properties}} ()
+\item 
+bool \mbox{\hyperlink{classZen_1_1LinuxWindow_aca6e341ab55868d8550cdadfb0f9327e}{resize\+Event}} (const SDL\+\_\+\+Event \&event)
+\item 
+bool \mbox{\hyperlink{classZen_1_1LinuxWindow_a414a0beea391bb49fabed2790e9c5ee7}{mouse\+Click\+Event}} (const SDL\+\_\+\+Event \&event)
+\item 
+bool \mbox{\hyperlink{classZen_1_1LinuxWindow_a1bb0e7fe87dae5e591162974a37cbc55}{on\+Event}} (const SDL\+\_\+\+Event \&event) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Window}{Window}} $>$ \mbox{\hyperlink{classZen_1_1Window_a28d21144506dd0dc2790167cdecd9b39}{create}} (const \mbox{\hyperlink{structZen_1_1WindowProperties}{Zen\+::\+Window\+Properties}} \&properties=\mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}}(), \mbox{\hyperlink{classZen_1_1EventsDispatcher}{Zen\+::\+Events\+Dispatcher}} \texorpdfstring{$\ast$}{*}dispatcher=nullptr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8h_source_l00015}{15}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8h_source}{ZEN\+\_\+\+Linux\+Window.\+h}}.
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{classZen_1_1LinuxWindow_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classZen_1_1Window_adc10180589f4a6f01c7f579c02d408bd}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!EventCallbackFunction@{EventCallbackFunction}}
+\index{EventCallbackFunction@{EventCallbackFunction}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{EventCallbackFunction}{EventCallbackFunction}}
+{\footnotesize\ttfamily \label{classZen_1_1Window_adc10180589f4a6f01c7f579c02d408bd} 
+using Zen\+::\+Window\+::\+Event\+Callback\+Function = std\+::function$<$void(SDL\+\_\+\+Event \&)$>$\hspace{0.3cm}{\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Window_8h_source_l00031}{31}} of file \mbox{\hyperlink{ZEN__Window_8h_source}{ZEN\+\_\+\+Window.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classZen_1_1LinuxWindow_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classZen_1_1LinuxWindow_aa0d5f8119d53bf93e8fb84c9901ff87c}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!LinuxWindow@{LinuxWindow}}
+\index{LinuxWindow@{LinuxWindow}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{LinuxWindow()}{LinuxWindow()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_aa0d5f8119d53bf93e8fb84c9901ff87c} 
+Zen\+::\+Linux\+Window\+::\+Linux\+Window (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}} \&}]{properties}{, }\item[{\mbox{\hyperlink{classZen_1_1EventsDispatcher}{Events\+Dispatcher}} \texorpdfstring{$\ast$}{*}}]{dispatcher}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00006}{6}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a03888a2cf1d0c5fbb4e8c0477dc104f6}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!````~LinuxWindow@{\texorpdfstring{$\sim$}{\string~}LinuxWindow}}
+\index{````~LinuxWindow@{\texorpdfstring{$\sim$}{\string~}LinuxWindow}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LinuxWindow()}{\string~LinuxWindow()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a03888a2cf1d0c5fbb4e8c0477dc104f6} 
+Zen\+::\+Linux\+Window\+::\texorpdfstring{$\sim$}{\string~}\+Linux\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classZen_1_1LinuxWindow_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classZen_1_1Window_a28d21144506dd0dc2790167cdecd9b39}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!create@{create}}
+\index{create@{create}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{classZen_1_1Window_a28d21144506dd0dc2790167cdecd9b39} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1Window}{Window}} $>$ Zen\+::\+Window\+::create (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structZen_1_1WindowProperties}{Zen\+::\+Window\+Properties}} \&}]{properties}{ = {\ttfamily \mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}}()}, }\item[{\mbox{\hyperlink{classZen_1_1EventsDispatcher}{Zen\+::\+Events\+Dispatcher}} \texorpdfstring{$\ast$}{*}}]{dispatcher}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [inherited]}}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__Window_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{ZEN__Window_8cpp_source}{ZEN\+\_\+\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a3e1fd1b5fb2a39d7eb7b1b4307cb9a11}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!emitErrorMessage@{emitErrorMessage}}
+\index{emitErrorMessage@{emitErrorMessage}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{emitErrorMessage()}{emitErrorMessage()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a3e1fd1b5fb2a39d7eb7b1b4307cb9a11} 
+void Zen\+::\+Linux\+Window\+::emit\+Error\+Message (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00131}{131}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_ae27fe3bfddb141460e7be3b1398876bf}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_ae27fe3bfddb141460e7be3b1398876bf} 
+uint32\+\_\+t Zen\+::\+Linux\+Window\+::get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00106}{106}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a63b0443feb78ca74b79c46671135ed61}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!getProperties@{getProperties}}
+\index{getProperties@{getProperties}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{getProperties()}{getProperties()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a63b0443feb78ca74b79c46671135ed61} 
+\mbox{\hyperlink{structZen_1_1WindowProperties}{Window\+Properties}} \& Zen\+::\+Linux\+Window\+::get\+Properties (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_af873e9b97446e39a1abb67c2e496c934}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_af873e9b97446e39a1abb67c2e496c934} 
+uint32\+\_\+t Zen\+::\+Linux\+Window\+::get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00104}{104}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a4b7b6dde50c6ee07edfd82b578f8d2cb}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!getWindowData@{getWindowData}}
+\index{getWindowData@{getWindowData}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{getWindowData()}{getWindowData()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a4b7b6dde50c6ee07edfd82b578f8d2cb} 
+\mbox{\hyperlink{structZen_1_1WindowData}{Window\+Data}} \& Zen\+::\+Linux\+Window\+::get\+Window\+Data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a927fd80abea8ff4780aacf0a752a8367}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!isVSyncEnabled@{isVSyncEnabled}}
+\index{isVSyncEnabled@{isVSyncEnabled}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{isVSyncEnabled()}{isVSyncEnabled()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a927fd80abea8ff4780aacf0a752a8367} 
+bool Zen\+::\+Linux\+Window\+::is\+VSync\+Enabled (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00119}{119}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a414a0beea391bb49fabed2790e9c5ee7}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!mouseClickEvent@{mouseClickEvent}}
+\index{mouseClickEvent@{mouseClickEvent}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{mouseClickEvent()}{mouseClickEvent()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a414a0beea391bb49fabed2790e9c5ee7} 
+bool Zen\+::\+Linux\+Window\+::mouse\+Click\+Event (\begin{DoxyParamCaption}\item[{const SDL\+\_\+\+Event \&}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00156}{156}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a1bb0e7fe87dae5e591162974a37cbc55}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!onEvent@{onEvent}}
+\index{onEvent@{onEvent}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{onEvent()}{onEvent()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a1bb0e7fe87dae5e591162974a37cbc55} 
+bool Zen\+::\+Linux\+Window\+::on\+Event (\begin{DoxyParamCaption}\item[{const SDL\+\_\+\+Event \&}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00079}{79}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a31d46106f45fd2625b24476a11ec94b7}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!onUpdate@{onUpdate}}
+\index{onUpdate@{onUpdate}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{onUpdate()}{onUpdate()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a31d46106f45fd2625b24476a11ec94b7} 
+void Zen\+::\+Linux\+Window\+::on\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00100}{100}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_aca6e341ab55868d8550cdadfb0f9327e}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!resizeEvent@{resizeEvent}}
+\index{resizeEvent@{resizeEvent}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{resizeEvent()}{resizeEvent()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_aca6e341ab55868d8550cdadfb0f9327e} 
+bool Zen\+::\+Linux\+Window\+::resize\+Event (\begin{DoxyParamCaption}\item[{const SDL\+\_\+\+Event \&}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00135}{135}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a014ee38b55db16ae155c00bb929738cc}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!setEventCallback@{setEventCallback}}
+\index{setEventCallback@{setEventCallback}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{setEventCallback()}{setEventCallback()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a014ee38b55db16ae155c00bb929738cc} 
+void Zen\+::\+Linux\+Window\+::set\+Event\+Callback (\begin{DoxyParamCaption}\item[{const Event\+Callback\+Function \&}]{callback}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a4af2559ff8b572e0fc11b68b0e783663}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!setVSync@{setVSync}}
+\index{setVSync@{setVSync}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{setVSync()}{setVSync()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a4af2559ff8b572e0fc11b68b0e783663} 
+void Zen\+::\+Linux\+Window\+::set\+VSync (\begin{DoxyParamCaption}\item[{bool}]{enabled}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+\Hypertarget{classZen_1_1LinuxWindow_a62c52712dfc8d92a4c322c51bfcf7e18}\index{Zen::LinuxWindow@{Zen::LinuxWindow}!toggleFullscreen@{toggleFullscreen}}
+\index{toggleFullscreen@{toggleFullscreen}!Zen::LinuxWindow@{Zen::LinuxWindow}}
+\doxysubsubsection{\texorpdfstring{toggleFullscreen()}{toggleFullscreen()}}
+{\footnotesize\ttfamily \label{classZen_1_1LinuxWindow_a62c52712dfc8d92a4c322c51bfcf7e18} 
+void Zen\+::\+Linux\+Window\+::toggle\+Fullscreen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1Window}{Zen\+::\+Window}}.
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source_l00121}{121}} of file \mbox{\hyperlink{ZEN__LinuxWindow_8cpp_source}{ZEN\+\_\+\+Linux\+Window.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+engine/zen/platform/linux/ZEN\+\_\+\+Linux\+Window.\+h\item 
+engine/zen/platform/linux/ZEN\+\_\+\+Linux\+Window.\+cpp\end{DoxyCompactItemize}
