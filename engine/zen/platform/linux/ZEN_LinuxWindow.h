@@ -1,20 +1,19 @@
 #pragma once
 
-#include "zen/core/ZEN_Window.h"
-#include <SDL3/SDL_video.h>
+#include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
+#include <zen/core/ZEN_Window.h>
 
 namespace Zen {
-
 // TEMP
 struct WindowData {
     SDL_Window *window;
-    SDL_GLContext glContext;
+    std::unique_ptr<GraphicsContext> context;
 };
 
 class LinuxWindow : public Window {
   public:
-    LinuxWindow(const WindowProperties &properties, Events *dispatcher);
+    LinuxWindow(const WindowProperties &properties, EventsDispatcher *dispatcher);
     virtual ~LinuxWindow();
 
     void onUpdate() override;
@@ -31,13 +30,13 @@ class LinuxWindow : public Window {
     // TEMP
     WindowData &getWindowData();
     WindowProperties &getProperties();
-    
+
     bool resizeEvent(const SDL_Event &event);
     bool mouseClickEvent(const SDL_Event &event);
-    bool onEvent(const SDL_Event &event);
+    bool onEvent(const SDL_Event &event) override;
 
   private:
-    virtual void init(const WindowProperties &properties, Events *dispatcher);
+    virtual void init(const WindowProperties &properties, EventsDispatcher *dispatcher);
     virtual void shutdown();
 
   private:
@@ -48,5 +47,8 @@ class LinuxWindow : public Window {
 
     WindowProperties m_windowProperties;
 
-};
+    std::shared_ptr<Shader> m_shader;
+    std::shared_ptr<VertexArray> m_vertexArray;
+
+  };
 }; // namespace Zen

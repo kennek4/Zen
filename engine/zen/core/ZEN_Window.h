@@ -1,10 +1,6 @@
 #pragma once
 
-#include <SDL3/SDL_events.h>
-#include <cstdint>
-#include <functional>
-#include <memory>
-#include <string>
+#include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
 
 #ifndef __ZEN_GLAD_H
@@ -49,8 +45,9 @@ class Window : public EventListener {
     virtual void emitErrorMessage(const char *message) = 0;
 
     static std::unique_ptr<Window>
-    create(const Zen::WindowProperties &properties = WindowProperties(), Zen::Events *dispatcher = nullptr);
+    create(const Zen::WindowProperties &properties = WindowProperties(),
+           Zen::EventsDispatcher *dispatcher = nullptr);
 
-    virtual bool onEvent(const SDL_Event& event) = 0;
+    virtual bool onEvent(const SDL_Event &event) = 0;
 };
 }; // namespace Zen
