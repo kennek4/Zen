@@ -9,9 +9,9 @@
 // folder).
 // - Introduction, links and more at the top of imgui.cpp
 
+#include "../backends/imgui_impl_opengl3.h"
+#include "../backends/imgui_impl_sdl3.h"
 #include "../imgui.h"
-#include "../imgui_impl_opengl3.h"
-#include "../imgui_impl_sdl3.h"
 #include <SDL3/SDL.h>
 #include <stdio.h>
 #if defined(IMGUI_IMPL_OPENGL_ES2)

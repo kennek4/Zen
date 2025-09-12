@@ -39,7 +39,7 @@
 //  version table at the top of imgui_impl_opengl3.cpp.
 
 #pragma once
-#include "imgui.h" // IMGUI_IMPL_API
+#include "../imgui.h" // IMGUI_IMPL_API
 #ifndef IMGUI_DISABLE
 
 // Follow "Getting Started" link and check examples/ folder to learn about using
