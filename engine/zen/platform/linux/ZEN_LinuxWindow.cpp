@@ -72,32 +72,7 @@ void LinuxWindow::init(const WindowProperties &properties,
   gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
 
   setVSync(m_windowProperties.vsync);
-  // TEMP
-  m_vertexArray.reset(VertexArray::Create());
 
-  float vertices[3 * 7] = {-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.2f, 1.0f,
-                           0.5f,  -0.5f, 0.0f, 0.2f, 0.8f, 0.2f, 1.0f,
-                           0.0f,  0.5f,  0.0f, 0.2f, 0.2f, 0.8f, 1.0f};
-
-  m_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-  BufferLayout layout = {{ShaderDataType::Float3, "a_position"},
-                         {ShaderDataType::Float4, "a_color"}};
-  m_vertexBuffer->setLayout(layout);
-
-  m_vertexArray->addVertexBuffer(m_vertexBuffer);
-
-  uint32_t indices[3] = {0, 1, 2};
-  m_indexBuffer.reset(
-      IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-  m_vertexArray->setIndexBuffer(m_indexBuffer);
-
-  const char *base = SDL_GetBasePath();
-  std::string vPath = std::string(base) + "data/basic.vert";
-  std::string fPath = std::string(base) + "data/basic.frag";
-  m_shader = std::make_unique<Shader>(vPath.c_str(), fPath.c_str());
-
-  // m_shader = std::make_unique<Shader>("basic.vert","basic.frag");
-  // m_shader.reset(new Shader("data/basic.vert","data/basic.frag"));
   ZEN_LOG_INFO("Window Successfully Initialized!");
 };
 
@@ -123,16 +98,6 @@ void LinuxWindow::shutdown() {
 };
 
 void LinuxWindow::onUpdate() {
-  // ZEN_LOG_INFO("Clearing color buffer...");
-  glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
-  // TEMP
-  m_vertexArray->bind();
-  m_shader->bind();
-  glDrawElements(GL_TRIANGLES, m_indexBuffer->getCount(), GL_UNSIGNED_INT,
-                 nullptr);
-
-  // SDL_GL_SwapWindow(m_windowData.window);
   m_windowData.context->swapBuffers();
 };
 

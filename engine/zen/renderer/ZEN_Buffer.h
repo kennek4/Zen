@@ -1,8 +1,6 @@
 #pragma once
 
 #include <zen/zen_pch.h>
-#include <zen/renderer/ZEN_RendererAPI.h>
-#include <zen/renderer/ZEN_Renderer.h>
 
 
 namespace Zen {
