@@ -98,25 +98,30 @@ $(function(){initNavTree('classZen_1_1OpenGLRendererAPI.html','','classZen_1_1Op
  <div class="center">
   <img src="classZen_1_1OpenGLRendererAPI.png" usemap="#Zen_3A_3AOpenGLRendererAPI_map" alt=""/>
   <map id="Zen_3A_3AOpenGLRendererAPI_map" name="Zen_3A_3AOpenGLRendererAPI_map">
-<area href="classZen_1_1RendererAPI.html" alt="Zen::RendererAPI" shape="rect" coords="0,0,161,24"/>
+<area href="classZen_1_1RendererAPI.html" title="Abstraction over the raphics backed that currently expose clearColour, clear, and delete commands." alt="Zen::RendererAPI" shape="rect" coords="0,0,161,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a695bea7b595837269c70c1dcc974811b" id="r_a695bea7b595837269c70c1dcc974811b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><b>API</b> { <b>None</b> = 0
+<tr class="memitem:a695bea7b595837269c70c1dcc974811b" id="r_a695bea7b595837269c70c1dcc974811b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b">API</a> { <b>None</b> = 0
 , <b>OpenGL</b> = 1
  }</td></tr>
+<tr class="memdesc:a695bea7b595837269c70c1dcc974811b"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum declaring the supported rendering <a class="el" href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b" title="An enum declaring the supported rendering API.">API</a>.  <a href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a57a53f2bc4385c8b47e35dff3b8cdae4" id="r_a57a53f2bc4385c8b47e35dff3b8cdae4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57a53f2bc4385c8b47e35dff3b8cdae4">setClearColour</a> (const glm::vec4 &amp;colour) override</td></tr>
+<tr class="memdesc:a57a53f2bc4385c8b47e35dff3b8cdae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the RGBA colour used by <a class="el" href="#a5bb6a2d8e54aad502f6ef24f217b5b01" title="Clears the currently bound framebuffer.">clear()</a>  <br /></td></tr>
 <tr class="memitem:a5bb6a2d8e54aad502f6ef24f217b5b01" id="r_a5bb6a2d8e54aad502f6ef24f217b5b01"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bb6a2d8e54aad502f6ef24f217b5b01">clear</a> () override</td></tr>
+<tr class="memdesc:a5bb6a2d8e54aad502f6ef24f217b5b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the currently bound framebuffer.  <br /></td></tr>
 <tr class="memitem:a891b31591aacdd1df7bb8ec579918436" id="r_a891b31591aacdd1df7bb8ec579918436"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a891b31591aacdd1df7bb8ec579918436">drawIndexed</a> (const std::shared_ptr&lt; <a class="el" href="classZen_1_1VertexArray.html">VertexArray</a> &gt; &amp;vertexArray) override</td></tr>
+<tr class="memdesc:a891b31591aacdd1df7bb8ec579918436"><td class="mdescLeft">&#160;</td><td class="mdescRight">submits an indexed draw  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aed364ae840833d7d4223cfefb1873a90" id="r_aed364ae840833d7d4223cfefb1873a90"><td class="memItemLeft" align="right" valign="top">static API&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZen_1_1RendererAPI.html#aed364ae840833d7d4223cfefb1873a90">getAPI</a> ()</td></tr>
+<tr class="memitem:aed364ae840833d7d4223cfefb1873a90" id="r_aed364ae840833d7d4223cfefb1873a90"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b">API</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZen_1_1RendererAPI.html#aed364ae840833d7d4223cfefb1873a90">getAPI</a> ()</td></tr>
+<tr class="memdesc:aed364ae840833d7d4223cfefb1873a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the current backend enum  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -132,7 +137,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class Zen::RendererAPI::API</td>
+          <td class="memname">enum class <a class="el" href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b">Zen::RendererAPI::API</a></td>
         </tr>
       </table>
   </td>
@@ -142,7 +147,9 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZEN__RendererAPI_8h_source.html#l00010">10</a> of file <a class="el" href="ZEN__RendererAPI_8h_source.html">ZEN_RendererAPI.h</a>.</p>
+<p>An enum declaring the supported rendering <a class="el" href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b" title="An enum declaring the supported rendering API.">API</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZEN__RendererAPI_8h_source.html#l00016">16</a> of file <a class="el" href="ZEN__RendererAPI_8h_source.html">ZEN_RendererAPI.h</a>.</p>
 
 </div>
 </div>
@@ -170,7 +177,9 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classZen_1_1RendererAPI.html">Zen::RendererAPI</a>.</p>
+<p>Clears the currently bound framebuffer. </p>
+
+<p>Implements <a class="el" href="classZen_1_1RendererAPI.html#acf36a62e1364c4753f889d5a0d143639">Zen::RendererAPI</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="ZEN__OpenGLRendererAPI_8cpp_source.html#l00008">8</a> of file <a class="el" href="ZEN__OpenGLRendererAPI_8cpp_source.html">ZEN_OpenGLRendererAPI.cpp</a>.</p>
 
@@ -199,7 +208,15 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classZen_1_1RendererAPI.html">Zen::RendererAPI</a>.</p>
+<p>submits an indexed draw </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertexArray</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classZen_1_1RendererAPI.html#af3af20902ffb0ad0f627ae4f440d17e5">Zen::RendererAPI</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="ZEN__OpenGLRendererAPI_8cpp_source.html#l00011">11</a> of file <a class="el" href="ZEN__OpenGLRendererAPI_8cpp_source.html">ZEN_OpenGLRendererAPI.cpp</a>.</p>
 
@@ -215,7 +232,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">API Zen::RendererAPI::getAPI </td>
+          <td class="memname"><a class="el" href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b">API</a> Zen::RendererAPI::getAPI </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -228,7 +245,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZEN__RendererAPI_8h_source.html#l00020">20</a> of file <a class="el" href="ZEN__RendererAPI_8h_source.html">ZEN_RendererAPI.h</a>.</p>
+<p>returns the current backend enum </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classZen_1_1RendererAPI.html#a695bea7b595837269c70c1dcc974811b" title="An enum declaring the supported rendering API.">API</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="ZEN__RendererAPI_8h_source.html#l00041">41</a> of file <a class="el" href="ZEN__RendererAPI_8h_source.html">ZEN_RendererAPI.h</a>.</p>
 
 </div>
 </div>
@@ -255,7 +275,15 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classZen_1_1RendererAPI.html">Zen::RendererAPI</a>.</p>
+<p>Set the RGBA colour used by <a class="el" href="#a5bb6a2d8e54aad502f6ef24f217b5b01" title="Clears the currently bound framebuffer.">clear()</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colour</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classZen_1_1RendererAPI.html#a8af72a564813f8f93fa5bca77d049f30">Zen::RendererAPI</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="ZEN__OpenGLRendererAPI_8cpp_source.html#l00004">4</a> of file <a class="el" href="ZEN__OpenGLRendererAPI_8cpp_source.html">ZEN_OpenGLRendererAPI.cpp</a>.</p>
 

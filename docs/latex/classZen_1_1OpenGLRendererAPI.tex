@@ -9,24 +9,24 @@ Inheritance diagram for Zen\+::Open\+GLRenderer\+API\+:\begin{figure}[H]
 \doxysubsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum class {\bfseries API} \{ {\bfseries None} = 0
+enum class \mbox{\hyperlink{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}{API}} \{ {\bfseries None} = 0
 , {\bfseries Open\+GL} = 1
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em An enum declaring the supported rendering \doxylink{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}{API}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 virtual void \mbox{\hyperlink{classZen_1_1OpenGLRendererAPI_a57a53f2bc4385c8b47e35dff3b8cdae4}{set\+Clear\+Colour}} (const glm\+::vec4 \&colour) override
-\item 
+\begin{DoxyCompactList}\small\item\em Set the RGBA colour used by \doxylink{classZen_1_1OpenGLRendererAPI_a5bb6a2d8e54aad502f6ef24f217b5b01}{clear()} \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classZen_1_1OpenGLRendererAPI_a5bb6a2d8e54aad502f6ef24f217b5b01}{clear}} () override
-\item 
+\begin{DoxyCompactList}\small\item\em Clears the currently bound framebuffer. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classZen_1_1OpenGLRendererAPI_a891b31591aacdd1df7bb8ec579918436}{draw\+Indexed}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classZen_1_1VertexArray}{Vertex\+Array}} $>$ \&vertex\+Array) override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em submits an indexed draw \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static API \mbox{\hyperlink{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90}{get\+API}} ()
-\end{DoxyCompactItemize}
+static \mbox{\hyperlink{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}{API}} \mbox{\hyperlink{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90}{get\+API}} ()
+\begin{DoxyCompactList}\small\item\em returns the current backend enum \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -43,11 +43,15 @@ Definition at line \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8h_source_l00008}{8}}
 \index{API@{API}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
 \doxysubsubsection{\texorpdfstring{API}{API}}
 {\footnotesize\ttfamily \label{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b} 
-enum class Zen\+::\+Renderer\+API\+::\+API\hspace{0.3cm}{\ttfamily [strong]}, {\ttfamily [inherited]}}
+enum class \mbox{\hyperlink{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}{Zen\+::\+Renderer\+API\+::\+API}}\hspace{0.3cm}{\ttfamily [strong]}, {\ttfamily [inherited]}}
 
 
 
-Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00010}{10}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
+An enum declaring the supported rendering \doxylink{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}{API}. 
+
+
+
+Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00016}{16}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
 
 
 
@@ -62,7 +66,11 @@ void Zen\+::\+Open\+GLRenderer\+API\+::clear (\begin{DoxyParamCaption}{}{}\end{D
 
 
 
-Implements \mbox{\hyperlink{classZen_1_1RendererAPI}{Zen\+::\+Renderer\+API}}.
+Clears the currently bound framebuffer. 
+
+
+
+Implements \mbox{\hyperlink{classZen_1_1RendererAPI_acf36a62e1364c4753f889d5a0d143639}{Zen\+::\+Renderer\+API}}.
 
 
 
@@ -76,7 +84,16 @@ void Zen\+::\+Open\+GLRenderer\+API\+::draw\+Indexed (\begin{DoxyParamCaption}\i
 
 
 
-Implements \mbox{\hyperlink{classZen_1_1RendererAPI}{Zen\+::\+Renderer\+API}}.
+submits an indexed draw 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+Array} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classZen_1_1RendererAPI_af3af20902ffb0ad0f627ae4f440d17e5}{Zen\+::\+Renderer\+API}}.
 
 
 
@@ -86,11 +103,18 @@ Definition at line \mbox{\hyperlink{ZEN__OpenGLRendererAPI_8cpp_source_l00011}{1
 \index{getAPI@{getAPI}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
 \doxysubsubsection{\texorpdfstring{getAPI()}{getAPI()}}
 {\footnotesize\ttfamily \label{classZen_1_1RendererAPI_aed364ae840833d7d4223cfefb1873a90} 
-API Zen\+::\+Renderer\+API\+::get\+API (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [inherited]}}
+\mbox{\hyperlink{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}{API}} Zen\+::\+Renderer\+API\+::get\+API (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [inherited]}}
 
 
 
-Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00020}{20}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
+returns the current backend enum 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classZen_1_1RendererAPI_a695bea7b595837269c70c1dcc974811b}{API} 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{ZEN__RendererAPI_8h_source_l00041}{41}} of file \mbox{\hyperlink{ZEN__RendererAPI_8h_source}{ZEN\+\_\+\+Renderer\+API.\+h}}.
 
 \Hypertarget{classZen_1_1OpenGLRendererAPI_a57a53f2bc4385c8b47e35dff3b8cdae4}\index{Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}!setClearColour@{setClearColour}}
 \index{setClearColour@{setClearColour}!Zen::OpenGLRendererAPI@{Zen::OpenGLRendererAPI}}
@@ -100,7 +124,16 @@ void Zen\+::\+Open\+GLRenderer\+API\+::set\+Clear\+Colour (\begin{DoxyParamCapti
 
 
 
-Implements \mbox{\hyperlink{classZen_1_1RendererAPI}{Zen\+::\+Renderer\+API}}.
+Set the RGBA colour used by \doxylink{classZen_1_1OpenGLRendererAPI_a5bb6a2d8e54aad502f6ef24f217b5b01}{clear()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colour} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classZen_1_1RendererAPI_a8af72a564813f8f93fa5bca77d049f30}{Zen\+::\+Renderer\+API}}.
 
 
 

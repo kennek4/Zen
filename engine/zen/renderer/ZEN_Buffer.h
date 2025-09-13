@@ -4,11 +4,14 @@
 
 
 namespace Zen {
-
+  /**
+   * @brief An enum of data kinds supported by buffer layouts
+   */
   enum class ShaderDataType {
     None = 0, Float, Float2, Float3, Float4, Mat3, Mat4, Int, Int2, Int3, Int4, Bool
   };
 
+  
   static uint32_t ShaderDataTypeSize(ShaderDataType type) {
     switch (type) {
       case ShaderDataType::Float:    return 4;
@@ -28,6 +31,9 @@ namespace Zen {
     return 0;
   }
 
+  /**
+   * @brief Describes a buffer element
+   */
   struct BufferElement {
     std::string name;
     ShaderDataType type;

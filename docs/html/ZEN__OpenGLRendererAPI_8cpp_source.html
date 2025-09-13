@@ -94,18 +94,27 @@ $(function(){initNavTree('ZEN__OpenGLRendererAPI_8cpp_source.html','',''); });
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;zen/platform/OpenGL/ZEN_OpenGLRendererAPI.h&gt;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span>Zen {</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>  <span class="keywordtype">void</span> OpenGLRendererAPI::setClearColour(<span class="keyword">const</span> glm::vec4 &amp;colour)  {</div>
+<div class="foldopen" id="foldopen00004" data-start="{" data-end="}">
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="classZen_1_1OpenGLRendererAPI.html#a57a53f2bc4385c8b47e35dff3b8cdae4">    4</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classZen_1_1OpenGLRendererAPI.html#a57a53f2bc4385c8b47e35dff3b8cdae4">OpenGLRendererAPI::setClearColour</a>(<span class="keyword">const</span> glm::vec4 &amp;colour)  {</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    glClearColor(colour.r, colour.g, colour.b, colour.a);</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  }</div>
+</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>  </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="keywordtype">void</span> OpenGLRendererAPI::clear() {</div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classZen_1_1OpenGLRendererAPI.html#a5bb6a2d8e54aad502f6ef24f217b5b01">    8</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classZen_1_1OpenGLRendererAPI.html#a5bb6a2d8e54aad502f6ef24f217b5b01">OpenGLRendererAPI::clear</a>() {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  }</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keywordtype">void</span> OpenGLRendererAPI::drawIndexed(<span class="keyword">const</span> std::shared_ptr&lt;VertexArray&gt; &amp;vertexArray) {</div>
+</div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classZen_1_1OpenGLRendererAPI.html#a891b31591aacdd1df7bb8ec579918436">   11</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classZen_1_1OpenGLRendererAPI.html#a891b31591aacdd1df7bb8ec579918436">OpenGLRendererAPI::drawIndexed</a>(<span class="keyword">const</span> std::shared_ptr&lt;VertexArray&gt; &amp;vertexArray) {</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    glDrawElements(GL_TRIANGLES, vertexArray-&gt;getIndexBuffer()-&gt;getCount(), GL_UNSIGNED_INT, <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  }</div>
+</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
+<div class="ttc" id="aclassZen_1_1OpenGLRendererAPI_html_a57a53f2bc4385c8b47e35dff3b8cdae4"><div class="ttname"><a href="classZen_1_1OpenGLRendererAPI.html#a57a53f2bc4385c8b47e35dff3b8cdae4">Zen::OpenGLRendererAPI::setClearColour</a></div><div class="ttdeci">virtual void setClearColour(const glm::vec4 &amp;colour) override</div><div class="ttdoc">Set the RGBA colour used by clear()</div><div class="ttdef"><b>Definition</b> <a href="#l00004">ZEN_OpenGLRendererAPI.cpp:4</a></div></div>
+<div class="ttc" id="aclassZen_1_1OpenGLRendererAPI_html_a5bb6a2d8e54aad502f6ef24f217b5b01"><div class="ttname"><a href="classZen_1_1OpenGLRendererAPI.html#a5bb6a2d8e54aad502f6ef24f217b5b01">Zen::OpenGLRendererAPI::clear</a></div><div class="ttdeci">virtual void clear() override</div><div class="ttdoc">Clears the currently bound framebuffer.</div><div class="ttdef"><b>Definition</b> <a href="#l00008">ZEN_OpenGLRendererAPI.cpp:8</a></div></div>
+<div class="ttc" id="aclassZen_1_1OpenGLRendererAPI_html_a891b31591aacdd1df7bb8ec579918436"><div class="ttname"><a href="classZen_1_1OpenGLRendererAPI.html#a891b31591aacdd1df7bb8ec579918436">Zen::OpenGLRendererAPI::drawIndexed</a></div><div class="ttdeci">virtual void drawIndexed(const std::shared_ptr&lt; VertexArray &gt; &amp;vertexArray) override</div><div class="ttdoc">submits an indexed draw</div><div class="ttdef"><b>Definition</b> <a href="#l00011">ZEN_OpenGLRendererAPI.cpp:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
