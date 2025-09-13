@@ -1,9 +1,9 @@
 #pragma once
 
-#include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
 #include <zen/core/ZEN_Window.h>
 #include <zen/renderer/ZEN_GraphicsContext.h>
+#include <zen/zen_pch.h>
 
 namespace Zen {
 // TEMP
@@ -14,7 +14,8 @@ struct WindowData {
 
 class LinuxWindow : public Window {
   public:
-    LinuxWindow(const WindowProperties &properties, EventsDispatcher *dispatcher);
+    LinuxWindow(const WindowProperties &properties,
+                EventsDispatcher *dispatcher);
     virtual ~LinuxWindow();
 
     void onUpdate() override;
@@ -37,7 +38,8 @@ class LinuxWindow : public Window {
     bool onEvent(const SDL_Event &event) override;
 
   private:
-    virtual void init(const WindowProperties &properties, EventsDispatcher *dispatcher);
+    virtual void init(const WindowProperties &properties,
+                      EventsDispatcher *dispatcher);
     virtual void shutdown();
 
   private:
@@ -47,6 +49,5 @@ class LinuxWindow : public Window {
     WindowData m_windowData;
 
     WindowProperties m_windowProperties;
-
-  };
+};
 }; // namespace Zen

@@ -3,14 +3,14 @@
 // C++
 #include <algorithm>
 #include <cstdint>
+#include <fstream>
 #include <functional>
+#include <iostream>
 #include <map>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <sstream>
-#include <iostream>
 
 // OpenGL
 #ifndef __ZEN_OPENGL_H
@@ -33,5 +33,5 @@
 // GLM
 #include <glm/glm.hpp>
 
-//ZEN
+// ZEN
 #include <zen/log/ZEN_Log.h>

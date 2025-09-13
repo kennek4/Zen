@@ -5,15 +5,14 @@
 #include <zen/renderer/ZEN_RenderCommand.h>
 
 namespace Zen {
-  class Renderer {
-    public:
-      static void beginScene();
-      static void endScene();
+class Renderer {
+  public:
+    static void beginScene();
+    static void endScene();
 
-      static void submit(const std::shared_ptr<VertexArray> &vertexArray);
-    
-      static RendererAPI::API getAPI() {return RendererAPI::getAPI();}
+    static void submit(const std::shared_ptr<VertexArray> &vertexArray);
 
-  };
+    static RendererAPI::API getAPI() { return RendererAPI::getAPI(); }
+};
 
 }; // namespace Zen

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <zen/zen_pch.h>
 #include <zen/core/ZEN_Core.h>
+#include <zen/zen_pch.h>
 
 #ifndef __ZEN_GLAD_H
 #include <glad/gl.h>
